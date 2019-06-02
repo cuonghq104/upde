@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".screen.profile.ProfileFragment"
+    android:background="@color/colorWhite">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/margin_component">
+
+
+            <RelativeLayout
+                android:layout_marginTop="100dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/rl_profile_picture"
+                android:layout_width="@dimen/size_store_image"
+                android:layout_height="@dimen/size_store_image"
+                android:foreground="?attr/selectableItemBackground"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/btn_profile"
+                    android:layout_width="@dimen/size_store_image"
+                    android:layout_height="@dimen/size_store_image"
+                    android:background="@color/colorTransparent"
+                    android:src="@drawable/de_niro" />
+
+                <RelativeLayout
+
+                    android:id="@+id/rl_clip"
+                    android:layout_width="@dimen/size_store_image"
+                    android:layout_height="@dimen/size_store_image"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/background_circle_clip">
+
+                    <ImageView
+                        android:layout_width="@dimen/size_profile_button"
+                        android:layout_height="@dimen/size_profile_button"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="5dp"
+                        android:src="@drawable/ic_image_add_button"
+                        android:tint="@color/colorWhite" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Robert de Niro"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rl_profile_picture" />
+
+            <TextView
+                android:id="@+id/btn_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="@string/title_edit_information"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_border_top"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_component">
+
+            <LinearLayout
+                android:id="@+id/btn_about_us"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/padding_profile_selection"
+                android:paddingStart="@dimen/padding_profile_selection"
+                android:paddingTop="@dimen/padding_profile_selection">
+
+                <ImageView
+                    android:layout_width="@dimen/size_profile_button"
+                    android:layout_height="@dimen/size_profile_button"
+                    android:src="@drawable/ic_earth"
+                    android:tint="@color/colorPrimaryDark" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/margin_component"
+                    android:text="@string/title_about_us"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/btn_contact_us"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/padding_profile_selection"
+                android:paddingStart="@dimen/padding_profile_selection"
+                android:paddingTop="@dimen/padding_profile_selection">
+
+                <ImageView
+                    android:layout_width="@dimen/size_profile_button"
+                    android:layout_height="@dimen/size_profile_button"
+                    android:src="@drawable/ic_phone_receiver"
+                    android:tint="@color/colorPrimaryDark" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/margin_component"
+                    android:text="@string/title_contact_us"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_log_out"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="?attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/padding_profile_selection"
+                android:paddingStart="@dimen/padding_profile_selection"
+                android:paddingTop="@dimen/padding_profile_selection">
+
+                <ImageView
+                    android:layout_width="@dimen/size_profile_button"
+                    android:layout_height="@dimen/size_profile_button"
+                    android:src="@drawable/ic_exit_to_app_button"
+                    android:tint="@color/colorPrimaryDark" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/margin_component"
+                    android:text="@string/title_log_out"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,30 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="stp.cuonghq.upde.screen.home.complete.CompleteFragment">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srf_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/margin_component"
+        android:paddingEnd="@dimen/margin_component">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_complete"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_component"
+            android:layoutAnimation="@anim/layout_animation_fall_down" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <include
+        android:id="@+id/layout_loading"
+        layout="@layout/layout_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</FrameLayout>

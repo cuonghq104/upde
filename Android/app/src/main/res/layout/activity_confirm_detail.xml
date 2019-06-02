@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="stp.cuonghq.upde.screen.confirmdetail.ConfirmDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_left_arrow"
+                    android:tint="@color/colorWhite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_confirm_detail"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.Toolbar>
+
+        <stp.cuonghq.upde.commons.DisplayTextView
+            android:id="@+id/tv_ticket_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:displayTitle="@string/title_ticket_no" />
+
+        <stp.cuonghq.upde.commons.DisplayTextView
+            android:id="@+id/tv_flight_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:displayTitle="@string/title_flight_no" />
+
+        <stp.cuonghq.upde.commons.DisplayTextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:displayTitle="@string/title_customer_multi_lang" />
+
+        <stp.cuonghq.upde.commons.DisplayTextView
+            android:id="@+id/tv_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:displayTitle="@string/title_email" />
+
+        <stp.cuonghq.upde.commons.DisplayTextView
+            android:id="@+id/tv_pickup_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:displayTitle="@string/title_pick_up_at_multi_lang" />
+
+        <stp.cuonghq.upde.commons.DisplayTextView
+            android:id="@+id/tv_destination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:displayTitle="@string/title_destination_multi_lang" />
+
+        <stp.cuonghq.upde.commons.DisplayTextView
+            android:id="@+id/tv_vehicle_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:displayTitle="@string/title_vehicle_type_multi_lang" />
+
+        <stp.cuonghq.upde.commons.DisplayTextView
+            android:id="@+id/tv_time_pick_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:displayTitle="@string/title_time_to_pick_up_multi_lang" />
+
+        <stp.cuonghq.upde.commons.DisplayTextView
+            android:id="@+id/tv_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:displayTitle="@string/title_total_multi_lang" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="20dp"
+            android:background="@drawable/background_app_button"
+            android:text="@string/title_complete"
+            android:textColor="@color/colorWhite" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="20dp"
+            android:text="@string/title_complete"
+            android:textAllCaps="true"
+            android:textColor="@color/colorDarkGreen"
+            android:textStyle="bold"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/layout_loading"
+        layout="@layout/layout_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</RelativeLayout>
