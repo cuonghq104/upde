@@ -154,7 +154,7 @@ public class ContainerActivity extends NonPresenterActivity implements BottomNav
                 break;
             case R.id.menu_profile:
                 changeFragment(mProfileFragment);
-                mToolbar.setVisibility(View.VISIBLE);
+                mToolbar.setVisibility(View.GONE);
                 break;
         }
         return true;

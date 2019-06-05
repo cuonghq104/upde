@@ -1,11 +1,9 @@
 package stp.cuonghq.upde.data.repositories;
 
-import java.util.List;
-
 import stp.cuonghq.upde.commons.ApiCallback;
 import stp.cuonghq.upde.data.models.BookingList;
-import stp.cuonghq.upde.data.models.BookingResp;
 import stp.cuonghq.upde.data.models.ChangeStatusResponse;
+import stp.cuonghq.upde.data.models.StatisticGetAllPriceResponce;
 import stp.cuonghq.upde.data.models.dbentities.TripEntity;
 import stp.cuonghq.upde.data.sources.local.TripLDS;
 import stp.cuonghq.upde.data.sources.remote.TripRDS;
@@ -59,6 +57,18 @@ public class TripRepository {
         }
     }
 
+    public void getAllPrice(String type, int page, ApiCallback<StatisticGetAllPriceResponce> callback) {
+        if (rds != null) {
+            rds.getAllPrice(type, page, callback);
+        }
+    }
+
+    public void getAllTripCompleteByTimeObservale(String time_begin,String time_end, long page, ApiCallback<BookingList> callback) {
+        if (rds != null) {
+            rds.getAllTripCompleteByTimeObservale(time_begin, time_end,page, callback);
+        }
+    }
+
     public boolean checkIsRead(String idTrip) {
         if (lds != null) {
             TripEntity entity = new TripEntity();
@@ -82,4 +92,6 @@ public class TripRepository {
             lds.removeTrip(entity);
         }
     }
+
+
 }

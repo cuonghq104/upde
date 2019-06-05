@@ -12,6 +12,9 @@ import stp.cuonghq.upde.data.models.BookingList;
 import stp.cuonghq.upde.data.models.BookingResp;
 import stp.cuonghq.upde.data.models.ChangeStatusResponse;
 import stp.cuonghq.upde.data.models.Response;
+import stp.cuonghq.upde.data.models.StatisticGetAllPriceRequest;
+import stp.cuonghq.upde.data.models.StatisticGetAllPriceResponce;
+import stp.cuonghq.upde.data.models.StatisticTripCompleteRequest;
 import stp.cuonghq.upde.data.sources.TripDatasource;
 import stp.cuonghq.upde.services.networks.TripServices;
 
@@ -57,6 +60,20 @@ public class TripRDS implements TripDatasource.RDS {
         completeBookingObservable(body).subscribeWith(ApiService.disposableObserver(callback));
     }
 
+    @Override
+    public void getAllPrice(String type, int page, ApiCallback<StatisticGetAllPriceResponce> callback) {
+        StatisticGetAllPriceRequest body = new StatisticGetAllPriceRequest(type, page);
+        getAllPriceObservable(body).subscribeWith(ApiService.disposableObserver(callback));
+    }
+
+    @Override
+    public void getAllTripCompleteByTimeObservale(String time_begin, String time_end, long page, ApiCallback<BookingList> callback) {
+        StatisticTripCompleteRequest body = new StatisticTripCompleteRequest(time_begin, time_end , page);
+        getAllTripCompleteByTimeObservale(body).subscribeWith(ApiService.disposableObserver(callback));
+    }
+
+
+
     private Observable<Response<ChangeStatusResponse>> completeBookingObservable(BookingChangeStatus body) {
         return NetworkClient
                 .getHeaderInstance()
@@ -99,5 +116,25 @@ public class TripRDS implements TripDatasource.RDS {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
+    }
+
+
+    //new
+    private Observable<Response<StatisticGetAllPriceResponce>> getAllPriceObservable(StatisticGetAllPriceRequest body){
+        return NetworkClient
+                .getHeaderInstance()
+                .create(TripServices.class)
+                .getAllPrice(body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    private Observable<Response<BookingList>> getAllTripCompleteByTimeObservale(StatisticTripCompleteRequest body){
+        return NetworkClient
+                .getHeaderInstance()
+                .create(TripServices.class)
+                .getAllTripCompleteByTime(body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }

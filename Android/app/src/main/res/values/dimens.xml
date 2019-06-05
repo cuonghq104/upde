@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="padding_profile_bottom">70dp</dimen>
     <dimen name="margin_component">10dp</dimen>
     <dimen name="ts_form_edit">19sp</dimen>
     <dimen name="ts_form_hint">16sp</dimen>
     <dimen name="size_profile_button">20dp</dimen>
-    <dimen name="size_store_image">150dp</dimen>
+    <dimen name="size_store_image">160dp</dimen>
     <dimen name="padding_profile_selection">10dp</dimen>
     <dimen name="height_header">160dp</dimen>
+    <dimen name="margin_form">24dp</dimen>
     <dimen name="text_size_header" type="dimen">49sp</dimen>
 
 </resources>

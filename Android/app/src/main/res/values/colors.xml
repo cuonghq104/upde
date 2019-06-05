@@ -58,4 +58,5 @@
     <color name="colorTransparent">#00FFFFFF</color>
     <color name="colorLighterGrey">#c8c6c6</color>
     <color name="colorHint">#898989</color>
+    <color name="colorSilver">#b7b7b7</color>
 </resources>

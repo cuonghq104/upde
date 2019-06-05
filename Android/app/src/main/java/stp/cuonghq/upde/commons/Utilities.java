@@ -69,6 +69,11 @@ public class Utilities {
         return NumberFormat.getNumberInstance(Locale.US).format(value) + " VND";
     }
 
+    public static String dateToString(Date date) {
+        SimpleDateFormat format1 = new SimpleDateFormat("dd-MM-yyyy");
+        return format1.format(date);
+    }
+
     public static String formatDate(String pattern, String originalDate) {
 
         String currentPattern = Constants.DateAndTime.ORIGINAL_DATE;

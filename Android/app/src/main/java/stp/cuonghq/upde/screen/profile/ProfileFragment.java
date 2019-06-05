@@ -2,6 +2,7 @@ package stp.cuonghq.upde.screen.profile;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatTextView;
@@ -18,20 +19,25 @@ import stp.cuonghq.upde.R;
 import stp.cuonghq.upde.commons.Utilities;
 import stp.cuonghq.upde.data.models.LoginData;
 import stp.cuonghq.upde.screen.container.ContainerActivity;
+import stp.cuonghq.upde.screen.editinfo.EditInformationActivity;
+import stp.cuonghq.upde.screen.listhome.ListHomeActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ProfileFragment extends Fragment implements Contract.View {
 
-    @BindView(R.id.btn_log_out)
-    LinearLayout btnLogout;
+    @BindView(R.id.btn_help)
+    LinearLayout btnHelp;
 
     @BindView(R.id.rl_clip)
     RelativeLayout mRlClip;
 
     @BindView(R.id.tv_name)
     AppCompatTextView mTvName;
+
+    @BindView(R.id.btn_houses)
+    LinearLayout mLLHouse;
 
     Presenter mPresenter;
     private LoginData data;
@@ -62,7 +68,6 @@ public class ProfileFragment extends Fragment implements Contract.View {
     private void setupUI() {
         mRlClip.getBackground().setLevel(2000);
         //mTvName.setText(data.getEmail());
-        mTvName.setText("");
     }
 
 
@@ -70,9 +75,21 @@ public class ProfileFragment extends Fragment implements Contract.View {
         ButterKnife.bind(this, view);
     }
 
-    @OnClick(R.id.btn_log_out)
+    @OnClick(R.id.btn_logout)
     public void logOut() {
         mPresenter.logOut();
+    }
+
+    @OnClick(R.id.btn_edit_information)
+    public void editInformation() {
+        Intent intent = EditInformationActivity.getInstance(getContext());
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btn_houses)
+    public void houseList() {
+        Intent intent = ListHomeActivity.getInstance(getContext());
+        startActivity(intent);
     }
 
     @Override
@@ -81,7 +98,7 @@ public class ProfileFragment extends Fragment implements Contract.View {
 
         Activity mActivity = getActivity();
         if (mActivity instanceof ContainerActivity) {
-            ((ContainerActivity)mActivity).logout();
+            ((ContainerActivity) mActivity).logout();
         }
     }
 }

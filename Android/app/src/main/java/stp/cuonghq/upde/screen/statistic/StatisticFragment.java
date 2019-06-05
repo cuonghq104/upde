@@ -2,12 +2,10 @@ package stp.cuonghq.upde.screen.statistic;
 
 
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -16,16 +14,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import stp.cuonghq.upde.R;
-import stp.cuonghq.upde.commons.BaseContract;
 import stp.cuonghq.upde.commons.BaseFragment;
 import stp.cuonghq.upde.commons.Utilities;
+import stp.cuonghq.upde.data.models.BookingList;
+import stp.cuonghq.upde.data.models.BookingResp;
+import stp.cuonghq.upde.data.models.StatisticGetAllPriceResponce;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,7 +36,8 @@ public class StatisticFragment extends BaseFragment<StatisticFragment, Presenter
 
     View mLayout;
 
-    ArrayList<String> mList, mListDate;
+    ArrayList<String> mListDate;
+    List<BookingResp> mList;
     ArrayAdapter<String> mAdapterDate;
 
     CollapsingToolbarLayout mCollapsingToolbarLayout;
@@ -46,9 +47,7 @@ public class StatisticFragment extends BaseFragment<StatisticFragment, Presenter
     RecyclerView mylistview;
     Toolbar toolbar;
     Spinner sp_date;
-    ConstraintLayout mClToolbarInfo;
-    RelativeLayout mRlSpinner;
-    AppCompatTextView mTvTotalIncome, mTvDate;
+    TextView mTvTotalIncome, mTvDate;
 
     public StatisticFragment() {
         // Required empty public constructor
@@ -68,8 +67,19 @@ public class StatisticFragment extends BaseFragment<StatisticFragment, Presenter
         return mLayout;
     }
 
+    private void onScrollDown(){
+        mTvTotalIncome.setVisibility(View.VISIBLE);
+        mTvDate.setVisibility(View.VISIBLE);
+    }
+
+    private void onScrollOnTheTop(){
+        mTvTotalIncome.setVisibility(View.GONE);
+        mTvDate.setVisibility(View.GONE);
+    }
+
     private void setupUI() {
-        mClToolbarInfo.setVisibility(View.GONE);
+        onScrollDown();
+        sp_date.setVisibility(View.VISIBLE);
         setDateText(6, 13, 3);
         setTotalIncomeText("3.4000.000", "vnd");
     }
@@ -84,28 +94,22 @@ public class StatisticFragment extends BaseFragment<StatisticFragment, Presenter
         mylistview = mLayout.findViewById(R.id.mylistview);
         toolbar = mLayout.findViewById(R.id.toolbar);
         mAppBarLayout = mLayout.findViewById(R.id.appbar);
-        sp_date = mLayout.findViewById(R.id.sp_date);
-        mClToolbarInfo = mLayout.findViewById(R.id.cl_toolbar_info);
-        mTvDate = mLayout.findViewById(R.id.tv_date);
-        mTvTotalIncome = mLayout.findViewById(R.id.tv_total_income);
-        mRlSpinner = mLayout.findViewById(R.id.rl_spinner);
+        sp_date = toolbar.findViewById(R.id.sp_date);
+        mTvDate = toolbar.findViewById(R.id.tv_date);
+        mTvTotalIncome = toolbar.findViewById(R.id.tv_total_income);
 
-        fakeData();
+        initData();
         prepareDate();
 
         mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                Log.e("hehe", "" + verticalOffset + " " + appBarLayout.getTotalScrollRange());
-//                if (verticalOffset * -1 == appBarLayout.getTotalScrollRange()) {
-                if (verticalOffset * -1 >= appBarLayout.getTotalScrollRange() - 100) {
-                    //setToolbarText("Tong thu nhap");
-                    mClToolbarInfo.setVisibility(View.VISIBLE);
-                } else if (verticalOffset >= -100) {
-                    mRlSpinner.setVisibility(View.VISIBLE);
+                if (appBarLayout.getTotalScrollRange() - (verticalOffset * -1) <= 100) {
+                    onScrollDown();
+                } else if (appBarLayout.getTotalScrollRange() - (verticalOffset * -1) > 100) {
+                    onScrollOnTheTop();
                 } else {
-                    mRlSpinner.setVisibility(View.GONE);
-                    mClToolbarInfo.setVisibility(View.GONE);
+                    onScrollOnTheTop();
                 }
             }
         });
@@ -146,22 +150,46 @@ public class StatisticFragment extends BaseFragment<StatisticFragment, Presenter
         mTvDate.append(", tháng ");
         mTvDate.append(Utilities.emphasize(getContext(), " " + month));
     }
-    private void fakeData() {
-        mList = new ArrayList<>();
-        for (int i = 1; i <= 50; i++) {
 
-            mList.add("item " + i);
-        }
+    private void initData() {
+        mList = new ArrayList<BookingResp>();
+        mStatisticAdapter = new StatisticAdapter(StatisticFragment.this);
 
-        //mAdater = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, mList);
+        mList.add(new BookingResp());
+        mStatisticAdapter.setList(mList);
+
+        presenter.getStatistic("year",0);
+        //presenter.getCompleteList("time_begin","time_end",999999999);
+
         mylistview.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager
                 .VERTICAL, false));
         mylistview.setHasFixedSize(true);
-        mStatisticAdapter = new StatisticAdapter(mList);
+        mStatisticAdapter = new StatisticAdapter(this);
         mylistview.setAdapter(mStatisticAdapter);
     }
 
     private void setToolbarText(String input) {
         toolbar.setTitle(input);
+    }
+
+    @Override
+    public void getCompleteListSuccess(BookingList list) {
+        mList = list.getList();
+        mStatisticAdapter.setList(mList);
+    }
+
+    @Override
+    public void getCompleteListFailed(String msg) {
+        Utilities.showToast(getContext(), msg);
+    }
+
+    @Override
+    public void getStatisticSuccess(StatisticGetAllPriceResponce list) {
+        Log.d("hehe","StatisticGetAllPriceResponce "+list);
+    }
+
+    @Override
+    public void getStatisticFailed(String msg) {
+        Utilities.showToast(getContext(), msg);
     }
 }

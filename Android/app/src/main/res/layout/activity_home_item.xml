@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/tv_address"
+            android:textColor="@color/colorBlack"
+            android:text="Số 1, Phạm Văn Bạch, Yên Hòa, Cầu Giấy, Hà Nội, viet nam, trai dâtt"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_link"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:text="https://app.zeplin.io/project//screen/5cf0b35beb1f2f1e225b7a25"
+            android:textColor="@color/colorBlue"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_height="wrap_content" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_copy"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/background_app_small_button"
+                android:text="Sao Chép"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/colorGrey"
+        android:layout_height="1dp">
+
+    </View>
+
+</LinearLayout>

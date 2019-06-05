@@ -63,6 +63,7 @@ public class Constants {
         public static final String GET_APP_BOOKING_CREATE = "getAllTripCreate";
         public static final String GET_APP_BOOKING_ACCEPT = "getAllTripAccept";
         public static final String GET_APP_BOOKING_COMPLETE = "getAllTripComplete";
+        public static final String GET_APP_BOOKING_COMPLETE_BY_TIME = "getAllTripCompleteByTime";
 
         private static final String ACCEPT_BOOKING = "acceptBookingByHost";
         private static final String COMPLETE_BOOKING = "confirmCompleteBookingByHost";
@@ -72,7 +73,7 @@ public class Constants {
         private static final String GET_ALL_PRICE = "getAllPrice";
 
         public static final String SALE_POINT_GET_STATISTIC = SALE_POINT_PATH + GET_ALL_PRICE;
-
+        public static final String SALE_POINT_GET_STATISTIC_ALL_BOOKING_COMPLETE = SALE_POINT_PATH + GET_APP_BOOKING_COMPLETE_BY_TIME;
         public static final String BOOKING_TYPE = "booking_type";
         public static final String HOST_BOOKING_CREATED = HOST_PATH + "{" + BOOKING_TYPE + "}";
 
