@@ -74,7 +74,7 @@ class Presenter implements Contract.Presenter {
         } else {
             NetworkClient.initHeaderInstance("nigger homie");
             if (mView != null)
-               mView.informationValid();
+               mView.informationNotValid();
         }
     }
 
