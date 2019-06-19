@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Upde Partner</string>
+    <string name="title_booking">Đặt Xe</string>
+    <string name="title_confirm">"Đã xác nhận "</string>
+    <string name="title_complete">Hoàn thành</string>
+    <string name="title_ticket_no">Ticket no:</string>
+    <string name="title_time">Thời gian đi:</string>
+    <string name="title_customer_multi_lang">Khách hàng</string>
+    <string name="title_pick_up_at_multi_lang">Điểm đón</string>
+    <string name="title_destination_multi_lang">Điểm đến</string>
+    <string name="title_vehicle_type_multi_lang">Loại xe</string>
+    <string name="title_booking_time">Thời gian đặt xe</string>
+    <string name="title_password">Mật khẩu</string>
+    <string name="title_total_multi_lang">Giá tiền</string>
+    <string name="title_accept">Chấp nhận</string>
+    <string name="title_confirm_detail">Chi tiết</string>
+    <string name="title_booking_detail">Chi tiết</string>
+    <string name="title_time_to_pick_up_multi_lang">Thời gian đón</string>
+    <string name="title_create_account">Tạo tài khoản</string>
+    <string name="title_name">Tên</string>
+    <string name="title_note">Ghi chú</string>
+    <string name="title_edit_information">Cập nhật thông tin</string>
+    <string name="title_home">Thông báo</string>
+    <string name="title_confirm_password">Xác nhận mật khẩu</string>
+    <string name="title_about_us">Cập nhật thông tin</string>
+    <string name="title_contact_us">Liên hệ</string>
+    <string name="title_login">Nhà cung cấp</string>
+    <string name="title_statistic">Thống kê</string>
+    <string name="title_email" translatable="false">Email</string>
+    <string name="title_confirm_sign_up">Bằng việc tạo tài khoản, bạn đã đồng ý chính sách của chúng tôi</string>
+    <string name="title_switch_to_login">Đã có tài khoản?</string>
+    <string name="title_log_out">Đăng xuất</string>
+    <string name="title_launching_soon">Launching soon</string>
+    <string name="title_profile">Thông tin cá nhân</string>
+    <string name="title_notification">Thông báo</string>
+    <string name="title_seat">chỗ</string>
+    <string name="title_flight_no">Số hiệu chuyến bay</string>
+    <string name="title_your_house">Nhà của bạn</string>
+    <string name="title_help">Trợ giúp</string>
+    <string name="title_change_password">Đổi mật khẩu</string>
+    <string name="title_date_of_birth">Ngày sinh</string>
+    <string name="title_gender">Giới tính</string>
+    <string name="title_pick">Đặt</string>
+    <string name="text_no_data">Không dữ liệu</string>
+    <string name="title_login_as_host">Chủ nhà</string>
+    <string name="app_slogan">Đồng hành cùng bạn mọi lúc mọi nơi</string>
+    <string name="description_text">Thu nhập</string>
+    <string name="no_description_text">Không dữ liệu</string>
+    <string name="day">Ngày</string>
+    <string name="month">Tháng</string>
+    <string name="week">Tuần</string>
+    <string name="year">Năm</string>
+    <string name="custom">Tùy chọn</string>
+    <string name="host_statistic_no_data">Không có dữ liệu</string>
+    <string name="title_phone_number">Phone number / SĐT</string>
+</resources>

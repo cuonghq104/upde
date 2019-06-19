@@ -16,7 +16,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".screen.editinfo.EditInformationActivity"></activity>
         <activity android:name=".screen.start.StartActivity"></activity>
-        <activity android:name=".screen.container.ContainerActivity"></activity>
+        <activity android:name=".screen.container.SupplierContainerActivity"></activity>
         <activity android:name=".screen.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +27,7 @@
         <activity android:name=".screen.bookingdetail.BookingDetailActivity" />
         <activity android:name=".screen.confirmdetail.ConfirmDetailActivity" />
         <activity android:name=".screen.listhome.ListHomeActivity" />
+        <activity android:name=".screen.container.HostContainerActivity" />
 
         <service
             android:name=".services.fcm.UpdeFCM"

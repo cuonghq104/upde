@@ -10,7 +10,7 @@ import stp.cuonghq.upde.commons.AppResource;
 import stp.cuonghq.upde.commons.AppSharePreferences;
 import stp.cuonghq.upde.commons.Utilities;
 import stp.cuonghq.upde.data.sources.local.AppDatabase;
-import stp.cuonghq.upde.screen.container.ContainerActivity;
+import stp.cuonghq.upde.screen.container.SupplierContainerActivity;
 import stp.cuonghq.upde.screen.start.StartActivity;
 
 public class SplashActivity extends AppCompatActivity implements Contract.View {
@@ -48,21 +48,21 @@ public class SplashActivity extends AppCompatActivity implements Contract.View {
     public void getFirebaseTokenFailed(String msg) {
         Utilities.showToast(getApplicationContext(), msg);
         //Intent intent = StartActivity.getInstance(getApplicationContext());
-        Intent intent = ContainerActivity.getInstance(getApplicationContext());
+        Intent intent = SupplierContainerActivity.getInstance(getApplicationContext());
         startActivity(intent);
         SplashActivity.this.finish();
     }
 
     @Override
     public void informationValid() {
-        Intent intent = ContainerActivity.getInstance(getApplicationContext());
+        Intent intent = SupplierContainerActivity.getInstance(getApplicationContext());
         startActivity(intent);
         SplashActivity.this.finish();
     }
 
     @Override
     public void informationNotValid() {
-//        Intent intent = ContainerActivity.getInstance(getApplicationContext());
+//        Intent intent = SupplierContainerActivity.getInstance(getApplicationContext());
         Intent intent = StartActivity.getInstance(getApplicationContext());
         startActivity(intent);
         SplashActivity.this.finish();

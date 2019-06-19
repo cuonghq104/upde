@@ -13,13 +13,13 @@ public class StatisticGetAllPriceResponce {
 
     @SerializedName("data")
     @Expose
-    private List<Integer> data = null;
+    private List<DataStatisticTime> data = null;
 
-    public List<Integer> getData() {
+    public List<DataStatisticTime> getData() {
         return data;
     }
 
-    public void setData(List<Integer> data) {
+    public void setData(List<DataStatisticTime> data) {
         this.data = data;
     }
 }

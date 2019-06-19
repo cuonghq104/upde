@@ -28,6 +28,12 @@ public class AccountRepository {
         }
     }
 
+    public void loginAsHost(String email, String password, ApiCallback<LoginData> callback) {
+        if (mRds != null) {
+            mRds.loginAsHost(email, password, callback);
+        }
+    }
+
     public void logOut(String firebaseToken, ApiCallback callback) {
         if (mRds != null) {
             mRds.logOut(firebaseToken, callback);

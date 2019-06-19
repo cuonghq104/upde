@@ -17,6 +17,11 @@ public class LoginRequest {
         this.token = token;
     }
 
+    public LoginRequest(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
     }

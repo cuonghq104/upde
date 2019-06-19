@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_stat_host"
+        android:icon="@drawable/ic_show_chart_black_24dp"
+        android:title="@string/title_statistic"/>
+    <item
+        android:id="@+id/menu_profile_host"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="@string/title_profile"/>
+</menu>

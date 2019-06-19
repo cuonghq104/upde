@@ -9,6 +9,8 @@ public class AccountDatasource {
     public interface RDS {
         void login(String email, String password, String token, ApiCallback<LoginData> callback);
 
+        void loginAsHost(String email, String password, ApiCallback<LoginData> callback);
+
         void logOut(String token, ApiCallback callback);
 
         void checkTokenStatus(ApiCallback callback);

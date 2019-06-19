@@ -78,6 +78,12 @@
                     app:displayTitle="@string/title_customer_multi_lang" />
 
                 <stp.cuonghq.upde.commons.DisplayTextView
+                    android:id="@+id/tv_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:displayTitle="@string/title_phone_number" />
+
+                <stp.cuonghq.upde.commons.DisplayTextView
                     android:id="@+id/tv_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

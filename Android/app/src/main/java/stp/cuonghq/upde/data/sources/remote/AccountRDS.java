@@ -35,6 +35,12 @@ public class AccountRDS implements AccountDatasource.RDS {
     }
 
     @Override
+    public void loginAsHost(String email, String password, ApiCallback<LoginData> callback) {
+        LoginRequest request = new LoginRequest(email, password);
+        loginAsHostResponseObservable(request).subscribeWith(ApiService.disposableObserver(callback));
+    }
+
+    @Override
     public void logOut(String token, ApiCallback callback) {
         LogoutRequest request = new LogoutRequest();
         request.setToken(token);
@@ -67,6 +73,14 @@ public class AccountRDS implements AccountDatasource.RDS {
         return NetworkClient.getHeaderInstance()
                 .create(AccountServices.class)
                 .checkTokenStatus()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    Observable<Response<LoginData>> loginAsHostResponseObservable(LoginRequest request) {
+        return NetworkClient.getRetrofit()
+                .create(AccountServices.class)
+                .loginAsHost(request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import stp.cuonghq.upde.R;
 import stp.cuonghq.upde.data.models.BookingResp;
-import stp.cuonghq.upde.screen.container.ContainerActivity;
+import stp.cuonghq.upde.screen.container.SupplierContainerActivity;
 import stp.cuonghq.upde.screen.container.NotificationReceiver;
 
 /**
@@ -47,14 +47,14 @@ public class HomeFragment extends Fragment {
     }
 
     private void initData() {
-        if (getActivity() instanceof ContainerActivity) {
-            ((ContainerActivity) getActivity()).setBookingReceive(new NotificationReceiver() {
+        if (getActivity() instanceof SupplierContainerActivity) {
+            ((SupplierContainerActivity) getActivity()).setBookingReceive(new NotificationReceiver() {
                 @Override
                 public void receiveBooking(BookingResp booking) {
                     mAdapter.addToBookingList(booking);
                 }
             });
-            ((ContainerActivity) getActivity()).setConfirmReceive(new NotificationReceiver() {
+            ((SupplierContainerActivity) getActivity()).setConfirmReceive(new NotificationReceiver() {
                 @Override
                 public void receiveBooking(BookingResp booking) {
                     mAdapter.removeFromBookingList(booking);

@@ -71,6 +71,8 @@ public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, P
     DisplayTextView mTvNote;
     @BindView(R.id.tv_email)
     DisplayTextView mTvEmail;
+    @BindView(R.id.tv_phone)
+    DisplayTextView mTvPhone;
     @BindView(R.id.btn_accept)
     AppCompatButton mBtnAccept;
     @BindView(R.id.toolbar)
@@ -122,6 +124,8 @@ public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, P
         mTvPrice.setContent(Utilities.convertToVnd(booking.getPriceVn()));
         mTvNote.setContent(booking.getNote());
         mTvEmail.setContent(booking.getEmailguest());
+        mTvPhone.setVisibility((booking.getPhonenumber() == null || booking.getPhonenumber().equals("")) ? View.GONE : View.VISIBLE);
+        mTvPhone.setContent(booking.getPhonenumber());
     }
 
     @OnClick(R.id.btn_accept)

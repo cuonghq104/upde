@@ -3,6 +3,8 @@ package stp.cuonghq.upde.screen.profile;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatTextView;
@@ -18,7 +20,7 @@ import butterknife.OnClick;
 import stp.cuonghq.upde.R;
 import stp.cuonghq.upde.commons.Utilities;
 import stp.cuonghq.upde.data.models.LoginData;
-import stp.cuonghq.upde.screen.container.ContainerActivity;
+import stp.cuonghq.upde.screen.container.SupplierContainerActivity;
 import stp.cuonghq.upde.screen.editinfo.EditInformationActivity;
 import stp.cuonghq.upde.screen.listhome.ListHomeActivity;
 
@@ -38,6 +40,9 @@ public class ProfileFragment extends Fragment implements Contract.View {
 
     @BindView(R.id.btn_houses)
     LinearLayout mLLHouse;
+
+    @BindView(R.id.tv_version)
+    AppCompatTextView mTvVersion;
 
     Presenter mPresenter;
     private LoginData data;
@@ -68,6 +73,15 @@ public class ProfileFragment extends Fragment implements Contract.View {
     private void setupUI() {
         mRlClip.getBackground().setLevel(2000);
         //mTvName.setText(data.getEmail());
+        mTvVersion.setText("Version: ");
+        try {
+            PackageInfo pInfo = getContext().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+            String version = pInfo.versionName;
+            mTvVersion.append(version);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -97,8 +111,8 @@ public class ProfileFragment extends Fragment implements Contract.View {
         Utilities.showToast(getContext(), msg);
 
         Activity mActivity = getActivity();
-        if (mActivity instanceof ContainerActivity) {
-            ((ContainerActivity) mActivity).logout();
+        if (mActivity instanceof SupplierContainerActivity) {
+            ((SupplierContainerActivity) mActivity).logout();
         }
     }
 }

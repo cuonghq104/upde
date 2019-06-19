@@ -1,33 +1,34 @@
 <resources>
-    <string name="app_name">Upde</string>
+    <string name="app_name">Upde Partner</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_booking">booking</string>
     <string name="title_confirm">confirm</string>
     <string name="title_complete">complete</string>
-    <string name="title_time">Thời gian đi:</string>
-    <string name="title_ticket_no">Ticket No:</string>
-    <string name="title_customer_multi_lang">Customer / Khách hàng</string>
-    <string name="title_pick_up_at_multi_lang">At / Điểm đón</string>
-    <string name="title_destination_multi_lang">Arrive / Điểm đến</string>
-    <string name="title_vehicle_type_multi_lang">Vehicle type / Loại xe</string>
-    <string name="title_booking_time">Booking time / \nThời gian đặt xe</string>
+    <string name="title_time">Time leave:</string>
+    <string name="title_ticket_no">Ticket no:</string>
+    <string name="title_customer_multi_lang">Custome</string>
+    <string name="title_pick_up_at_multi_lang">At</string>
+    <string name="title_destination_multi_lang">Arrive</string>
+    <string name="title_vehicle_type_multi_lang">Vehicle type</string>
+    <string name="title_booking_time">Booking time</string>
     <string name="title_password">Password</string>
-    <string name="title_total_multi_lang">Total / Giá tiền</string>
-    <string name="title_accept">accept</string>
+    <string name="title_total_multi_lang">Total</string>
+    <string name="title_accept">Accept</string>
     <string name="title_confirm_detail">Confirm detail</string>
+    <string name="title_complete_detail">Complete detail</string>
     <string name="title_booking_detail">Booking detail</string>
-    <string name="title_time_to_pick_up_multi_lang">Time to pick up / \nThời gian đón</string>
-    <string name="title_create_account">create account</string>
+    <string name="title_time_to_pick_up_multi_lang">Time to pick up</string>
+    <string name="title_create_account">Create account</string>
     <string name="title_name">Name</string>
-    <string name="title_note">Note:</string>
+    <string name="title_note">Note</string>
     <string name="title_edit_information">Edit personal information</string>
-    <string name="title_home">Home</string>
+    <string name="title_home">Notification</string>
     <string name="title_confirm_password">Confirm password</string>
     <string name="title_about_us">Edit personal information</string>
     <string name="title_contact_us">Contact us</string>
-    <string name="title_login">Login</string>
+    <string name="title_login">Supplier</string>
     <string name="title_statistic">Statistic</string>
     <string name="title_email" translatable="false">Email</string>
     <string name="title_confirm_sign_up">By creating an account you agree to the Terms of use</string>
@@ -37,11 +38,24 @@
     <string name="title_profile">Profile</string>
     <string name="title_notification">Notification</string>
     <string name="title_seat"> seats</string>
-    <string name="title_flight_no">Flight number / MS chuyến bay</string>
-    <string name="title_your_house">Your \"houses\"</string>
+    <string name="title_flight_no">Flight number</string>
+    <string name="title_your_house">Your houses</string>
     <string name="title_help">Help</string>
     <string name="title_change_password">Change password</string>
     <string name="title_date_of_birth">Date of birth</string>
     <string name="title_gender">Gender</string>
     <string name="title_pick">Pick</string>
+    <string name="text_no_data">No data</string>
+    <string name="title_login_as_host">Host</string>
+    <string name="app_slogan">Arrive for everywhere and at any time</string>
+    <string name="description_text">Revenue</string>
+    <string name="no_description_text">No data</string>
+    <string name="day">Day</string>
+    <string name="month">Month</string>
+    <string name="week">Week</string>
+    <string name="year">Year</string>
+    <string name="custom">Custom</string>
+    <string name="host_statistic_no_data">No Data</string>
+    <string name="title_phone_number">Phone number / SĐT</string>
 </resources>
+

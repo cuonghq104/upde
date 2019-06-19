@@ -56,10 +56,13 @@ public class ConfirmDetailActivity extends AppCompatActivity implements Contract
     DisplayTextView mTvPrice;
     @BindView(R.id.tv_email)
     DisplayTextView mTvEmail;
+    @BindView(R.id.tv_phone)
+    DisplayTextView mTvPhone;
     @BindView(R.id.btn_complete)
     AppCompatButton mBtnComplete;
     @BindView(R.id.tv_complete)
     AppCompatTextView mTvComplete;
+
 
     @BindView(R.id.btn_back)
     AppCompatImageButton mBtnBack;
@@ -102,6 +105,8 @@ public class ConfirmDetailActivity extends AppCompatActivity implements Contract
         mTvPickupTime.setContent(booking.getTimeleave());
         mTvPrice.setContent(Utilities.convertToVnd(booking.getPriceVn()));
         mTvEmail.setContent(booking.getEmailguest());
+        mTvPhone.setVisibility((booking.getPhonenumber() == null || booking.getPhonenumber().equals("")) ? View.GONE : View.VISIBLE);
+        mTvPhone.setContent(booking.getPhonenumber());
 
         if (operation == Constants.Extras.COMPLETE) {
             mBtnComplete.setVisibility(View.GONE);

@@ -12,6 +12,7 @@ import stp.cuonghq.upde.data.models.Response;
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.HOST_LOGIN_PATH;
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.HOST_LOGOUT_PATH;
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.HOST_CHECK_TOKEN_PATH;
+import static stp.cuonghq.upde.commons.Constants.ApiConstant.SALEPOINT_LOGIN_PATH;
 
 public interface AccountServices {
     @POST(HOST_LOGIN_PATH)
@@ -22,5 +23,8 @@ public interface AccountServices {
 
     @POST(HOST_CHECK_TOKEN_PATH)
     Observable<Response> checkTokenStatus();
+
+    @POST(SALEPOINT_LOGIN_PATH)
+    Observable<Response<LoginData>> loginAsHost(@Body LoginRequest request);
 
 }

@@ -5,6 +5,7 @@ import android.arch.lifecycle.OnLifecycleEvent;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -37,33 +38,60 @@ class Presenter extends BasePresenter<SignInFragment> implements Contract.Presen
     }
 
     @Override
-    public void login(String email, String password) {
-        email = email.trim();
-        password = password.trim();
+    public void login(String email, String password, String type) {
+        final String _email = email.trim();
+        final String _password = password.trim();
+        Log.d("Login: ", _email + " " + _password);
         mView.doLogin();
+        if(type.equals(Constants.LOGIN_AS_SUPPLIER_TYPE)){
+            String token = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.FIREBASE_TOKEN);
+            mRepository.login(_email, _password, token, new ApiCallback<LoginData>() {
+                @Override
+                public void success(LoginData data, String msg) {
+                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.DATA, data);
+                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.ACCESS_TOKEN, data.getTokenId());
+                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.LOGIN_TYPE, Constants.LOGIN_AS_SUPPLIER_TYPE);
+                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.EMAIL, _email);
+                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.PASSWORD, _password);
+                    NetworkClient.initHeaderInstance(data.getTokenId());
+                    mView.loginSuccess(msg, Constants.LOGIN_AS_SUPPLIER_TYPE);
+                }
 
-        String token = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.FIREBASE_TOKEN);
-        mRepository.login(email, password, token, new ApiCallback<LoginData>() {
-            @Override
-            public void success(LoginData data, String msg) {
-                AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.DATA, data);
-                AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.ACCESS_TOKEN, data.getTokenId());
-                NetworkClient.initHeaderInstance(data.getTokenId());
+                @Override
+                public void failed(String msg) {
+                    mView.loginFailed(msg);
+                }
+            });
+        } else {
+            mRepository.loginAsHost(_email, _password, new ApiCallback<LoginData>() {
+                @Override
+                public void success(LoginData data, String msg) {
+                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.DATA, data);
+                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.ACCESS_TOKEN, data.getTokenId());
+                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.LOGIN_TYPE, Constants.LOGIN_AS_HOST_TYPE);
+                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.EMAIL, _email);
+                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.PASSWORD, _password);
+                    NetworkClient.initHeaderInstance(data.getTokenId());
+                    mView.loginSuccess(msg, Constants.LOGIN_AS_HOST_TYPE);
+                }
 
-                mView.loginSuccess(msg);
-            }
+                @Override
+                public void failed(String msg) {
+                    mView.loginFailed(msg);
+                }
+            });
+        }
 
-            @Override
-            public void failed(String msg) {
-                mView.loginFailed(msg);
-            }
-        });
     }
+
 
     @OnLifecycleEvent(value = Lifecycle.Event.ON_CREATE)
     protected void onCreate() {
-        String email = viewStateBundle.getString(BUNDLE_KEY_EMAIL);
-        String password = viewStateBundle.getString(BUNDLE_KEY_PASSWORD);
+//        String email = viewStateBundle.getString(BUNDLE_KEY_EMAIL);
+//        String password = viewStateBundle.getString(BUNDLE_KEY_PASSWORD);
+        String email = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.EMAIL);
+        String password = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.PASSWORD);
+        Log.d("AppSharePreferences: ", email + " " + password);
         if (email != null) {
             getView().updateEmail(email);
         }

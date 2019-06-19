@@ -11,6 +11,9 @@ import stp.cuonghq.upde.data.models.BookingChangeStatus;
 import stp.cuonghq.upde.data.models.BookingList;
 import stp.cuonghq.upde.data.models.BookingResp;
 import stp.cuonghq.upde.data.models.ChangeStatusResponse;
+import stp.cuonghq.upde.data.models.ItemHome;
+import stp.cuonghq.upde.data.models.ListItemHome;
+import stp.cuonghq.upde.data.models.ListResponse;
 import stp.cuonghq.upde.data.models.Response;
 import stp.cuonghq.upde.data.models.StatisticGetAllPriceRequest;
 import stp.cuonghq.upde.data.models.StatisticGetAllPriceResponce;
@@ -72,6 +75,10 @@ public class TripRDS implements TripDatasource.RDS {
         getAllTripCompleteByTimeObservale(body).subscribeWith(ApiService.disposableObserver(callback));
     }
 
+    @Override
+    public void getHotelLinks(ApiCallback<ListItemHome> callback) {
+        getHotelLink().subscribeWith(ApiService.disposableObserver(callback));
+    }
 
 
     private Observable<Response<ChangeStatusResponse>> completeBookingObservable(BookingChangeStatus body) {
@@ -137,4 +144,14 @@ public class TripRDS implements TripDatasource.RDS {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+    private Observable<Response<ListItemHome>> getHotelLink(){
+        return NetworkClient
+                .getHeaderInstance()
+                .create(TripServices.class)
+                .getHotelLink()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
 }

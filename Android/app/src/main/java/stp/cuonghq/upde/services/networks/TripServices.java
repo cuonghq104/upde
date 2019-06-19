@@ -10,12 +10,16 @@ import stp.cuonghq.upde.data.models.BookingChangeStatus;
 import stp.cuonghq.upde.data.models.BookingList;
 import stp.cuonghq.upde.data.models.BookingResp;
 import stp.cuonghq.upde.data.models.ChangeStatusResponse;
+import stp.cuonghq.upde.data.models.ItemHome;
+import stp.cuonghq.upde.data.models.ListItemHome;
+import stp.cuonghq.upde.data.models.ListResponse;
 import stp.cuonghq.upde.data.models.Response;
 import stp.cuonghq.upde.data.models.StatisticGetAllPriceRequest;
 import stp.cuonghq.upde.data.models.StatisticGetAllPriceResponce;
 import stp.cuonghq.upde.data.models.StatisticTripCompleteRequest;
 
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.BOOKING_TYPE;
+import static stp.cuonghq.upde.commons.Constants.ApiConstant.GET_FULL_HOTEL_LINK_OF_HOST;
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.HOST_BOOKING_CREATED;
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.SALE_POINT_GET_STATISTIC;
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.SALE_POINT_GET_STATISTIC_ALL_BOOKING_COMPLETE;
@@ -39,4 +43,6 @@ public interface TripServices {
     @POST(SALE_POINT_GET_STATISTIC_ALL_BOOKING_COMPLETE)
     Observable<Response<BookingList>> getAllTripCompleteByTime(@Body StatisticTripCompleteRequest body);
 
+    @POST(GET_FULL_HOTEL_LINK_OF_HOST)
+    Observable<Response<ListItemHome>> getHotelLink();
 }

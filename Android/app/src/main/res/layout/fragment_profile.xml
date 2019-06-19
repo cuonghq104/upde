@@ -195,6 +195,21 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:textStyle="bold"
+            android:textColor="@color/colorHint"
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/margin_component"
+            android:text="Version 1.0.2" />
     </LinearLayout>
 
 </FrameLayout>

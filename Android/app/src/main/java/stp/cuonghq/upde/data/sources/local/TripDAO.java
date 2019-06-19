@@ -20,4 +20,5 @@ public interface TripDAO {
 
     @Delete
     void delete(TripEntity tripEntity);
+
 }

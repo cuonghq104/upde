@@ -1,3 +1,8 @@
+/*
+ *
+ *  Statistic layout for Delivery
+ *
+ * */
 package stp.cuonghq.upde.screen.container;
 
 import android.content.BroadcastReceiver;
@@ -8,7 +13,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -27,10 +31,11 @@ import stp.cuonghq.upde.data.models.BookingResp;
 import stp.cuonghq.upde.screen.home.HomeFragment;
 import stp.cuonghq.upde.screen.profile.ProfileFragment;
 import stp.cuonghq.upde.screen.start.StartActivity;
-import stp.cuonghq.upde.screen.statistic.StatisticFragment;
+import stp.cuonghq.upde.screen.statistic.host.StatisticFragment;
+import stp.cuonghq.upde.screen.statistic.supplier.SupplierStatisticFragment;
 import stp.cuonghq.upde.services.fcm.UpdeFCM;
 
-public class ContainerActivity extends NonPresenterActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class SupplierContainerActivity extends NonPresenterActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.fl_container)
     FrameLayout mFlContainer;
@@ -45,7 +50,7 @@ public class ContainerActivity extends NonPresenterActivity implements BottomNav
     Toolbar mToolbar;
 
     private HomeFragment mHomeFragment;
-    private StatisticFragment mStatisticFragment;
+    private SupplierStatisticFragment mStatisticFragment;
     private ProfileFragment mProfileFragment;
     private BroadcastReceiver mReceiver;
     private NotificationReceiver mBookingReceive;
@@ -60,7 +65,7 @@ public class ContainerActivity extends NonPresenterActivity implements BottomNav
     }
 
     public static Intent getInstance(Context context) {
-        Intent intent = new Intent(context, ContainerActivity.class);
+        Intent intent = new Intent(context, SupplierContainerActivity.class);
         return intent;
     }
     @Override
@@ -132,7 +137,7 @@ public class ContainerActivity extends NonPresenterActivity implements BottomNav
 
         mHomeFragment = new HomeFragment();
         mProfileFragment = new ProfileFragment();
-        mStatisticFragment = new StatisticFragment();
+        mStatisticFragment = new SupplierStatisticFragment();
     }
 
     private void addListener() {
@@ -177,6 +182,6 @@ public class ContainerActivity extends NonPresenterActivity implements BottomNav
     public void logout() {
         Intent intent = StartActivity.getInstance(getApplicationContext());
         startActivity(intent);
-        ContainerActivity.this.finish();
+        SupplierContainerActivity.this.finish();
     }
 }
