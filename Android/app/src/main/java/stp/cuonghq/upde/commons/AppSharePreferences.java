@@ -63,7 +63,7 @@ public class AppSharePreferences {
     }
 
     public static String getStringFromSP(String key) {
-        if (getInstance() != null) {
+        if (getInstance(AppContext.getInstance()) != null) {
             return getInstance().getString(key, "");
         }
         return null;

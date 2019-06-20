@@ -7,48 +7,60 @@ import java.io.Serializable;
 
 public class BookingResp implements Serializable {
 
+    @SerializedName("serial")
     @Expose
-    @SerializedName("note")
-    private String note;
+    private Integer serial;
+    @SerializedName("name_customer")
     @Expose
-    @SerializedName("TimeLeave")
-    private String timeleave;
-    @Expose
-    @SerializedName("Id_trip")
-    private String idTrip;
-    @Expose
-    @SerializedName("NameArrive")
-    private String nameArrive;
-    @Expose
-    @SerializedName("HomeName")
-    private String nameHome;
-    @Expose
-    @SerializedName("Price_vn")
-    private int priceVn;
-    @Expose
-    @SerializedName("Price")
-    private double price;
-    @Expose
-    @SerializedName("Vehicle_type")
-    private String vehicleType;
-    @Expose
-    @SerializedName("PhoneNumber")
-    private String phonenumber;
-    @Expose
-    @SerializedName("EmailGuest")
-    private String emailguest;
-    @Expose
-    @SerializedName("Name_customer")
     private String nameCustomer;
+    @SerializedName("email")
     @Expose
-    @SerializedName("TypeTrip")
-    private int typetrip;
+    private String email;
+    @SerializedName("phone_number")
     @Expose
-    @SerializedName("Serial")
-    private int serial;
+    private String phoneNumber;
+    @SerializedName("status")
     @Expose
-    @SerializedName("FlightCode")
-    private String flightNo;
+    private String status;
+    @SerializedName("vehicle_type")
+    @Expose
+    private String vehicleType;
+    @SerializedName("price")
+    @Expose
+    private Double price;
+    @SerializedName("price_vn")
+    @Expose
+    private Integer priceVn;
+    @SerializedName("name_leave")
+    @Expose
+    private String nameLeave;
+    @SerializedName("name_arrive")
+    @Expose
+    private String nameArrive;
+    @SerializedName("time_leave")
+    @Expose
+    private String timeLeave;
+    @SerializedName("time_book")
+    @Expose
+    private String timeBook;
+    @SerializedName("type")
+    @Expose
+    private Integer type;
+    @SerializedName("note")
+    @Expose
+    private String note;
+    @SerializedName("geopoint")
+    @Expose
+    private Geopoint geopoint;
+    @SerializedName("flight_code")
+    @Expose
+    private String flightCode;
+    @SerializedName("payment_method")
+    @Expose
+    private String paymentMethod;
+    @SerializedName("id")
+    @Expose
+    private String id;
 
     private boolean read = true;
 
@@ -61,11 +73,11 @@ public class BookingResp implements Serializable {
     }
 
     public String getFlightNo() {
-        return flightNo;
+        return flightCode;
     }
 
     public void setFlightNo(String flightNo) {
-        this.flightNo = flightNo;
+        this.flightCode = flightNo;
     }
 
     public String getNote() {
@@ -77,19 +89,19 @@ public class BookingResp implements Serializable {
     }
 
     public String getTimeleave() {
-        return timeleave;
+        return timeLeave;
     }
 
     public void setTimeleave(String timeleave) {
-        this.timeleave = timeleave;
+        this.timeLeave = timeleave;
     }
 
     public String getIdTrip() {
-        return idTrip;
+        return id;
     }
 
     public void setIdTrip(String idTrip) {
-        this.idTrip = idTrip;
+        this.id = idTrip;
     }
 
     public String getNameArrive() {
@@ -98,14 +110,6 @@ public class BookingResp implements Serializable {
 
     public void setNameArrive(String nameArrive) {
         this.nameArrive = nameArrive;
-    }
-
-    public String getNameHome() {
-        return nameHome;
-    }
-
-    public void setNameHome(String nameHome) {
-        this.nameHome = nameHome;
     }
 
     public int getPriceVn() {
@@ -133,19 +137,39 @@ public class BookingResp implements Serializable {
     }
 
     public String getPhonenumber() {
-        return phonenumber;
+        return phoneNumber;
     }
 
     public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phonenumber;
     }
 
     public String getEmailguest() {
-        return emailguest;
+        return email;
     }
 
     public void setEmailguest(String emailguest) {
-        this.emailguest = emailguest;
+        this.email = emailguest;
+    }
+
+    public int getTypetrip() {
+        return type;
+    }
+
+    public void setTypetrip(int typetrip) {
+        this.type = typetrip;
+    }
+
+    public int getSerial() {
+        return serial;
+    }
+
+    public void setSerial(int serial) {
+        this.serial = serial;
+    }
+
+    public void setSerial(Integer serial) {
+        this.serial = serial;
     }
 
     public String getNameCustomer() {
@@ -156,19 +180,99 @@ public class BookingResp implements Serializable {
         this.nameCustomer = nameCustomer;
     }
 
-    public int getTypetrip() {
-        return typetrip;
+    public String getEmail() {
+        return email;
     }
 
-    public void setTypetrip(int typetrip) {
-        this.typetrip = typetrip;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getSerial() {
-        return serial;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setSerial(int serial) {
-        this.serial = serial;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public void setPriceVn(Integer priceVn) {
+        this.priceVn = priceVn;
+    }
+
+    public String getNameLeave() {
+        return nameLeave;
+    }
+
+    public void setNameLeave(String nameLeave) {
+        this.nameLeave = nameLeave;
+    }
+
+    public String getTimeLeave() {
+        return timeLeave;
+    }
+
+    public void setTimeLeave(String timeLeave) {
+        this.timeLeave = timeLeave;
+    }
+
+    public String getTimeBook() {
+        return timeBook;
+    }
+
+    public void setTimeBook(String timeBook) {
+        this.timeBook = timeBook;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Geopoint getGeopoint() {
+        return geopoint;
+    }
+
+    public void setGeopoint(Geopoint geopoint) {
+        this.geopoint = geopoint;
+    }
+
+    public String getFlightCode() {
+        return flightCode;
+    }
+
+    public void setFlightCode(String flightCode) {
+        this.flightCode = flightCode;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

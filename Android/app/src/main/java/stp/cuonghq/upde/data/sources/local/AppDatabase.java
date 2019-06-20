@@ -12,7 +12,7 @@ import stp.cuonghq.upde.data.models.dbentities.TripEntity;
 import stp.cuonghq.upde.data.models.dbentities.WeekStatisticEntity;
 import stp.cuonghq.upde.data.models.dbentities.YearStatisticEntity;
 
-@Database(entities = {TripEntity.class , DayStatisticEntity.class , WeekStatisticEntity.class , MonthStatisticEntity.class , YearStatisticEntity.class }, version = 2, exportSchema = false)
+@Database(entities = {TripEntity.class , DayStatisticEntity.class , WeekStatisticEntity.class , MonthStatisticEntity.class , YearStatisticEntity.class }, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase sInstance;

@@ -58,6 +58,7 @@ public class UpdeFCM extends FirebaseMessagingService {
 
     private void showNotification(String json) {
         Booking booking = new Gson().fromJson(json, Booking.class);
+        Log.d(TAG, booking.getFlightNo());
 
         if (booking.getType().equalsIgnoreCase("notify_book")) {
             Intent intent = BookingDetailActivity.getInstance(getApplicationContext(), booking);
@@ -127,79 +128,79 @@ public class UpdeFCM extends FirebaseMessagingService {
     public static class Booking {
 
         @Expose
-        @SerializedName("TimeComplete")
+        @SerializedName("time_complete")
         private String timecomplete;
         @Expose
-        @SerializedName("TimeLeave")
+        @SerializedName("time_leave")
         private String timeleave;
         @Expose
         @SerializedName("note")
         private String note;
         @Expose
-        @SerializedName("IsCancel")
+        @SerializedName("isCancel")
         private boolean iscancel;
         @Expose
-        @SerializedName("IdHost")
+        @SerializedName("idHost")
         private String idhost;
         @Expose
-        @SerializedName("EmailHost")
+        @SerializedName("email_host")
         private String emailhost;
         @Expose
-        @SerializedName("TimePickNow")
+        @SerializedName("time_picknow")
         private String timepicknow;
         @Expose
-        @SerializedName("HostName")
+        @SerializedName("host_name")
         private String hostname;
         @Expose
-        @SerializedName("Id_schedule")
+        @SerializedName("id_schedule")
         private String idSchedule;
         @Expose
-        @SerializedName("Id_home")
+        @SerializedName("id_home")
         private String idHome;
         @Expose
-        @SerializedName("PhoneNumber")
+        @SerializedName("phone_number")
         private String phonenumber;
         @Expose
-        @SerializedName("TypeTrip")
+        @SerializedName("type_trip")
         private String typetrip;
         @Expose
-        @SerializedName("NameArrive")
+        @SerializedName("name_arrive")
         private String namearrive;
         @Expose
-        @SerializedName("EmailGuest")
+        @SerializedName("email_guest")
         private String emailguest;
         @Expose
-        @SerializedName("Id_trip")
+        @SerializedName("id_trip")
         private String idTrip;
         @Expose
-        @SerializedName("NameLeave")
+        @SerializedName("name_leave")
         private String nameleave;
         @Expose
-        @SerializedName("Price_vn")
+        @SerializedName("price_vn")
         private int priceVn;
         @Expose
-        @SerializedName("Price")
+        @SerializedName("price")
         private String price;
         @Expose
-        @SerializedName("Time_book")
+        @SerializedName("time_book")
         private String timeBook;
         @Expose
-        @SerializedName("Vehicle_type")
+        @SerializedName("vehicle_type")
         private String vehicleType;
         @Expose
-        @SerializedName("Arrive")
+        @SerializedName("arrive")
         private String arrive;
         @Expose
-        @SerializedName("Name_customer")
+        @SerializedName("name_customer")
         private String nameCustomer;
         @Expose
-        @SerializedName("Serial")
+        @SerializedName("serial")
         private int serial;
         @Expose
-        @SerializedName("Type")
+        @SerializedName("type")
         private String type;
         @Expose
-        @SerializedName("FlightCode")
+        @SerializedName("flight_code")
         private String flightNo;
 
         public boolean isIscancel() {

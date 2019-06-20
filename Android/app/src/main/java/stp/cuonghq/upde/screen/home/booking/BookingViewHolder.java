@@ -83,7 +83,7 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
         String title3 = ". Ghi chú: ";
 
         String email = booking.getEmailguest();
-        String pickup = booking.getNameHome();
+        String pickup = booking.getNameLeave();
         String destination = booking.getNameArrive();
         String note = booking.getNote();
 

@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import stp.cuonghq.upde.R;
+import stp.cuonghq.upde.commons.AppContext;
 import stp.cuonghq.upde.commons.BaseActivity;
 import stp.cuonghq.upde.commons.Constants;
 import stp.cuonghq.upde.commons.DisplayTextView;
@@ -35,7 +36,7 @@ public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, P
     public static Intent getInstance(Context context, UpdeFCM.Booking booking) {
         BookingResp resp = new BookingResp();
         resp.setEmailguest(booking.getEmailguest());
-        resp.setNameHome(booking.getNameleave());
+        resp.setNameLeave(booking.getNameleave());
         resp.setNameArrive(booking.getNamearrive());
         resp.setIdTrip(booking.getIdTrip());
         resp.setNote(booking.getNote());
@@ -46,6 +47,7 @@ public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, P
         resp.setTimeleave(booking.getTimeleave());
         resp.setNameCustomer(booking.getNameCustomer());
         resp.setVehicleType(booking.getVehicleType());
+        resp.setFlightCode(booking.getFlightNo());
         return getInstance(context, resp);
     }
 
@@ -108,7 +110,7 @@ public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, P
     }
 
     private void setupUI() {
-        if (TextUtils.equals(booking.getFlightNo(), null)) {
+        if (TextUtils.equals(booking.getFlightNo(), "none")) {
             mTvFlightNo.setVisibility(View.GONE);
         } else {
             mTvFlightNo.setVisibility(View.VISIBLE);
@@ -117,7 +119,7 @@ public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, P
 
         mTvTicketNo.setContent(String.valueOf(booking.getSerial()));
         mTvName.setContent(booking.getNameCustomer());
-        mTvPickUp.setContent(booking.getNameHome());
+        mTvPickUp.setContent(booking.getNameLeave());
         mTvDestination.setContent(booking.getNameArrive());
         mTvType.setContent(StringUtils.capitalize(booking.getVehicleType()));
         mTvTime.setContent(booking.getTimeleave());
@@ -130,6 +132,9 @@ public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, P
 
     @OnClick(R.id.btn_accept)
     void acceptBooking() {
+        if (AppContext.getInstance() == null) {
+            AppContext.getInstance(getApplicationContext());
+        }
         if (mPresenter != null) {
             mPresenter.confirm(booking.getIdTrip());
         }

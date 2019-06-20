@@ -70,7 +70,7 @@ public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.Stat
         }
 
         String email = booking.getEmailguest();
-        String pickup = booking.getNameHome();
+        String pickup = booking.getNameLeave();
         String destination = booking.getNameArrive();
         String timeLeave = booking.getTimeleave();
         int price = booking.getPriceVn();

@@ -16,6 +16,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -97,7 +98,7 @@ public class SupplierContainerActivity extends NonPresenterActivity implements B
 
                         resp.setRead(false);
                         resp.setEmailguest(booking.getEmailguest());
-                        resp.setNameHome(booking.getNameleave());
+                        resp.setNameLeave(booking.getNameleave());
                         resp.setNameArrive(booking.getNamearrive());
                         resp.setIdTrip(booking.getIdTrip());
                         resp.setNote(booking.getNote());

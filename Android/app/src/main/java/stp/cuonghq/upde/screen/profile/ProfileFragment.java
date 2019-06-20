@@ -20,6 +20,7 @@ import butterknife.OnClick;
 import stp.cuonghq.upde.R;
 import stp.cuonghq.upde.commons.Utilities;
 import stp.cuonghq.upde.data.models.LoginData;
+import stp.cuonghq.upde.screen.container.HostContainerActivity;
 import stp.cuonghq.upde.screen.container.SupplierContainerActivity;
 import stp.cuonghq.upde.screen.editinfo.EditInformationActivity;
 import stp.cuonghq.upde.screen.listhome.ListHomeActivity;
@@ -113,6 +114,10 @@ public class ProfileFragment extends Fragment implements Contract.View {
         Activity mActivity = getActivity();
         if (mActivity instanceof SupplierContainerActivity) {
             ((SupplierContainerActivity) mActivity).logout();
+        }
+
+        else if (mActivity instanceof HostContainerActivity) {
+            ((HostContainerActivity) mActivity).logout();
         }
     }
 }

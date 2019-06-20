@@ -91,7 +91,7 @@ public class ConfirmDetailActivity extends AppCompatActivity implements Contract
     }
 
     private void setupUI() {
-        if (TextUtils.equals(booking.getFlightNo(), null)) {
+        if (TextUtils.equals(booking.getFlightNo(), "none")) {
             mTvFlightNo.setVisibility(View.GONE);
         } else {
             mTvFlightNo.setVisibility(View.VISIBLE);
@@ -100,7 +100,7 @@ public class ConfirmDetailActivity extends AppCompatActivity implements Contract
         mTvTicketNo.setContent(booking.getSerial() + "");
         mTvName.setContent(booking.getNameCustomer());
         mTvPickupAddress.setContent(booking.getNameArrive());
-        mTvDestination.setContent(booking.getNameHome());
+        mTvDestination.setContent(booking.getNameLeave());
         mTvType.setContent(StringUtils.capitalize(booking.getVehicleType()));
         mTvPickupTime.setContent(booking.getTimeleave());
         mTvPrice.setContent(Utilities.convertToVnd(booking.getPriceVn()));
