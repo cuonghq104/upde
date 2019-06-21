@@ -119,6 +119,7 @@
                 app:titleTextColor="@android:color/white">
 
                 <LinearLayout
+                    android:paddingEnd="@dimen/margin_component"
                     android:id="@+id/ln_header"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -127,9 +128,9 @@
                     <LinearLayout
                         android:id="@+id/ln_spinner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:layout_gravity="center_vertical"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginTop="5dp"
                         android:orientation="horizontal"
                         android:weightSum="2">
 
@@ -151,49 +152,56 @@
                         </LinearLayout>
 
 
-                        <LinearLayout
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="end"
-                            android:layout_marginEnd="16dp"
                             android:orientation="vertical">
 
                             <Spinner
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
                                 android:id="@+id/sp_date"
                                 android:layout_width="120dp"
                                 android:layout_height="35dp"
-                                android:background="@drawable/spinner_backgroud"
+                                android:background="@drawable/spinner_border"
                                 android:dropDownVerticalOffset="5dp"
                                 android:overlapAnchor="false"
-                                android:popupBackground="@drawable/spinner_popup_backgroud"
+                                android:popupBackground="@drawable/spinner_border"
                                 android:spinnerMode="dropdown" />
-                        </LinearLayout>
+                        </RelativeLayout>
 
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:paddingBottom="5dp"
+                        android:layout_weight="1"
                         android:id="@+id/ln_detail"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="0dp"
                         android:orientation="horizontal"
                         android:weightSum="2">
 
                         <TextView
+                            android:textColor="@color/colorBlack"
+                            android:textStyle="bold"
                             android:id="@+id/tv_total_income"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="bottom"/>
+                            android:gravity="bottom"
+                            android:text="2.345.000 vnd" />
 
                         <TextView
+                            android:textColor="@color/colorBlack"
+                            android:textStyle="bold"
                             android:id="@+id/tv_date"
-                            android:layout_marginEnd="16dp"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:gravity="bottom|end"/>
+                            android:gravity="bottom|end"
+                            android:text="Thứ 3, ngày 28 tháng 5" />
 
                     </LinearLayout>
 

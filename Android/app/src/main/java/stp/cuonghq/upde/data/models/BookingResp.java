@@ -58,7 +58,7 @@ public class BookingResp implements Serializable {
     @SerializedName("payment_method")
     @Expose
     private String paymentMethod;
-    @SerializedName("id")
+    @SerializedName("id_trip")
     @Expose
     private String id;
 

@@ -1,6 +1,7 @@
 package stp.cuonghq.upde.screen.statistic.host;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -163,6 +164,7 @@ public class StatisticFragment extends BaseFragment<StatisticFragment, Presenter
 
         chart.setNoDataText(getActivity().getApplicationContext().getString(R.string.no_description_text));
         chart.setPinchZoom(false);
+
         chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
