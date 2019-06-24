@@ -67,14 +67,15 @@ class Presenter implements Contract.Presenter {
                     @Override
                     public void failed(String msg) {
                         Utilities.showToast(AppContext.getInstance(), "Token expired");
-                        mView.informationValid();
+                        mView.informationNotValid();
                     }
                 });
             }
         } else {
             NetworkClient.initHeaderInstance("nigger homie");
             if (mView != null)
-               mView.informationNotValid();
+                // mView.informationValid();
+                mView.informationNotValid();
         }
     }
 
