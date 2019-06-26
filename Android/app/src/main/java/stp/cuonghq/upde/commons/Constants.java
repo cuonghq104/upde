@@ -1,5 +1,6 @@
 package stp.cuonghq.upde.commons;
 
+import android.Manifest;
 import android.content.Context;
 
 /**
@@ -7,6 +8,12 @@ import android.content.Context;
  */
 
 public class Constants {
+
+    public static final String[] PERMISSION_NEEDED = new String[] {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+    };
 
     public static final int BOOKING_REQUEST_CODE = 1000;
     public static final int CONFIRM_REQUEST_CODE = 1001;
@@ -53,7 +60,7 @@ public class Constants {
     }
 
     public static class ApiConstant {
-        //        static final String BASE_URL = "https://server.upit.asia/api/";
+//                static final String BASE_URL = "https://server.upit.asia/api/";
         public static final String BASE_URL = "https://serverdev.upit.asia/api/";
         // public static final String BASE_URL = "http://107.113.186.171:3200/api/";
         public static final String HEADER_AUTHORIZATION = "access_token";

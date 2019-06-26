@@ -75,6 +75,7 @@ public class SplashActivity extends AppCompatActivity implements Contract.View {
     @Override
     public void informationNotValid() {
         Intent intent = StartActivity.getInstance(getApplicationContext());
+//        Intent intent = SupplierContainerActivity.getInstance(getApplicationContext());
         startActivity(intent);
         SplashActivity.this.finish();
     }

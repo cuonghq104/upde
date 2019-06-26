@@ -58,11 +58,14 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:tint="@color/colorPrimary"
+                    app:civ_border_width="3dp"
+                    app:civ_border_color="@color/colorPrimary"
                     android:id="@+id/btn_profile"
                     android:layout_width="@dimen/size_store_image"
                     android:layout_height="@dimen/size_store_image"
                     android:background="@color/colorTransparent"
-                    android:src="@drawable/de_niro" />
+                    android:src="@drawable/image_default" />
 
                 <RelativeLayout
                     android:id="@+id/rl_clip"
@@ -72,8 +75,8 @@
                     android:background="@drawable/background_circle_clip">
 
                     <ImageView
-                        android:layout_width="@dimen/size_profile_button"
-                        android:layout_height="@dimen/size_profile_button"
+                        android:layout_width="@dimen/size_take_image_btn"
+                        android:layout_height="@dimen/size_take_image_btn"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="5dp"
@@ -131,7 +134,7 @@
                 <ImageView
                     android:layout_width="@dimen/size_profile_button"
                     android:layout_height="@dimen/size_profile_button"
-                    android:src="@drawable/ic_earth"
+                    android:src="@drawable/edit_infor"
                     android:tint="@color/colorPrimaryDark" />
 
                 <android.support.v7.widget.AppCompatTextView
@@ -157,7 +160,7 @@
                 <ImageView
                     android:layout_width="@dimen/size_profile_button"
                     android:layout_height="@dimen/size_profile_button"
-                    android:src="@drawable/ic_phone_receiver"
+                    android:src="@drawable/ic_house"
                     android:tint="@color/colorPrimaryDark" />
 
                 <android.support.v7.widget.AppCompatTextView
@@ -182,7 +185,7 @@
                 <ImageView
                     android:layout_width="@dimen/size_profile_button"
                     android:layout_height="@dimen/size_profile_button"
-                    android:src="@drawable/ic_exit_to_app_button"
+                    android:src="@drawable/ic_help"
                     android:tint="@color/colorPrimaryDark" />
 
                 <android.support.v7.widget.AppCompatTextView

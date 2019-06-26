@@ -2,11 +2,18 @@ package stp.cuonghq.upde.screen.profile;
 
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +24,11 @@ import android.widget.RelativeLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 import stp.cuonghq.upde.R;
+import stp.cuonghq.upde.commons.AppContext;
+import stp.cuonghq.upde.commons.BaseFragment;
+import stp.cuonghq.upde.commons.Constants;
 import stp.cuonghq.upde.commons.Utilities;
 import stp.cuonghq.upde.data.models.LoginData;
 import stp.cuonghq.upde.screen.container.HostContainerActivity;
@@ -28,7 +39,11 @@ import stp.cuonghq.upde.screen.listhome.ListHomeActivity;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProfileFragment extends Fragment implements Contract.View {
+public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> implements Contract.View {
+
+    public static final int PERMISSION_REQUEST_CODE = 1111;
+    public static final int CAPTURE_IMAGE_REQUEST_CODE = 1122;
+    public static final int CHOOSE_FROM_GALLERY_REQUEST_CODE = 2233;
 
     @BindView(R.id.btn_help)
     LinearLayout btnHelp;
@@ -39,14 +54,20 @@ public class ProfileFragment extends Fragment implements Contract.View {
     @BindView(R.id.tv_name)
     AppCompatTextView mTvName;
 
+    @BindView(R.id.tv_email)
+    AppCompatTextView mTvEmail;
+
     @BindView(R.id.btn_houses)
     LinearLayout mLLHouse;
 
     @BindView(R.id.tv_version)
     AppCompatTextView mTvVersion;
 
-    Presenter mPresenter;
+    @BindView(R.id.btn_profile)
+    CircleImageView btnProfile;
+
     private LoginData data;
+    private String role;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -57,6 +78,7 @@ public class ProfileFragment extends Fragment implements Contract.View {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         initView(view);
         initData();
@@ -64,15 +86,19 @@ public class ProfileFragment extends Fragment implements Contract.View {
         return view;
     }
 
+    @Override
+    protected Presenter initPresenter() {
+        return new Presenter();
+    }
+
     private void initData() {
-        mPresenter = new Presenter();
-        mPresenter.setView(ProfileFragment.this);
-        this.data = mPresenter.getUserData();
+        this.data = presenter.getUserData();
+        this.role = presenter.getLoginType();
     }
 
 
     private void setupUI() {
-        mRlClip.getBackground().setLevel(2000);
+        mRlClip.getBackground().setLevel(3000);
         //mTvName.setText(data.getEmail());
         mTvVersion.setText("Version: ");
         try {
@@ -83,6 +109,10 @@ public class ProfileFragment extends Fragment implements Contract.View {
             e.printStackTrace();
         }
 
+        mTvEmail.setText(data.getEmail());
+        mTvName.setText(data.getName());
+
+        mLLHouse.setVisibility((role.equalsIgnoreCase(Constants.LOGIN_AS_SUPPLIER_TYPE)) ? View.GONE : View.VISIBLE);
     }
 
 
@@ -92,7 +122,7 @@ public class ProfileFragment extends Fragment implements Contract.View {
 
     @OnClick(R.id.btn_logout)
     public void logOut() {
-        mPresenter.logOut();
+        presenter.logOut();
     }
 
     @OnClick(R.id.btn_edit_information)
@@ -107,6 +137,10 @@ public class ProfileFragment extends Fragment implements Contract.View {
         startActivity(intent);
     }
 
+    @OnClick(R.id.btn_profile)
+    public void getNewImage() {
+        checkPermission();
+    }
     @Override
     public void logOutSuccess(String msg) {
         Utilities.showToast(getContext(), msg);
@@ -120,4 +154,75 @@ public class ProfileFragment extends Fragment implements Contract.View {
             ((HostContainerActivity) mActivity).logout();
         }
     }
+
+    public void checkPermission() {
+        if (!hasPermissions(AppContext.getInstance(), Constants.PERMISSION_NEEDED)) {
+            requestPermissions(Constants.PERMISSION_NEEDED, PERMISSION_REQUEST_CODE);
+        } else {
+            permissionGranted();
+        }
+    }
+
+    private void permissionGranted() {
+
+    }
+
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (hasPermissions(AppContext.getInstance(), Constants.PERMISSION_NEEDED)) {
+            permissionGranted();
+        } else {
+            Utilities.showToast(ProfileFragment.this.getContext(), "Permission denied");
+        }
+    }
+
+    private void showImagePickerDialog() {
+        CharSequence options[] = new CharSequence[]{"Take new picture", "From gallery"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setTitle("Add a product image from: ");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 1) {
+                    chooseFromGallery();
+                } else if (which == 0) {
+                    captureImage();
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.show();
+    }
+
+    private void captureImage() {
+        Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(takePicture, CAPTURE_IMAGE_REQUEST_CODE);
+    }
+
+    private void chooseFromGallery() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), CHOOSE_FROM_GALLERY_REQUEST_CODE);
+    }
+
+
 }
