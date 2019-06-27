@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
@@ -39,7 +38,7 @@ public class SignUpFragment extends Fragment {
     @BindView(R.id.edt_name)
     AppCompatEditText mEdtName;
 
-    @BindView(R.id.edt_email)
+    @BindView(R.id.edt_phone)
     AppCompatEditText mEdtEmail;
 
     @BindView(R.id.edt_password)

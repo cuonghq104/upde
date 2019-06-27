@@ -7,19 +7,23 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +44,8 @@ import stp.cuonghq.upde.screen.listhome.ListHomeActivity;
  * A simple {@link Fragment} subclass.
  */
 public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> implements Contract.View {
+
+    public static final int EDIT_INFORMATION_REQUEST_CODE = 2244;
 
     public static final int PERMISSION_REQUEST_CODE = 1111;
     public static final int CAPTURE_IMAGE_REQUEST_CODE = 1122;
@@ -96,7 +102,10 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
         this.role = presenter.getLoginType();
     }
 
-
+    void updateUserInfo() {
+        mTvEmail.setText(data.getEmail());
+        mTvName.setText(data.getName());
+    }
     private void setupUI() {
         mRlClip.getBackground().setLevel(3000);
         //mTvName.setText(data.getEmail());
@@ -108,10 +117,7 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-
-        mTvEmail.setText(data.getEmail());
-        mTvName.setText(data.getName());
-
+        updateUserInfo();
         mLLHouse.setVisibility((role.equalsIgnoreCase(Constants.LOGIN_AS_SUPPLIER_TYPE)) ? View.GONE : View.VISIBLE);
     }
 
@@ -128,7 +134,7 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
     @OnClick(R.id.btn_edit_information)
     public void editInformation() {
         Intent intent = EditInformationActivity.getInstance(getContext());
-        startActivity(intent);
+        startActivityForResult(intent, EDIT_INFORMATION_REQUEST_CODE);
     }
 
     @OnClick(R.id.btn_houses)
@@ -159,12 +165,33 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
         if (!hasPermissions(AppContext.getInstance(), Constants.PERMISSION_NEEDED)) {
             requestPermissions(Constants.PERMISSION_NEEDED, PERMISSION_REQUEST_CODE);
         } else {
-            permissionGranted();
+            showGetPictureDialog();
         }
     }
 
-    private void permissionGranted() {
+    private void showGetPictureDialog() {
+        CharSequence options[] = new CharSequence[]{"Take new picture", "From gallery"};
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(false);
+        builder.setTitle("Add a product image from: ");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 1) {
+                    chooseFromGallery();
+                } else if (which == 0) {
+                    captureImage();
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.show();
     }
 
     public static boolean hasPermissions(Context context, String... permissions) {
@@ -181,7 +208,7 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (hasPermissions(AppContext.getInstance(), Constants.PERMISSION_NEEDED)) {
-            permissionGranted();
+            showGetPictureDialog();
         } else {
             Utilities.showToast(ProfileFragment.this.getContext(), "Permission denied");
         }
@@ -223,6 +250,34 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
         intent.setType("image/*");
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), CHOOSE_FROM_GALLERY_REQUEST_CODE);
     }
+    private Uri selectedImageUri;
+    private String mImagePath;
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CHOOSE_FROM_GALLERY_REQUEST_CODE) {
+                selectedImageUri = data.getData();
+                mImagePath = Utilities.getPathFromURI(getActivity(), selectedImageUri);
+                if (mImagePath != null) {
+                    File f = new File(mImagePath);
+                    selectedImageUri = Uri.fromFile(f);
+                }
+//                mPresenter.uploadStoreImage(activity.getContentResolver().getType(selectedImageUri), Utilities.getPath(getContext(), selectedImageUri));
+            } else if (requestCode == CAPTURE_IMAGE_REQUEST_CODE) {
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                selectedImageUri = Utilities.getImageUri(getContext(), bitmap);
+                mImagePath = Utilities.getPathFromURI(getActivity(), selectedImageUri);
+//                mPresenter.uploadStoreImage(activity.getContentResolver().getType(selectedImageUri), Utilities.getPath(getContext(), selectedImageUri));
+            } else if (requestCode == EDIT_INFORMATION_REQUEST_CODE) {
+                boolean updated = data.getBooleanExtra(Constants.Extras.RESULT, false);
+                if (updated) {
+                    this.data = presenter.getUserData();
+                    updateUserInfo();
+                }
+            }
+        }
+    }
 
 }

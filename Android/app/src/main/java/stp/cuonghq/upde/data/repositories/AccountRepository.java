@@ -45,4 +45,10 @@ public class AccountRepository {
             mRds.checkTokenStatus(callback);
         }
     }
+
+    public void editInfo(String phone, String name, ApiCallback callback) {
+        if (mRds != null) {
+            mRds.editInformation(phone, name, callback);
+        }
+    }
 }

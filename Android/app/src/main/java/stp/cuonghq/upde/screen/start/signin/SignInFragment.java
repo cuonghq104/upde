@@ -50,7 +50,7 @@ public class SignInFragment extends BaseFragment<SignInFragment, Presenter> impl
     @BindView(R.id.btn_login_as_host)
     AppCompatButton mBtnLoginAsHost;
 
-    @BindView(R.id.edt_email)
+    @BindView(R.id.edt_phone)
     AppCompatEditText mEdtEmail;
 
     @BindView(R.id.edt_password)

@@ -9,7 +9,7 @@ import android.content.Context;
 
 public class Constants {
 
-    public static final String[] PERMISSION_NEEDED = new String[] {
+    public static final String[] PERMISSION_NEEDED = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA,
             Manifest.permission.READ_EXTERNAL_STORAGE
@@ -31,7 +31,7 @@ public class Constants {
         public static final String TYPE_DAY = "day";
         public static final String TYPE_YEAR = "year";
         public static final String TYPE_MONTH = "month";
-        public static final String TYPE_WEEK= "week";
+        public static final String TYPE_WEEK = "week";
     }
 
     public class Extras {
@@ -60,7 +60,7 @@ public class Constants {
     }
 
     public static class ApiConstant {
-//                static final String BASE_URL = "https://server.upit.asia/api/";
+//        static final String BASE_URL = "https://server.upit.asia/api/";
         public static final String BASE_URL = "https://serverdev.upit.asia/api/";
         // public static final String BASE_URL = "http://107.113.186.171:3200/api/";
         public static final String HEADER_AUTHORIZATION = "access_token";
@@ -71,11 +71,12 @@ public class Constants {
         private static final String LOGIN_PATH = "loginAdvance";
         private static final String LOGOUT_PATH = "logoutAdvance";
         private static final String CHECK_TOKEN_PATH = "checkToken";
-
+        public static final String EDIT_INFO_PATH = "editInfo";
         public static final String HOST_LOGIN_PATH = HOST_PATH + LOGIN_PATH;
         public static final String SALEPOINT_LOGIN_PATH = SALE_POINT_PATH + LOGIN_PATH;
         public static final String HOST_LOGOUT_PATH = HOST_PATH + LOGOUT_PATH;
         public static final String HOST_CHECK_TOKEN_PATH = CHECK_TOKEN_PATH;
+        public static final String SALEPOINT_UPDATE_INFORMATION = SALE_POINT_PATH + EDIT_INFO_PATH;
 
         public static final String GET_APP_BOOKING_CREATE = "getAllTripCreate";
         public static final String GET_APP_BOOKING_ACCEPT = "getAllTripAccept";

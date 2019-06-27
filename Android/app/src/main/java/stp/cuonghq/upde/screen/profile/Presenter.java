@@ -20,7 +20,6 @@ import stp.cuonghq.upde.data.repositories.AccountRepository;
 
 public class Presenter extends BasePresenter<ProfileFragment> implements Contract.Presenter {
 
-    private Contract.View mView;
 
     private AccountRepository mRepository;
 
@@ -28,9 +27,6 @@ public class Presenter extends BasePresenter<ProfileFragment> implements Contrac
         mRepository = AccountRepository.getInstance();
     }
 
-    public void setView(Contract.View mView) {
-        this.mView = mView;
-    }
 
     @Override
     public void logOut() {
@@ -44,7 +40,7 @@ public class Presenter extends BasePresenter<ProfileFragment> implements Contrac
                         Constants.SharePreferenceConstants.ACCESS_TOKEN,
                         Constants.SharePreferenceConstants.DATA
                 );
-                mView.logOutSuccess(msg);
+                getView().logOutSuccess(msg);
             }
 
             @Override
@@ -53,7 +49,7 @@ public class Presenter extends BasePresenter<ProfileFragment> implements Contrac
                         Constants.SharePreferenceConstants.ACCESS_TOKEN,
                         Constants.SharePreferenceConstants.DATA
                 );
-                mView.logOutSuccess(msg);
+                getView().logOutSuccess(msg);
             }
         });
     }

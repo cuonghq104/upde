@@ -9,6 +9,7 @@ import io.reactivex.schedulers.Schedulers;
 import stp.cuonghq.upde.commons.ApiCallback;
 import stp.cuonghq.upde.commons.ApiService;
 import stp.cuonghq.upde.commons.NetworkClient;
+import stp.cuonghq.upde.data.models.EditInfoRequest;
 import stp.cuonghq.upde.data.models.LoginData;
 import stp.cuonghq.upde.data.models.LoginRequest;
 import stp.cuonghq.upde.data.models.LogoutRequest;
@@ -53,6 +54,21 @@ public class AccountRDS implements AccountDatasource.RDS {
         checkTokenStatusObservable().subscribeWith(ApiService.disposableObserver(callback));
     }
 
+    @Override
+    public void editInformation(String phone, String name, ApiCallback callback) {
+        EditInfoRequest request = new EditInfoRequest();
+        request.setName(name);
+        request.setPhoneNumber(phone);
+        editInformationObservable(request).subscribeWith(ApiService.disposableObserver(callback));
+    }
+
+    Observable<Response> editInformationObservable(EditInfoRequest request) {
+        return NetworkClient.getHeaderInstance()
+                .create(AccountServices.class)
+                .editInfo(request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
     Observable<Response<LoginData>> loginResponseObservable(LoginRequest request) {
         return NetworkClient.getRetrofit()
                 .create(AccountServices.class)

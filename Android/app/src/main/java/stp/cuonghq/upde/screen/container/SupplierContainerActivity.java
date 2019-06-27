@@ -81,6 +81,11 @@ public class SupplierContainerActivity extends NonPresenterActivity implements B
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initData();
     }
 

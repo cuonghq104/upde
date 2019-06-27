@@ -8,7 +8,7 @@
     <dimen name="size_store_image">160dp</dimen>
     <dimen name="padding_profile_selection">10dp</dimen>
     <dimen name="height_header">160dp</dimen>
-    <dimen name="margin_form">24dp</dimen>
+    <dimen name="margin_form">16dp</dimen>
     <dimen name="text_size_header" type="dimen">49sp</dimen>
     <dimen name="size_take_image_btn">30dp</dimen>
 

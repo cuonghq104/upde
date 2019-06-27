@@ -14,5 +14,7 @@ public class AccountDatasource {
         void logOut(String token, ApiCallback callback);
 
         void checkTokenStatus(ApiCallback callback);
+
+        void editInformation(String phone, String name, ApiCallback callback);
     }
 }
