@@ -1,6 +1,7 @@
 package stp.cuonghq.upde.commons;
 
 import android.app.Activity;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -8,6 +9,8 @@ import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -213,7 +216,7 @@ public class Utilities {
                 databaseDay.set(Calendar.MONTH, Integer.parseInt(tt[0]));
                 databaseDay.set(Calendar.YEAR, Integer.parseInt(tt[2]));
 
-                Log.d("hehe ", "compare day databaseDay " + databaseDay.get(Calendar.DATE) + " with " + curentDay.get(Calendar.DATE) +" result "+databaseDay.compareTo(curentDay) );
+                Log.d("hehe ", "compare day databaseDay " + databaseDay.get(Calendar.DATE) + " with " + curentDay.get(Calendar.DATE) + " result " + databaseDay.compareTo(curentDay));
 
                 return databaseDay.compareTo(curentDay) < 0;
 
@@ -264,4 +267,7 @@ public class Utilities {
         return Uri.parse(path);
     }
 
+    public static String getPath(final Context context, final Uri uri) {
+        return UriUtilities.getPath(context, uri);
+    }
 }

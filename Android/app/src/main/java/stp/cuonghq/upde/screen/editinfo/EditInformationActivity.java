@@ -53,6 +53,7 @@ public class EditInformationActivity extends BaseActivity<EditInformationActivit
 
     private void setupUI() {
         mEdtName.setText((data == null) ? "" : data.getName());
+        mEdtPhone.setText((data == null) ? "" : data.getPhonenumber());
     }
 
     @Override

@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import stp.cuonghq.upde.commons.ApiCallback;
 import stp.cuonghq.upde.commons.AppContext;
 import stp.cuonghq.upde.commons.AppSharePreferences;
+import stp.cuonghq.upde.commons.AvatarResponse;
 import stp.cuonghq.upde.commons.BasePresenter;
 import stp.cuonghq.upde.commons.Constants;
 import stp.cuonghq.upde.commons.Utilities;
@@ -64,6 +65,20 @@ public class Presenter extends BasePresenter<ProfileFragment> implements Contrac
         return AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.LOGIN_TYPE);
     }
 
+    @Override
+    public void changeProfileImage(String fileType, String filePath) {
+        AccountRepository.getInstance().changeAvatar(fileType, filePath, new ApiCallback<AvatarResponse>() {
+            @Override
+            public void success(AvatarResponse data, String msg) {
+                getView().changeProfileImageSuccess(data);
+            }
+
+            @Override
+            public void failed(String msg) {
+                getView().changeProfileImageFailed(msg);
+            }
+        });
+    }
 
 
 }

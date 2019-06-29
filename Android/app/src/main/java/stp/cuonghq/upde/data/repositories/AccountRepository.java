@@ -1,6 +1,7 @@
 package stp.cuonghq.upde.data.repositories;
 
 import stp.cuonghq.upde.commons.ApiCallback;
+import stp.cuonghq.upde.commons.AvatarResponse;
 import stp.cuonghq.upde.data.models.LoginData;
 import stp.cuonghq.upde.data.sources.AccountDatasource;
 import stp.cuonghq.upde.data.sources.remote.AccountRDS;
@@ -49,6 +50,12 @@ public class AccountRepository {
     public void editInfo(String phone, String name, ApiCallback callback) {
         if (mRds != null) {
             mRds.editInformation(phone, name, callback);
+        }
+    }
+
+    public void changeAvatar(String fileType, String image, ApiCallback<AvatarResponse> callback) {
+        if (mRds != null) {
+            mRds.changeProfileImage(fileType, image, callback);
         }
     }
 }

@@ -23,6 +23,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 
 import butterknife.BindView;
@@ -31,6 +33,8 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import stp.cuonghq.upde.R;
 import stp.cuonghq.upde.commons.AppContext;
+import stp.cuonghq.upde.commons.AppSharePreferences;
+import stp.cuonghq.upde.commons.AvatarResponse;
 import stp.cuonghq.upde.commons.BaseFragment;
 import stp.cuonghq.upde.commons.Constants;
 import stp.cuonghq.upde.commons.Utilities;
@@ -105,7 +109,12 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
     void updateUserInfo() {
         mTvEmail.setText(data.getEmail());
         mTvName.setText(data.getName());
+
+        Picasso.with(getActivity())
+                .load(Constants.imageUrl(data.getAvatar()))
+                .into(btnProfile);
     }
+
     private void setupUI() {
         mRlClip.getBackground().setLevel(3000);
         //mTvName.setText(data.getEmail());
@@ -159,6 +168,18 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
         else if (mActivity instanceof HostContainerActivity) {
             ((HostContainerActivity) mActivity).logout();
         }
+    }
+
+    @Override
+    public void changeProfileImageSuccess(AvatarResponse response) {
+        data.setAvatar(response.getAvatar());
+        AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.DATA, data);
+        updateUserInfo();
+    }
+
+    @Override
+    public void changeProfileImageFailed(String msg) {
+        Utilities.showToast(getActivity(), msg);
     }
 
     public void checkPermission() {
@@ -264,12 +285,14 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
                     File f = new File(mImagePath);
                     selectedImageUri = Uri.fromFile(f);
                 }
-//                mPresenter.uploadStoreImage(activity.getContentResolver().getType(selectedImageUri), Utilities.getPath(getContext(), selectedImageUri));
+                presenter.changeProfileImage(getActivity().getContentResolver().getType(selectedImageUri), Utilities.getPath(getContext(), selectedImageUri));
+
             } else if (requestCode == CAPTURE_IMAGE_REQUEST_CODE) {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 selectedImageUri = Utilities.getImageUri(getContext(), bitmap);
                 mImagePath = Utilities.getPathFromURI(getActivity(), selectedImageUri);
-//                mPresenter.uploadStoreImage(activity.getContentResolver().getType(selectedImageUri), Utilities.getPath(getContext(), selectedImageUri));
+                presenter.changeProfileImage(getActivity().getContentResolver().getType(selectedImageUri), Utilities.getPath(getContext(), selectedImageUri));
+
             } else if (requestCode == EDIT_INFORMATION_REQUEST_CODE) {
                 boolean updated = data.getBooleanExtra(Constants.Extras.RESULT, false);
                 if (updated) {

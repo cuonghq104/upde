@@ -6,6 +6,10 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class LoginData implements Serializable {
+
+    @Expose
+    @SerializedName("phoneNumber")
+    private String phonenumber;
     @Expose
     @SerializedName("email")
     private String email;
@@ -24,6 +28,14 @@ public class LoginData implements Serializable {
     @Expose
     @SerializedName("token_id")
     private String tokenId;
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
 
     public String getEmail() {
         return email;

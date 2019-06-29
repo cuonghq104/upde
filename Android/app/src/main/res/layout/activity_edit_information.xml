@@ -38,6 +38,7 @@
                 android:textSize="@dimen/ts_form_hint" />
 
             <android.support.v7.widget.AppCompatEditText
+                android:maxLength="32"
                 android:id="@+id/edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,7 +63,9 @@
                 android:textSize="@dimen/ts_form_hint" />
 
             <android.support.v7.widget.AppCompatEditText
+                android:maxLength="20"
                 android:id="@+id/edt_phone"
+                android:inputType="phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"

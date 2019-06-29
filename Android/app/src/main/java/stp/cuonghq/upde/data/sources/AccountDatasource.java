@@ -16,5 +16,7 @@ public class AccountDatasource {
         void checkTokenStatus(ApiCallback callback);
 
         void editInformation(String phone, String name, ApiCallback callback);
+
+        void changeProfileImage(String fileType, String filePath, ApiCallback callback);
     }
 }

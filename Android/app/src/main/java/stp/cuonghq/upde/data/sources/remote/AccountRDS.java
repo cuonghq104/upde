@@ -1,13 +1,24 @@
 package stp.cuonghq.upde.data.sources.remote;
 
 
+import android.arch.persistence.room.util.StringUtil;
 import android.util.Log;
+
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.File;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import stp.cuonghq.upde.commons.ApiCallback;
 import stp.cuonghq.upde.commons.ApiService;
+import stp.cuonghq.upde.commons.AppSharePreferences;
+import stp.cuonghq.upde.commons.AvatarResponse;
+import stp.cuonghq.upde.commons.Constants;
 import stp.cuonghq.upde.commons.NetworkClient;
 import stp.cuonghq.upde.data.models.EditInfoRequest;
 import stp.cuonghq.upde.data.models.LoginData;
@@ -62,10 +73,35 @@ public class AccountRDS implements AccountDatasource.RDS {
         editInformationObservable(request).subscribeWith(ApiService.disposableObserver(callback));
     }
 
-    Observable<Response> editInformationObservable(EditInfoRequest request) {
+    @Override
+    public void changeProfileImage(String fileType, String image, ApiCallback callback) {
+        changeAvatarObservable(fileType, image).subscribeWith(ApiService.disposableObserver(callback));
+    }
+
+    Observable<Response<AvatarResponse>> changeAvatarObservable(String fileType, String image) {
+        String role = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.LOGIN_TYPE);
+
+        MultipartBody.Part avatar = null;
+        if (image != null) {
+            File file = new File(image);
+            avatar = MultipartBody.Part.createFormData("salepoint", file.getName(), RequestBody.create(MediaType.parse(fileType), file));
+        }
+
+        Log.d("ab", "abc");
         return NetworkClient.getHeaderInstance()
                 .create(AccountServices.class)
-                .editInfo(request)
+                .updateAvatar(avatar)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    Observable<Response> editInformationObservable(EditInfoRequest request) {
+        String role = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.LOGIN_TYPE);
+        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_SUPPLIER_TYPE)) ? "salepoint" : "salepoint";
+
+        return NetworkClient.getHeaderInstance()
+                .create(AccountServices.class)
+                .editInfo(rolePath, request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

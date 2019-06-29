@@ -1,7 +1,10 @@
 package stp.cuonghq.upde.commons;
 
 import android.Manifest;
+import android.arch.persistence.room.util.StringUtil;
 import android.content.Context;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by cuong.hq1 on 5/3/2019.
@@ -67,17 +70,22 @@ public class Constants {
         private static final String HOST_PATH = "host/";
         private static final String TRIP_PATH = "trip/";
         private static final String SALE_POINT_PATH = "salepoint/";
+        private static final String SALE_POINT_PLURAL = "salepoints/";
 
         private static final String LOGIN_PATH = "loginAdvance";
         private static final String LOGOUT_PATH = "logoutAdvance";
         private static final String CHECK_TOKEN_PATH = "checkToken";
         public static final String EDIT_INFO_PATH = "editInfo";
+        public static final String CHANGE_AVATAR_PATH = "changeAvatar";
         public static final String HOST_LOGIN_PATH = HOST_PATH + LOGIN_PATH;
         public static final String SALEPOINT_LOGIN_PATH = SALE_POINT_PATH + LOGIN_PATH;
         public static final String HOST_LOGOUT_PATH = HOST_PATH + LOGOUT_PATH;
         public static final String HOST_CHECK_TOKEN_PATH = CHECK_TOKEN_PATH;
-        public static final String SALEPOINT_UPDATE_INFORMATION = SALE_POINT_PATH + EDIT_INFO_PATH;
 
+        public static final String ROLE_PATH = "role";
+        public static final String UPDATE_INFORMATION = "{" + ROLE_PATH + "}/" + EDIT_INFO_PATH;
+        public static final String UPDATE_IMAGE = SALE_POINT_PATH + CHANGE_AVATAR_PATH;
+        public static final String IMAGE_PATH = "image/";
         public static final String GET_APP_BOOKING_CREATE = "getAllTripCreate";
         public static final String GET_APP_BOOKING_ACCEPT = "getAllTripAccept";
         public static final String GET_APP_BOOKING_COMPLETE = "getAllTripComplete";
@@ -115,4 +123,14 @@ public class Constants {
 
     public static final String LOGIN_AS_SUPPLIER_TYPE = "supplier"; // Nhà cung cấp, layout nhận noti đặt xe
     public static final String LOGIN_AS_HOST_TYPE = "host";          // Chủ nhà, layout thống kê
+
+    public static String imageUrl(String imageName) {
+        String loginType = AppSharePreferences.getStringFromSP(SharePreferenceConstants.LOGIN_TYPE);
+
+        StringBuilder sb = new StringBuilder(ApiConstant.BASE_URL);
+        sb.append(ApiConstant.IMAGE_PATH);
+        sb.append((StringUtils.equals(loginType, LOGIN_AS_SUPPLIER_TYPE) ? ApiConstant.SALE_POINT_PLURAL : ApiConstant.SALE_POINT_PLURAL));
+        sb.append(imageName);
+        return sb.toString();
+    }
 }
