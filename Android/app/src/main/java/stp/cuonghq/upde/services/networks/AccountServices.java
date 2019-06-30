@@ -18,7 +18,7 @@ import stp.cuonghq.upde.data.models.Response;
 
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.CHANGE_PASSWORD;
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.HOST_LOGIN_PATH;
-import static stp.cuonghq.upde.commons.Constants.ApiConstant.HOST_LOGOUT_PATH;
+import static stp.cuonghq.upde.commons.Constants.ApiConstant.LOG_OUT;
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.HOST_CHECK_TOKEN_PATH;
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.ROLE_PATH;
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.SALEPOINT_LOGIN_PATH;
@@ -29,8 +29,8 @@ public interface AccountServices {
     @POST(SALEPOINT_LOGIN_PATH)
     Observable<Response<LoginData>> login(@Body LoginRequest request);
 
-    @POST(HOST_LOGOUT_PATH)
-    Observable<Response> logOut(@Body LogoutRequest request);
+    @POST(LOG_OUT)
+    Observable<Response> logOut(@Path(ROLE_PATH) String role, @Body LogoutRequest request);
 
     @POST(HOST_CHECK_TOKEN_PATH)
     Observable<Response> checkTokenStatus();

@@ -135,9 +135,12 @@ public class AccountRDS implements AccountDatasource.RDS {
     }
 
     Observable<Response> logOutObservable(LogoutRequest request) {
+        String role = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.LOGIN_TYPE);
+        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_SUPPLIER_TYPE)) ? Constants.ApiConstant.SALE_POINT : Constants.ApiConstant.HOST;
+
         return NetworkClient.getHeaderInstance()
                 .create(AccountServices.class)
-                .logOut(request)
+                .logOut(rolePath, request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

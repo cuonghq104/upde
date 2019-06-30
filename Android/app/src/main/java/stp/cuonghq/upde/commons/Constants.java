@@ -78,18 +78,18 @@ public class Constants {
         private static final String SALE_POINT_PLURAL_PATH = SALE_POINT_PLURAL + "/";
 
         private static final String LOGIN_PATH = "loginAdvance";
-        private static final String LOGOUT_PATH = "logoutAdvance";
+        private static final String LOGOUT_PATH = "logout";
         private static final String CHECK_TOKEN_PATH = "checkToken";
         public static final String EDIT_INFO_PATH = "editInfo";
         public static final String CHANGE_AVATAR_PATH = "changeAvatar";
         public static final String CHANGE_PASSWORD_PATH = "changepassword";
 
         public static final String HOST_LOGIN_PATH = HOST_PATH + LOGIN_PATH;
-        public static final String SALEPOINT_LOGIN_PATH = SALE_POINT_PATH + LOGIN_PATH;
-        public static final String HOST_LOGOUT_PATH = HOST_PATH + LOGOUT_PATH;
+        public static final String SALEPOINT_LOGIN_PATH = SALE_POINT_PATH + LOGIN_PATH; 
         public static final String HOST_CHECK_TOKEN_PATH = CHECK_TOKEN_PATH;
 
         public static final String ROLE_PATH = "role";
+        public static final String LOG_OUT = "{" + ROLE_PATH + "}/" + LOGOUT_PATH;
         public static final String UPDATE_INFORMATION = "{" + ROLE_PATH + "}/" + EDIT_INFO_PATH;
         public static final String UPDATE_IMAGE = "{" + ROLE_PATH + "}/" + CHANGE_AVATAR_PATH;
         public static final String CHANGE_PASSWORD = "{" + ROLE_PATH + "}/" + CHANGE_PASSWORD_PATH;
