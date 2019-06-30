@@ -20,6 +20,7 @@ import stp.cuonghq.upde.commons.AppSharePreferences;
 import stp.cuonghq.upde.commons.AvatarResponse;
 import stp.cuonghq.upde.commons.Constants;
 import stp.cuonghq.upde.commons.NetworkClient;
+import stp.cuonghq.upde.data.models.ChangePasswordRequest;
 import stp.cuonghq.upde.data.models.EditInfoRequest;
 import stp.cuonghq.upde.data.models.LoginData;
 import stp.cuonghq.upde.data.models.LoginRequest;
@@ -47,8 +48,8 @@ public class AccountRDS implements AccountDatasource.RDS {
     }
 
     @Override
-    public void loginAsHost(String email, String password, ApiCallback<LoginData> callback) {
-        LoginRequest request = new LoginRequest(email, password);
+    public void loginAsHost(String email, String password, String token, ApiCallback<LoginData> callback) {
+        LoginRequest request = new LoginRequest(email, password, token);
         loginAsHostResponseObservable(request).subscribeWith(ApiService.disposableObserver(callback));
     }
 
@@ -78,9 +79,29 @@ public class AccountRDS implements AccountDatasource.RDS {
         changeAvatarObservable(fileType, image).subscribeWith(ApiService.disposableObserver(callback));
     }
 
+    @Override
+    public void changePassword(String oldPassword, String newPassword, ApiCallback callback) {
+        changePasswordObservable(oldPassword, newPassword).subscribeWith(ApiService.disposableObserver(callback));
+    }
+
+    Observable<Response> changePasswordObservable(String oldPass, String newPass) {
+        ChangePasswordRequest request = new ChangePasswordRequest();
+        request.setNewPassword(newPass);
+        request.setOldPassword(oldPass);
+
+        String role = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.LOGIN_TYPE);
+        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_SUPPLIER_TYPE)) ? Constants.ApiConstant.SALE_POINT : Constants.ApiConstant.HOST;
+
+        return NetworkClient.getHeaderInstance()
+                .create(AccountServices.class)
+                .changePassword(rolePath, request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
     Observable<Response<AvatarResponse>> changeAvatarObservable(String fileType, String image) {
         String role = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.LOGIN_TYPE);
-
+        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_SUPPLIER_TYPE)) ? Constants.ApiConstant.SALE_POINT : Constants.ApiConstant.HOST;
         MultipartBody.Part avatar = null;
         if (image != null) {
             File file = new File(image);
@@ -90,14 +111,14 @@ public class AccountRDS implements AccountDatasource.RDS {
         Log.d("ab", "abc");
         return NetworkClient.getHeaderInstance()
                 .create(AccountServices.class)
-                .updateAvatar(avatar)
+                .updateAvatar(rolePath, avatar)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     Observable<Response> editInformationObservable(EditInfoRequest request) {
         String role = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.LOGIN_TYPE);
-        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_SUPPLIER_TYPE)) ? "salepoint" : "salepoint";
+        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_SUPPLIER_TYPE)) ? Constants.ApiConstant.SALE_POINT : Constants.ApiConstant.HOST;
 
         return NetworkClient.getHeaderInstance()
                 .create(AccountServices.class)

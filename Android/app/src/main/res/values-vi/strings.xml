@@ -53,5 +53,13 @@
     <string name="year">Năm</string>
     <string name="custom">Tùy chọn</string>
     <string name="host_statistic_no_data">Không có dữ liệu</string>
-    <string name="title_phone_number">Phone number / SĐT</string>
+    <string name="title_phone_number">Số điện thoại</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_phone">Số điện thoại</string>
+    <string name="title_old_password">Mặt khẩu cũ</string>
+    <string name="title_new_password">Mặt khẩu mới</string>
+    <string name="title_save_changed">Lưu mật khẩu</string>
+    <string name="change_password">Thay đổi mật khẩu</string>
+    <string name="error_password_do_not_match">Xác nhận mật khẩu không đúng</string>
+    <string name="error_can_not_be_empty">Không được bỏ trống</string>
 </resources>

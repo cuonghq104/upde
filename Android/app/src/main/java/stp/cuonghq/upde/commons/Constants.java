@@ -1,7 +1,6 @@
 package stp.cuonghq.upde.commons;
 
 import android.Manifest;
-import android.arch.persistence.room.util.StringUtil;
 import android.content.Context;
 
 import org.apache.commons.lang3.StringUtils;
@@ -66,17 +65,25 @@ public class Constants {
 //        static final String BASE_URL = "https://server.upit.asia/api/";
         public static final String BASE_URL = "https://serverdev.upit.asia/api/";
         // public static final String BASE_URL = "http://107.113.186.171:3200/api/";
+
+        public static final String HOST = "host";
+        public static final String TRIP = "trip";
+        public static final String SALE_POINT = "salepoint";
+        public static final String SALE_POINT_PLURAL = "salepoints";
+
         public static final String HEADER_AUTHORIZATION = "access_token";
-        private static final String HOST_PATH = "host/";
-        private static final String TRIP_PATH = "trip/";
-        private static final String SALE_POINT_PATH = "salepoint/";
-        private static final String SALE_POINT_PLURAL = "salepoints/";
+        private static final String HOST_PATH = HOST + "/";
+        private static final String TRIP_PATH = TRIP + "/";
+        private static final String SALE_POINT_PATH = SALE_POINT + "/";
+        private static final String SALE_POINT_PLURAL_PATH = SALE_POINT_PLURAL + "/";
 
         private static final String LOGIN_PATH = "loginAdvance";
         private static final String LOGOUT_PATH = "logoutAdvance";
         private static final String CHECK_TOKEN_PATH = "checkToken";
         public static final String EDIT_INFO_PATH = "editInfo";
         public static final String CHANGE_AVATAR_PATH = "changeAvatar";
+        public static final String CHANGE_PASSWORD_PATH = "changepassword";
+
         public static final String HOST_LOGIN_PATH = HOST_PATH + LOGIN_PATH;
         public static final String SALEPOINT_LOGIN_PATH = SALE_POINT_PATH + LOGIN_PATH;
         public static final String HOST_LOGOUT_PATH = HOST_PATH + LOGOUT_PATH;
@@ -84,7 +91,9 @@ public class Constants {
 
         public static final String ROLE_PATH = "role";
         public static final String UPDATE_INFORMATION = "{" + ROLE_PATH + "}/" + EDIT_INFO_PATH;
-        public static final String UPDATE_IMAGE = SALE_POINT_PATH + CHANGE_AVATAR_PATH;
+        public static final String UPDATE_IMAGE = "{" + ROLE_PATH + "}/" + CHANGE_AVATAR_PATH;
+        public static final String CHANGE_PASSWORD = "{" + ROLE_PATH + "}/" + CHANGE_PASSWORD_PATH;
+
         public static final String IMAGE_PATH = "image/";
         public static final String GET_APP_BOOKING_CREATE = "getAllTripCreate";
         public static final String GET_APP_BOOKING_ACCEPT = "getAllTripAccept";
@@ -129,7 +138,7 @@ public class Constants {
 
         StringBuilder sb = new StringBuilder(ApiConstant.BASE_URL);
         sb.append(ApiConstant.IMAGE_PATH);
-        sb.append((StringUtils.equals(loginType, LOGIN_AS_SUPPLIER_TYPE) ? ApiConstant.SALE_POINT_PLURAL : ApiConstant.SALE_POINT_PLURAL));
+        sb.append((StringUtils.equals(loginType, LOGIN_AS_SUPPLIER_TYPE) ? ApiConstant.SALE_POINT_PLURAL_PATH : ApiConstant.SALE_POINT_PLURAL_PATH));
         sb.append(imageName);
         return sb.toString();
     }

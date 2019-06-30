@@ -9,7 +9,7 @@ public class AccountDatasource {
     public interface RDS {
         void login(String email, String password, String token, ApiCallback<LoginData> callback);
 
-        void loginAsHost(String email, String password, ApiCallback<LoginData> callback);
+        void loginAsHost(String email, String password, String token, ApiCallback<LoginData> callback);
 
         void logOut(String token, ApiCallback callback);
 
@@ -18,5 +18,7 @@ public class AccountDatasource {
         void editInformation(String phone, String name, ApiCallback callback);
 
         void changeProfileImage(String fileType, String filePath, ApiCallback callback);
+
+        void changePassword(String oldPassword, String newPassword, ApiCallback callback);
     }
 }

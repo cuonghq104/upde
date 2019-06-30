@@ -42,9 +42,9 @@ class Presenter extends BasePresenter<SignInFragment> implements Contract.Presen
         final String _email = email.trim();
         final String _password = password.trim();
         Log.d("Login: ", _email + " " + _password);
+        String token = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.FIREBASE_TOKEN);
         mView.doLogin();
         if(type.equals(Constants.LOGIN_AS_SUPPLIER_TYPE)){
-            String token = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.FIREBASE_TOKEN);
             mRepository.login(_email, _password, token, new ApiCallback<LoginData>() {
                 @Override
                 public void success(LoginData data, String msg) {
@@ -63,7 +63,7 @@ class Presenter extends BasePresenter<SignInFragment> implements Contract.Presen
                 }
             });
         } else {
-            mRepository.loginAsHost(_email, _password, new ApiCallback<LoginData>() {
+            mRepository.loginAsHost(_email, _password, token, new ApiCallback<LoginData>() {
                 @Override
                 public void success(LoginData data, String msg) {
                     AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.DATA, data);

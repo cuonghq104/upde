@@ -56,7 +56,13 @@
     <string name="year">Year</string>
     <string name="custom">Custom</string>
     <string name="host_statistic_no_data">No Data</string>
-    <string name="title_phone_number">Phone number / SĐT</string>
+    <string name="title_phone_number">Phone number</string>
     <string name="title_phone">Phone</string>
+    <string name="title_old_password">Old password</string>
+    <string name="title_new_password">New password</string>
+    <string name="title_save_changed">Save changed</string>
+    <string name="change_password">Change password</string>
+    <string name="error_password_do_not_match">Confirm password do not match</string>
+    <string name="error_can_not_be_empty">Can\'t not be empty</string>
 </resources>
 

@@ -17,9 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".screen.editinfo.EditInformationActivity"></activity>
-        <activity android:name=".screen.start.StartActivity"></activity>
-        <activity android:name=".screen.container.SupplierContainerActivity"></activity>
+        <activity android:name=".screen.changepassword.ChangePasswordActivity"></activity>
+        <activity android:name=".screen.editinfo.EditInformationActivity" />
+        <activity android:name=".screen.start.StartActivity" />
+        <activity android:name=".screen.container.SupplierContainerActivity" />
         <activity android:name=".screen.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

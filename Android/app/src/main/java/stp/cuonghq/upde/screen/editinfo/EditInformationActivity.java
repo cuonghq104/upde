@@ -17,11 +17,14 @@ import android.widget.DatePicker;
 
 import java.util.Calendar;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import stp.cuonghq.upde.R;
 import stp.cuonghq.upde.commons.BaseActivity;
 import stp.cuonghq.upde.commons.Constants;
 import stp.cuonghq.upde.commons.Utilities;
 import stp.cuonghq.upde.data.models.LoginData;
+import stp.cuonghq.upde.screen.changepassword.ChangePasswordActivity;
 
 public class EditInformationActivity extends BaseActivity<EditInformationActivity, Presenter> implements Contract.View{
 
@@ -120,6 +123,8 @@ public class EditInformationActivity extends BaseActivity<EditInformationActivit
         mBtnToolbarRight = mToolbar.findViewById(R.id.btn_right);
         mBtnBack = mToolbar.findViewById(R.id.btn_left);
         mTvToolbar = mToolbar.findViewById(R.id.tv_title);
+
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -132,5 +137,11 @@ public class EditInformationActivity extends BaseActivity<EditInformationActivit
 
             EditInformationActivity.this.finish();
         }
+    }
+
+    @OnClick(R.id.btn_change_password)
+    public void changePassword() {
+        Intent intent = ChangePasswordActivity.getInstance(getApplicationContext());
+        startActivity(intent);
     }
 }

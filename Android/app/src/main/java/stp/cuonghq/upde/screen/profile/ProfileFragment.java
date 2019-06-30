@@ -2,6 +2,7 @@ package stp.cuonghq.upde.screen.profile;
 
 
 import android.app.Activity;
+import android.arch.persistence.room.util.StringUtil;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,6 +25,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.squareup.picasso.Picasso;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 
@@ -110,9 +113,11 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
         mTvEmail.setText(data.getEmail());
         mTvName.setText(data.getName());
 
-        Picasso.with(getActivity())
-                .load(Constants.imageUrl(data.getAvatar()))
-                .into(btnProfile);
+        if (!StringUtils.equals(data.getAvatar(), "")) {
+            Picasso.with(getActivity())
+                    .load(Constants.imageUrl(data.getAvatar()))
+                    .into(btnProfile);
+        }
     }
 
     private void setupUI() {

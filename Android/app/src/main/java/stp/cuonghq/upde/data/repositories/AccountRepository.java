@@ -29,9 +29,9 @@ public class AccountRepository {
         }
     }
 
-    public void loginAsHost(String email, String password, ApiCallback<LoginData> callback) {
+    public void loginAsHost(String email, String password, String token, ApiCallback<LoginData> callback) {
         if (mRds != null) {
-            mRds.loginAsHost(email, password, callback);
+            mRds.loginAsHost(email, password, token, callback);
         }
     }
 
@@ -56,6 +56,12 @@ public class AccountRepository {
     public void changeAvatar(String fileType, String image, ApiCallback<AvatarResponse> callback) {
         if (mRds != null) {
             mRds.changeProfileImage(fileType, image, callback);
+        }
+    }
+
+    public void changePassword(String old, String newPass, ApiCallback callback) {
+        if (mRds != null) {
+            mRds.changePassword(old, newPass, callback);
         }
     }
 }

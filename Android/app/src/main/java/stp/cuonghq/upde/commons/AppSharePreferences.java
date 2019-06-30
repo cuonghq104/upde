@@ -15,7 +15,7 @@ public class AppSharePreferences {
     private static SharedPreferences sInstance;
 
     public static SharedPreferences getInstance() {
-        return getInstance(null);
+        return getInstance(AppContext.getInstance());
     }
 
     public static SharedPreferences getInstance(Context context) {

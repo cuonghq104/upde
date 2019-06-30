@@ -9,12 +9,14 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import stp.cuonghq.upde.commons.AvatarResponse;
+import stp.cuonghq.upde.data.models.ChangePasswordRequest;
 import stp.cuonghq.upde.data.models.EditInfoRequest;
 import stp.cuonghq.upde.data.models.LoginData;
 import stp.cuonghq.upde.data.models.LoginRequest;
 import stp.cuonghq.upde.data.models.LogoutRequest;
 import stp.cuonghq.upde.data.models.Response;
 
+import static stp.cuonghq.upde.commons.Constants.ApiConstant.CHANGE_PASSWORD;
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.HOST_LOGIN_PATH;
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.HOST_LOGOUT_PATH;
 import static stp.cuonghq.upde.commons.Constants.ApiConstant.HOST_CHECK_TOKEN_PATH;
@@ -41,5 +43,8 @@ public interface AccountServices {
 
     @Multipart
     @POST(UPDATE_IMAGE)
-    Observable<Response<AvatarResponse>> updateAvatar(@Part MultipartBody.Part filePart);
+    Observable<Response<AvatarResponse>> updateAvatar(@Path(ROLE_PATH) String role, @Part MultipartBody.Part filePart);
+
+    @POST(CHANGE_PASSWORD)
+    Observable<Response> changePassword(@Path(ROLE_PATH) String role, @Body ChangePasswordRequest body);
 }
