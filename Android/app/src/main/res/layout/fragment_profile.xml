@@ -65,7 +65,7 @@
                     android:layout_width="@dimen/size_store_image"
                     android:layout_height="@dimen/size_store_image"
                     android:background="@color/colorTransparent"
-                    android:src="@drawable/image_default" />
+                    android:src="@drawable/profile" />
 
                 <RelativeLayout
                     android:id="@+id/rl_clip"
