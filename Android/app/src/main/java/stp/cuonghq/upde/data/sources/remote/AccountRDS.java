@@ -1,7 +1,6 @@
 package stp.cuonghq.upde.data.sources.remote;
 
 
-import android.arch.persistence.room.util.StringUtil;
 import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
@@ -41,17 +40,17 @@ public class AccountRDS implements AccountDatasource.RDS {
     }
 
     @Override
-    public void login(String email, String password, String token, ApiCallback<LoginData> callback) {
+    public void login(String role, String email, String password, String token, ApiCallback<LoginData> callback) {
         LoginRequest request = new LoginRequest(email, password, token);
         Log.d("AccountRDS", token);
-        loginResponseObservable(request).subscribeWith(ApiService.disposableObserver(callback));
+        loginResponseObservable(role, request).subscribeWith(ApiService.disposableObserver(callback));
     }
 
-    @Override
-    public void loginAsHost(String email, String password, String token, ApiCallback<LoginData> callback) {
-        LoginRequest request = new LoginRequest(email, password, token);
-        loginAsHostResponseObservable(request).subscribeWith(ApiService.disposableObserver(callback));
-    }
+//    @Override
+//    public void loginAsHost(String email, String password, String token, ApiCallback<LoginData> callback) {
+//        LoginRequest request = new LoginRequest(email, password, token);
+//        loginAsHostResponseObservable(request).subscribeWith(ApiService.disposableObserver(callback));
+//    }
 
     @Override
     public void logOut(String token, ApiCallback callback) {
@@ -90,7 +89,7 @@ public class AccountRDS implements AccountDatasource.RDS {
         request.setOldPassword(oldPass);
 
         String role = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.LOGIN_TYPE);
-        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_SUPPLIER_TYPE)) ? Constants.ApiConstant.SALE_POINT : Constants.ApiConstant.HOST;
+        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_HOST_TYPE)) ? Constants.ApiConstant.SALE_POINT : Constants.ApiConstant.HOST;
 
         return NetworkClient.getHeaderInstance()
                 .create(AccountServices.class)
@@ -101,7 +100,7 @@ public class AccountRDS implements AccountDatasource.RDS {
 
     Observable<Response<AvatarResponse>> changeAvatarObservable(String fileType, String image) {
         String role = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.LOGIN_TYPE);
-        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_SUPPLIER_TYPE)) ? Constants.ApiConstant.SALE_POINT : Constants.ApiConstant.HOST;
+        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_HOST_TYPE)) ? Constants.ApiConstant.SALE_POINT_PLURAL : Constants.ApiConstant.HOST;
         MultipartBody.Part avatar = null;
         if (image != null) {
             File file = new File(image);
@@ -118,7 +117,7 @@ public class AccountRDS implements AccountDatasource.RDS {
 
     Observable<Response> editInformationObservable(EditInfoRequest request) {
         String role = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.LOGIN_TYPE);
-        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_SUPPLIER_TYPE)) ? Constants.ApiConstant.SALE_POINT : Constants.ApiConstant.HOST;
+        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_HOST_TYPE)) ? Constants.ApiConstant.SALE_POINT : Constants.ApiConstant.HOST;
 
         return NetworkClient.getHeaderInstance()
                 .create(AccountServices.class)
@@ -126,17 +125,17 @@ public class AccountRDS implements AccountDatasource.RDS {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
-    Observable<Response<LoginData>> loginResponseObservable(LoginRequest request) {
+    Observable<Response<LoginData>> loginResponseObservable(String role, LoginRequest request) {
         return NetworkClient.getRetrofit()
                 .create(AccountServices.class)
-                .login(request)
+                .login(role, request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     Observable<Response> logOutObservable(LogoutRequest request) {
         String role = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.LOGIN_TYPE);
-        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_SUPPLIER_TYPE)) ? Constants.ApiConstant.SALE_POINT : Constants.ApiConstant.HOST;
+        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_HOST_TYPE)) ? Constants.ApiConstant.SALE_POINT : Constants.ApiConstant.HOST;
 
         return NetworkClient.getHeaderInstance()
                 .create(AccountServices.class)
@@ -153,12 +152,12 @@ public class AccountRDS implements AccountDatasource.RDS {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    Observable<Response<LoginData>> loginAsHostResponseObservable(LoginRequest request) {
-        return NetworkClient.getRetrofit()
-                .create(AccountServices.class)
-                .loginAsHost(request)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
-    }
+//    Observable<Response<LoginData>> loginAsHostResponseObservable(LoginRequest request) {
+//        return NetworkClient.getRetrofit()
+//                .create(AccountServices.class)
+//                .login(request)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread());
+//    }
 
 }

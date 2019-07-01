@@ -9,6 +9,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import org.apache.commons.lang3.StringUtils;
+
 import stp.cuonghq.upde.commons.ApiCallback;
 import stp.cuonghq.upde.commons.AppSharePreferences;
 import stp.cuonghq.upde.commons.BaseContract;
@@ -38,49 +40,29 @@ class Presenter extends BasePresenter<SignInFragment> implements Contract.Presen
     }
 
     @Override
-    public void login(String email, String password, String type) {
-        final String _email = email.trim();
-        final String _password = password.trim();
-        Log.d("Login: ", _email + " " + _password);
+    public void login(final String email, final String password, final String type) {
+        final String emailValidated = email.trim();
+        final String passwordValidated = password.trim();
         String token = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.FIREBASE_TOKEN);
         mView.doLogin();
-        if(type.equals(Constants.LOGIN_AS_SUPPLIER_TYPE)){
-            mRepository.login(_email, _password, token, new ApiCallback<LoginData>() {
-                @Override
-                public void success(LoginData data, String msg) {
-                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.DATA, data);
-                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.ACCESS_TOKEN, data.getTokenId());
-                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.LOGIN_TYPE, Constants.LOGIN_AS_SUPPLIER_TYPE);
-                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.EMAIL, _email);
-                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.PASSWORD, _password);
-                    NetworkClient.initHeaderInstance(data.getTokenId());
-                    mView.loginSuccess(msg, Constants.LOGIN_AS_SUPPLIER_TYPE);
-                }
+        String role = (StringUtils.equals(type, Constants.LOGIN_AS_SUPPLIER_TYPE)) ? Constants.ApiConstant.HOST : Constants.ApiConstant.SALE_POINT;
+        mRepository.login(role, emailValidated, passwordValidated, token, new ApiCallback<LoginData>() {
+            @Override
+            public void success(LoginData data, String msg) {
+                AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.DATA, data);
+                AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.ACCESS_TOKEN, data.getTokenId());
+                AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.LOGIN_TYPE, type);
+                AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.EMAIL, emailValidated);
+                AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.PASSWORD, passwordValidated);
+                NetworkClient.initHeaderInstance(data.getTokenId());
+                mView.loginSuccess(msg, type);
+            }
 
-                @Override
-                public void failed(String msg) {
-                    mView.loginFailed(msg);
-                }
-            });
-        } else {
-            mRepository.loginAsHost(_email, _password, token, new ApiCallback<LoginData>() {
-                @Override
-                public void success(LoginData data, String msg) {
-                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.DATA, data);
-                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.ACCESS_TOKEN, data.getTokenId());
-                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.LOGIN_TYPE, Constants.LOGIN_AS_HOST_TYPE);
-                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.EMAIL, _email);
-                    AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.PASSWORD, _password);
-                    NetworkClient.initHeaderInstance(data.getTokenId());
-                    mView.loginSuccess(msg, Constants.LOGIN_AS_HOST_TYPE);
-                }
-
-                @Override
-                public void failed(String msg) {
-                    mView.loginFailed(msg);
-                }
-            });
-        }
+            @Override
+            public void failed(String msg) {
+                mView.loginFailed(msg);
+            }
+        });
 
     }
 

@@ -7,7 +7,7 @@ public class ChangePasswordRequest {
     @SerializedName("old_password")
     private String oldPassword;
 
-    @SerializedName("new_password ")
+    @SerializedName("new_password")
     private String newPassword;
 
     public String getOldPassword() {

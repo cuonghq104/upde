@@ -62,8 +62,8 @@ public class Constants {
     }
 
     public static class ApiConstant {
-        static final String BASE_URL = "https://server.upit.asia/api/";
-//        public static final String BASE_URL = "https://serverdev.upit.asia/api/";
+//        static final String BASE_URL = "https://server.upit.asia/api/";
+        public static final String BASE_URL = "https://serverdev.upit.asia/api/";
         // public static final String BASE_URL = "http://107.113.186.171:3200/api/";
 
         public static final String HOST = "host";
@@ -84,11 +84,11 @@ public class Constants {
         public static final String CHANGE_AVATAR_PATH = "changeAvatar";
         public static final String CHANGE_PASSWORD_PATH = "changepassword";
 
-        public static final String HOST_LOGIN_PATH = HOST_PATH + LOGIN_PATH;
         public static final String SALEPOINT_LOGIN_PATH = SALE_POINT_PATH + LOGIN_PATH;
         public static final String HOST_CHECK_TOKEN_PATH = CHECK_TOKEN_PATH;
 
         public static final String ROLE_PATH = "role";
+        public static final String LOG_IN = "{" + ROLE_PATH + "}/" + LOGIN_PATH;
         public static final String LOG_OUT = "{" + ROLE_PATH + "}/" + LOGOUT_PATH;
         public static final String UPDATE_INFORMATION = "{" + ROLE_PATH + "}/" + EDIT_INFO_PATH;
         public static final String UPDATE_IMAGE = "{" + ROLE_PATH + "}/" + CHANGE_AVATAR_PATH;

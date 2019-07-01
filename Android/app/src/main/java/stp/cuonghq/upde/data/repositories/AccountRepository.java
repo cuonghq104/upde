@@ -23,17 +23,17 @@ public class AccountRepository {
         return sInstance;
     }
 
-    public void login(String email, String password, String token, ApiCallback<LoginData> callback) {
+    public void login(String role, String email, String password, String token, ApiCallback<LoginData> callback) {
         if (mRds != null) {
-            mRds.login(email, password, token, callback);
+            mRds.login(role, email, password, token, callback);
         }
     }
 
-    public void loginAsHost(String email, String password, String token, ApiCallback<LoginData> callback) {
-        if (mRds != null) {
-            mRds.loginAsHost(email, password, token, callback);
-        }
-    }
+//    public void loginAsHost(String email, String password, String token, ApiCallback<LoginData> callback) {
+//        if (mRds != null) {
+//            mRds.loginAsHost(email, password, token, callback);
+//        }
+//    }
 
     public void logOut(String firebaseToken, ApiCallback callback) {
         if (mRds != null) {
