@@ -46,6 +46,7 @@ import stp.cuonghq.upde.R;
 import stp.cuonghq.upde.commons.AppSharePreferences;
 import stp.cuonghq.upde.commons.BaseFragment;
 import stp.cuonghq.upde.commons.Constants;
+import stp.cuonghq.upde.commons.EndlessRecyclerOnScrollListener;
 import stp.cuonghq.upde.commons.Utilities;
 import stp.cuonghq.upde.data.models.BookingList;
 import stp.cuonghq.upde.data.models.BookingResp;
@@ -97,6 +98,8 @@ public class StatisticFragment extends BaseFragment<StatisticFragment, Presenter
     static float LOWEST_X = -0.5f;
     static boolean mCheckRefresh = false;
     static int MAX_ITEM_PER_PAGE = 14;
+
+    EndlessRecyclerOnScrollListener onScrollListener;
 
     public StatisticFragment() {
         // Required empty public constructor
@@ -367,6 +370,15 @@ public class StatisticFragment extends BaseFragment<StatisticFragment, Presenter
         mStatisticAdapter = new StatisticAdapter(this);
         mylistview.setAdapter(mStatisticAdapter);
 
+        onScrollListener = new EndlessRecyclerOnScrollListener(
+                new EndlessRecyclerOnScrollListener.LoadMoreCallback() {
+                    @Override
+                    public void loadMore() {
+                        presenter.getCompleteList(mStartDate, mEndDate, VERY_LONG_NUMBER--);
+                    }
+                }
+        );
+        mylistview.addOnScrollListener(onScrollListener);
         resetData();
     }
 
@@ -376,6 +388,7 @@ public class StatisticFragment extends BaseFragment<StatisticFragment, Presenter
 
     @Override
     public void getCompleteListSuccess(BookingList list) {
+        onScrollListener.setLoadingStatus(false);
         mList = list.getList();
         mStatisticAdapter.setList(mList);
         mLoading.setVisibility(View.GONE);
@@ -390,6 +403,7 @@ public class StatisticFragment extends BaseFragment<StatisticFragment, Presenter
 
     @Override
     public void getCompleteListFailed(String msg) {
+        onScrollListener.setLoadingStatus(false);
         Utilities.showToast(getContext(), msg);
         mLoading.setVisibility(View.GONE);
         if (mList.size() == 0) {
@@ -445,7 +459,7 @@ public class StatisticFragment extends BaseFragment<StatisticFragment, Presenter
                         tt.setPrice(String.valueOf(list.getData().get(0).getPrice()));
                         presenter.update(tt.getDay(), tt.getPrice(), tt.getNumbertrip(), selectMode, tt.getPageNumber());
                     }
-                } else{
+                } else {
                     insertNormal = true;
                 }
             } else if (selectMode.equals(Constants.DateAndTime.TYPE_WEEK)) {
@@ -516,7 +530,7 @@ public class StatisticFragment extends BaseFragment<StatisticFragment, Presenter
                         tt.setPrice(String.valueOf(list.getData().get(0).getPrice()));
                         presenter.update(tt.getTime(), tt.getPrice(), tt.getNumbertrip(), selectMode, tt.getPageNumber());
                     }
-                } else{
+                } else {
                     insertNormal = true;
                 }
 
@@ -553,7 +567,7 @@ public class StatisticFragment extends BaseFragment<StatisticFragment, Presenter
                         presenter.update(tt.getTime(), tt.getPrice(), tt.getNumbertrip(), selectMode, tt.getPageNumber());
 
                     }
-                } else{
+                } else {
                     insertNormal = true;
                 }
             }

@@ -17,16 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".screen.changepassword.ChangePasswordActivity"></activity>
-        <activity android:name=".screen.editinfo.EditInformationActivity" />
-        <activity android:name=".screen.start.StartActivity" />
-        <activity android:name=".screen.container.SupplierContainerActivity" />
-        <activity android:name=".screen.splash.SplashActivity">
+        <activity android:name=".screen.test.DumpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".screen.changepassword.ChangePasswordActivity" />
+        <activity android:name=".screen.editinfo.EditInformationActivity" />
+        <activity android:name=".screen.start.StartActivity" />
+        <activity android:name=".screen.container.SupplierContainerActivity" />
+        <activity android:name=".screen.splash.SplashActivity">
         </activity>
         <activity android:name=".screen.bookingdetail.BookingDetailActivity" />
         <activity android:name=".screen.confirmdetail.ConfirmDetailActivity" />

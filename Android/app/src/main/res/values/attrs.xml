@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="AppToolbar">
+        <attr name="title" format="string"/>
+        <attr name="titleOrientation" format="enum">
+            <enum name="center" value="12"/>
+            <enum name="start" value="23"/>
+        </attr>
+        <attr name="left_src" format="reference"/>
+        <attr name="right_src" format="reference"/>
+    </declare-styleable>
     <declare-styleable name="DisplayTextView">
         <attr name="displayTitle" format="string" />
         <attr name="displayContent" format="string" />
