@@ -67,12 +67,14 @@ public class Constants {
         // public static final String BASE_URL = "http://107.113.186.171:3200/api/";
 
         public static final String HOST = "host";
+        public static final String HOST_PLURAL = "hosts";
         public static final String TRIP = "trip";
         public static final String SALE_POINT = "salepoint";
         public static final String SALE_POINT_PLURAL = "salepoints";
 
         public static final String HEADER_AUTHORIZATION = "access_token";
         private static final String HOST_PATH = HOST + "/";
+        private static final String HOST_PLURAL_PATH = HOST_PLURAL + "/";
         private static final String TRIP_PATH = TRIP + "/";
         private static final String SALE_POINT_PATH = SALE_POINT + "/";
         private static final String SALE_POINT_PLURAL_PATH = SALE_POINT_PLURAL + "/";
@@ -138,7 +140,7 @@ public class Constants {
 
         StringBuilder sb = new StringBuilder(ApiConstant.BASE_URL);
         sb.append(ApiConstant.IMAGE_PATH);
-        sb.append((StringUtils.equals(loginType, LOGIN_AS_SUPPLIER_TYPE) ? ApiConstant.SALE_POINT_PLURAL_PATH : ApiConstant.SALE_POINT_PLURAL_PATH));
+        sb.append((StringUtils.equals(loginType, LOGIN_AS_SUPPLIER_TYPE) ? ApiConstant.HOST_PLURAL_PATH : ApiConstant.SALE_POINT_PLURAL_PATH));
         sb.append(imageName);
         return sb.toString();
     }

@@ -100,11 +100,11 @@ public class AccountRDS implements AccountDatasource.RDS {
 
     Observable<Response<AvatarResponse>> changeAvatarObservable(String fileType, String image) {
         String role = AppSharePreferences.getStringFromSP(Constants.SharePreferenceConstants.LOGIN_TYPE);
-        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_HOST_TYPE)) ? Constants.ApiConstant.SALE_POINT_PLURAL : Constants.ApiConstant.HOST;
+        String rolePath = (StringUtils.equals(role, Constants.LOGIN_AS_HOST_TYPE)) ? Constants.ApiConstant.SALE_POINT : Constants.ApiConstant.HOST;
         MultipartBody.Part avatar = null;
         if (image != null) {
             File file = new File(image);
-            avatar = MultipartBody.Part.createFormData("salepoint", file.getName(), RequestBody.create(MediaType.parse(fileType), file));
+            avatar = MultipartBody.Part.createFormData(rolePath, file.getName(), RequestBody.create(MediaType.parse(fileType), file));
         }
 
         Log.d("ab", "abc");
