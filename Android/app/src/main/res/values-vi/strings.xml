@@ -49,8 +49,8 @@
     <string name="no_description_text">Không dữ liệu</string>
     <string name="day">Ngày</string>
     <string name="month">Tháng</string>
-    <string name="week">Tuần</string>
-    <string name="year">Năm</string>
+    <string name="week">Tạo tài khoản</string>
+    <string name="year">Khách hàng</string>
     <string name="custom">Tùy chọn</string>
     <string name="host_statistic_no_data">Không có dữ liệu</string>
     <string name="title_phone_number">Số điện thoại</string>
