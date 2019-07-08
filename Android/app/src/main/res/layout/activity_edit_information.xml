@@ -8,11 +8,14 @@
     android:orientation="vertical"
     tools:context=".screen.editinfo.EditInformationActivity">
 
-    <include
+    <stp.cuonghq.upde.commons.AppToolbar
         android:id="@+id/toolbar"
-        layout="@layout/layout_action_bar"
+        app:titleOrientation="center"
+        app:left_src="@drawable/ic_left_arrow"
+        app:toolbar_theme="primary"
+        app:title="@string/title_edit_information"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:layout_width="match_parent"

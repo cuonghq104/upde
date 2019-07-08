@@ -62,4 +62,5 @@
     <string name="change_password">Thay đổi mật khẩu</string>
     <string name="error_password_do_not_match">Xác nhận mật khẩu không đúng</string>
     <string name="error_can_not_be_empty">Không được bỏ trống</string>
+    <string name="title_complete_time">Thời gian hoàn thành</string>
 </resources>

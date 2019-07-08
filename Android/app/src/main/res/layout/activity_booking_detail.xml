@@ -11,42 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
+        <stp.cuonghq.upde.commons.AppToolbar
             android:id="@+id/toolbar"
+            app:left_src="@drawable/ic_left_arrow"
+            app:titleOrientation="center"
+            app:title="@string/title_booking_detail"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary">
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.AppCompatImageButton
-                    android:id="@+id/btn_back"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_left_arrow"
-                    android:tint="@color/colorWhite"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/title_booking_detail"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </android.support.constraint.ConstraintLayout>
-        </android.support.v7.widget.Toolbar>
+            android:layout_height="wrap_content"/>
 
         <ScrollView
             android:layout_weight="1"
@@ -107,13 +78,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
+                <stp.cuonghq.upde.commons.DisplayTextView
+                    app:displayTitle="@string/title_booking_time"
+                    android:id="@+id/tv_time_booking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <stp.cuonghq.upde.commons.DisplayTextView
                     app:displayTitle="@string/title_time_to_pick_up_multi_lang"
                     android:id="@+id/tv_time_pick_up"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-
 
                 <stp.cuonghq.upde.commons.DisplayTextView
                     app:displayTitle="@string/title_total_multi_lang"

@@ -45,7 +45,7 @@ public class ConfirmAdapter extends RecyclerView.Adapter<BookingViewHolder> {
     @Override
     public void onBindViewHolder(BookingViewHolder holder, int position) {
         final BookingResp booking = mList.get(position);
-//        booking.setTimeleave(Utilities.formatDate(Constants.DateAndTime.APP_DATE, booking.getTimeleave()));
+//        booking.setTimeLeave(Utilities.formatDate(Constants.DateAndTime.APP_DATE, booking.getTimeLeave()));
         holder.bind(booking, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

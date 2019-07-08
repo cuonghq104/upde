@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import stp.cuonghq.upde.R;
 import stp.cuonghq.upde.commons.AppContext;
+import stp.cuonghq.upde.commons.AppToolbar;
 import stp.cuonghq.upde.commons.BaseActivity;
 import stp.cuonghq.upde.commons.Constants;
 import stp.cuonghq.upde.commons.DisplayTextView;
@@ -35,16 +36,17 @@ public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, P
 
     public static Intent getInstance(Context context, UpdeFCM.Booking booking) {
         BookingResp resp = new BookingResp();
-        resp.setEmailguest(booking.getEmailguest());
+        resp.setEmailGuest(booking.getEmailguest());
         resp.setNameLeave(booking.getNameleave());
         resp.setNameArrive(booking.getNamearrive());
         resp.setIdTrip(booking.getIdTrip());
         resp.setNote(booking.getNote());
-        resp.setPhonenumber(booking.getPhonenumber());
+        resp.setPhoneNumber(booking.getPhonenumber());
         resp.setPrice(Double.parseDouble(booking.getPrice()));
         resp.setPriceVn(booking.getPriceVn());
         resp.setSerial(booking.getSerial());
-        resp.setTimeleave(booking.getTimeleave());
+        resp.setTimeLeave(booking.getTimeleave());
+        resp.setTimeBook(booking.getTimeBook());
         resp.setNameCustomer(booking.getNameCustomer());
         resp.setVehicleType(booking.getVehicleType());
         resp.setFlightCode(booking.getFlightNo());
@@ -75,12 +77,14 @@ public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, P
     DisplayTextView mTvEmail;
     @BindView(R.id.tv_phone)
     DisplayTextView mTvPhone;
+    @BindView(R.id.tv_time_booking)
+    DisplayTextView mTvTimeBooking;
+
     @BindView(R.id.btn_accept)
     AppCompatButton mBtnAccept;
+
     @BindView(R.id.toolbar)
-    Toolbar mToolbar;
-    @BindView(R.id.btn_back)
-    AppCompatImageButton mBtnBack;
+    AppToolbar mToolbar;
 
     private BookingResp booking;
     private Presenter mPresenter;
@@ -91,6 +95,7 @@ public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, P
         setContentView(R.layout.activity_booking_detail);
         ButterKnife.bind(this);
         initData();
+        addListener();
     }
 
     @Override
@@ -122,12 +127,22 @@ public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, P
         mTvPickUp.setContent(booking.getNameLeave());
         mTvDestination.setContent(booking.getNameArrive());
         mTvType.setContent(StringUtils.capitalize(booking.getVehicleType()));
-        mTvTime.setContent(booking.getTimeleave());
+        mTvTime.setContent(booking.getTimeLeave());
         mTvPrice.setContent(Utilities.convertToVnd(booking.getPriceVn()));
         mTvNote.setContent(booking.getNote());
-        mTvEmail.setContent(booking.getEmailguest());
-        mTvPhone.setVisibility((booking.getPhonenumber() == null || booking.getPhonenumber().equals("")) ? View.GONE : View.VISIBLE);
-        mTvPhone.setContent(booking.getPhonenumber());
+        mTvEmail.setContent(booking.getEmailGuest());
+        mTvPhone.setVisibility((booking.getPhoneNumber() == null || booking.getPhoneNumber().equals("")) ? View.GONE : View.VISIBLE);
+        mTvPhone.setContent(booking.getPhoneNumber());
+        mTvTimeBooking.setContent(booking.getTimeBook());
+    }
+
+    private void addListener() {
+        mToolbar.setLeftBtnListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BookingDetailActivity.this.finish();
+            }
+        });
     }
 
     @OnClick(R.id.btn_accept)
@@ -139,11 +154,6 @@ public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, P
             mPresenter.confirm(booking.getIdTrip());
         }
 
-    }
-
-    @OnClick(R.id.btn_back)
-    void back() {
-        BookingDetailActivity.this.finish();
     }
 
     @Override

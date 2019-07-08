@@ -16,7 +16,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -26,13 +25,13 @@ import com.google.gson.Gson;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import stp.cuonghq.upde.R;
+import stp.cuonghq.upde.commons.AppToolbar;
 import stp.cuonghq.upde.commons.Constants;
 import stp.cuonghq.upde.commons.NonPresenterActivity;
 import stp.cuonghq.upde.data.models.BookingResp;
 import stp.cuonghq.upde.screen.home.HomeFragment;
 import stp.cuonghq.upde.screen.profile.ProfileFragment;
 import stp.cuonghq.upde.screen.start.StartActivity;
-import stp.cuonghq.upde.screen.statistic.host.StatisticFragment;
 import stp.cuonghq.upde.screen.statistic.supplier.SupplierStatisticFragment;
 import stp.cuonghq.upde.services.fcm.UpdeFCM;
 
@@ -44,11 +43,9 @@ public class SupplierContainerActivity extends NonPresenterActivity implements B
     @BindView(R.id.bottom_navigation)
     BottomNavigationView mBottomNavigation;
 
-    @BindView(R.id.tv_toolbar)
-    AppCompatTextView tvToolbar;
-
     @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+    AppToolbar mToolbar;
+
 
     private HomeFragment mHomeFragment;
     private SupplierStatisticFragment mStatisticFragment;
@@ -102,19 +99,21 @@ public class SupplierContainerActivity extends NonPresenterActivity implements B
                         BookingResp resp = new BookingResp();
 
                         resp.setRead(false);
-                        resp.setEmailguest(booking.getEmailguest());
+                        resp.setEmailGuest(booking.getEmailguest());
                         resp.setNameLeave(booking.getNameleave());
                         resp.setNameArrive(booking.getNamearrive());
                         resp.setIdTrip(booking.getIdTrip());
                         resp.setNote(booking.getNote());
-                        resp.setPhonenumber(booking.getPhonenumber());
+                        resp.setPhoneNumber(booking.getPhonenumber());
                         resp.setPrice(Double.parseDouble(booking.getPrice()));
                         resp.setPriceVn(booking.getPriceVn());
                         resp.setSerial(booking.getSerial());
-                        resp.setTimeleave(booking.getTimeleave());
+                        resp.setTimeLeave(booking.getTimeleave());
                         resp.setNameCustomer(booking.getNameCustomer());
                         resp.setVehicleType(booking.getVehicleType());
                         resp.setFlightNo(booking.getFlightNo());
+                        resp.setTimeBook(booking.getTimeBook());
+                        resp.setTimeCompleted(booking.getTimeComplete());
 
                         if (TextUtils.equals(booking.getType(), "notify_accept")) {
                             mConfirmReceive.receiveBooking(resp);
@@ -177,11 +176,11 @@ public class SupplierContainerActivity extends NonPresenterActivity implements B
                 .commit();
 
         if (fragment instanceof HomeFragment) {
-            tvToolbar.setText(R.string.title_notification);
+            mToolbar.setTitle(getString(R.string.title_notification));
         } else if (fragment instanceof ProfileFragment) {
-            tvToolbar.setText(R.string.title_profile);
+            mToolbar.setTitle(getString(R.string.title_profile));
         } else {
-            tvToolbar.setText(getText(R.string.title_launching_soon));
+            mToolbar.setTitle(getString(R.string.title_launching_soon));
         }
     }
 

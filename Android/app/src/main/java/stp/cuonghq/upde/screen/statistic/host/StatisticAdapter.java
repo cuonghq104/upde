@@ -2,8 +2,6 @@ package stp.cuonghq.upde.screen.statistic.host;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.sip.SipAudioCall;
-import android.provider.SyncStateContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatTextView;
@@ -69,10 +67,10 @@ public class StatisticAdapter extends RecyclerView.Adapter<StatisticAdapter.Stat
             holder.sta_tv_type.setText("16 " + mContext.getString(R.string.title_seat));
         }
 
-        String email = booking.getEmailguest();
+        String email = booking.getEmailGuest();
         String pickup = booking.getNameLeave();
         String destination = booking.getNameArrive();
-        String timeLeave = booking.getTimeleave();
+        String timeLeave = booking.getTimeLeave();
         int price = booking.getPriceVn();
         Log.d(TAG, "Data: " + email + " " + pickup + " " + destination + " " + timeLeave + " " + price);
 

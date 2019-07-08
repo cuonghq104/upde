@@ -37,6 +37,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import stp.cuonghq.upde.R;
 import stp.cuonghq.upde.commons.AppContext;
 import stp.cuonghq.upde.commons.AppSharePreferences;
+import stp.cuonghq.upde.commons.AppToolbar;
 import stp.cuonghq.upde.commons.AvatarResponse;
 import stp.cuonghq.upde.commons.BaseFragment;
 import stp.cuonghq.upde.commons.Constants;
@@ -79,6 +80,9 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
     @BindView(R.id.btn_profile)
     CircleImageView btnProfile;
 
+    @BindView(R.id.toolbar)
+    AppToolbar mToolbar;
+
     private LoginData data;
     private String role;
 
@@ -96,7 +100,17 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
         initView(view);
         initData();
         setupUI();
+        addListener();
         return view;
+    }
+
+    private void addListener() {
+        mToolbar.setRightBtnListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.logOut();
+            }
+        });
     }
 
     @Override
@@ -138,11 +152,6 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
 
     private void initView(View view) {
         ButterKnife.bind(this, view);
-    }
-
-    @OnClick(R.id.btn_logout)
-    public void logOut() {
-        presenter.logOut();
     }
 
     @OnClick(R.id.btn_edit_information)

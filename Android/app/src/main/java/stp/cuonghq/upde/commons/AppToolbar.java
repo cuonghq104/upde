@@ -18,7 +18,6 @@ import butterknife.ButterKnife;
 import stp.cuonghq.upde.R;
 
 public class AppToolbar extends RelativeLayout {
-
     View mLayout;
     @BindView(R.id.tv_title)
     AppCompatTextView mTvTitle;
@@ -44,7 +43,27 @@ public class AppToolbar extends RelativeLayout {
         updateTitle(typedArray);
         updateLeftButton(typedArray);
         updateRightButton(typedArray);
+        updateTheme(typedArray);
         typedArray.recycle();
+    }
+
+    private void updateTheme(TypedArray typedArray) {
+        int theme = typedArray.getInt(R.styleable.AppToolbar_toolbar_theme, 1111);
+        int colorPrimary;
+        int colorSecondary;
+
+        if (theme == 1111) {
+            colorPrimary = getResources().getColor(R.color.colorPrimary);
+            colorSecondary = getResources().getColor(R.color.colorWhite);
+        } else {
+            colorPrimary = getResources().getColor(R.color.colorWhite);
+            colorSecondary = getResources().getColor(R.color.colorPrimary);
+        }
+
+        this.setBackgroundColor(colorPrimary);
+        mTvTitle.setTextColor(colorSecondary);
+        mBtnLeft.setColorFilter(colorSecondary);
+        mBtnRight.setColorFilter(colorSecondary);
     }
 
     private void updateRightButton(TypedArray typedArray) {

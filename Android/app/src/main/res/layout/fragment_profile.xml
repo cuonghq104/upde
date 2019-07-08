@@ -13,33 +13,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.constraint.ConstraintLayout
+        <stp.cuonghq.upde.commons.AppToolbar
+            app:toolbar_theme="primary"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-
-            <android.support.v7.widget.AppCompatTextView
-                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/title_profile"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/btn_logout"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="@dimen/margin_component"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_exit_to_app_button"
-                android:tint="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
+            android:layout_height="wrap_content"
+            app:title="@string/title_profile"
+            app:titleOrientation="center"
+            app:right_src="@drawable/ic_exit_to_app_button"/>
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"

@@ -19,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import stp.cuonghq.upde.R;
+import stp.cuonghq.upde.commons.AppToolbar;
 import stp.cuonghq.upde.commons.BaseActivity;
 import stp.cuonghq.upde.commons.Utilities;
 
@@ -36,7 +37,7 @@ public class ChangePasswordActivity extends BaseActivity<ChangePasswordActivity,
     @BindView(R.id.edt_confirm_password)
     AppCompatEditText mEdtConfirmPassword;
     @BindView(R.id.toolbar)
-    View mToolbar;
+    AppToolbar mToolbar;
 
     @BindView(R.id.btn_hide_old_password)
     AppCompatImageButton mBtnHideOldPassword;
@@ -64,7 +65,7 @@ public class ChangePasswordActivity extends BaseActivity<ChangePasswordActivity,
     }
 
     private void addListener() {
-        mBtnBack.setOnClickListener(new View.OnClickListener() {
+        mToolbar.setLeftBtnListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ChangePasswordActivity.this.finish();
@@ -137,7 +138,7 @@ public class ChangePasswordActivity extends BaseActivity<ChangePasswordActivity,
     }
 
     private void setupUI() {
-        mTvToolbar.setText(getResources().getString(R.string.title_change_password));
+        mToolbar.setTitle(getResources().getString(R.string.title_change_password));
         mBtnBack.setImageResource(R.drawable.ic_left_arrow);
         mBtnBack.setVisibility(View.VISIBLE);
 

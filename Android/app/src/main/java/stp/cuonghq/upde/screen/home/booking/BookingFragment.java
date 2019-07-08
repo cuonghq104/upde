@@ -96,9 +96,6 @@ public class BookingFragment extends Fragment implements SwipeRefreshLayout.OnRe
                         BookingResp resp = mList.get(pos);
                         mAdapter.remove(pos);
 
-//                        if (data.getIntExtra(Constants.Extras.RESULT, 0) == Constants.Extras.ACCEPT_BY_ANOTHER_USER) {
-//                            moveToConfirmList(resp);
-//                        }
                     }
                 }
             }

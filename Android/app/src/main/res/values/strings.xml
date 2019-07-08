@@ -64,5 +64,6 @@
     <string name="change_password">Change password</string>
     <string name="error_password_do_not_match">Confirm password do not match</string>
     <string name="error_can_not_be_empty">Can\'t not be empty</string>
+    <string name="title_complete_time">Complete time</string>
 </resources>
 

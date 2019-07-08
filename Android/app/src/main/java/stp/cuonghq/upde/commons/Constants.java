@@ -62,9 +62,9 @@ public class Constants {
     }
 
     public static class ApiConstant {
-//        static final String BASE_URL = "https://server.upit.asia/api/";
-        public static final String BASE_URL = "https://serverdev.upit.asia/api/";
-        // public static final String BASE_URL = "http://107.113.186.171:3200/api/";
+        static final String BASE_URL = "https://server.upit.asia/api/";
+//        public static final String BASE_URL = "https://serverdev.upit.asia/api/";
+        // public static final String BASE_URL = "http://1+07.113.186.171:3200/api/";
 
         public static final String HOST = "host";
         public static final String HOST_PLURAL = "hosts";

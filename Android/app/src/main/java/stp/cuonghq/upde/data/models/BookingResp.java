@@ -61,6 +61,9 @@ public class BookingResp implements Serializable {
     @SerializedName("id_trip")
     @Expose
     private String id;
+    @Expose
+    @SerializedName("TimeComplete")
+    private String timeCompleted;
 
     private boolean read = true;
 
@@ -70,6 +73,14 @@ public class BookingResp implements Serializable {
 
     public void setRead(boolean read) {
         this.read = read;
+    }
+
+    public String getTimeCompleted() {
+        return timeCompleted;
+    }
+
+    public void setTimeCompleted(String timeCompleted) {
+        this.timeCompleted = timeCompleted;
     }
 
     public String getFlightNo() {
@@ -88,11 +99,11 @@ public class BookingResp implements Serializable {
         this.note = note;
     }
 
-    public String getTimeleave() {
+    public String getTimeLeave() {
         return timeLeave;
     }
 
-    public void setTimeleave(String timeleave) {
+    public void setTimeLeave(String timeleave) {
         this.timeLeave = timeleave;
     }
 
@@ -136,19 +147,19 @@ public class BookingResp implements Serializable {
         this.vehicleType = vehicleType;
     }
 
-    public String getPhonenumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhonenumber(String phonenumber) {
+    public void setPhoneNumber(String phonenumber) {
         this.phoneNumber = phonenumber;
     }
 
-    public String getEmailguest() {
+    public String getEmailGuest() {
         return email;
     }
 
-    public void setEmailguest(String emailguest) {
+    public void setEmailGuest(String emailguest) {
         this.email = emailguest;
     }
 
@@ -188,14 +199,6 @@ public class BookingResp implements Serializable {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -218,14 +221,6 @@ public class BookingResp implements Serializable {
 
     public void setNameLeave(String nameLeave) {
         this.nameLeave = nameLeave;
-    }
-
-    public String getTimeLeave() {
-        return timeLeave;
-    }
-
-    public void setTimeLeave(String timeLeave) {
-        this.timeLeave = timeLeave;
     }
 
     public String getTimeBook() {

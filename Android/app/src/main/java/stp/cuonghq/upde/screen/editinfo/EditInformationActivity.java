@@ -20,6 +20,7 @@ import java.util.Calendar;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import stp.cuonghq.upde.R;
+import stp.cuonghq.upde.commons.AppToolbar;
 import stp.cuonghq.upde.commons.BaseActivity;
 import stp.cuonghq.upde.commons.Constants;
 import stp.cuonghq.upde.commons.Utilities;
@@ -33,14 +34,11 @@ public class EditInformationActivity extends BaseActivity<EditInformationActivit
         return intent;
     }
 
-    private View mToolbar;
     private AppCompatEditText mEdtName, mEdtPhone;
     private AppCompatTextView mTvPassword;
     private AppCompatButton mBtnEdit;
 
-    private AppCompatTextView mTvToolbar;
-    private AppCompatImageButton mBtnBack;
-    private AppCompatImageButton mBtnToolbarRight;
+    private AppToolbar mToolbar;
 
     private LoginData data;
 
@@ -65,12 +63,13 @@ public class EditInformationActivity extends BaseActivity<EditInformationActivit
     }
 
     private void addListener() {
-        mBtnBack.setOnClickListener(new View.OnClickListener() {
+        mToolbar.setLeftBtnListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditInformationActivity.this.finish();
             }
         });
+
 
         mBtnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,9 +105,6 @@ public class EditInformationActivity extends BaseActivity<EditInformationActivit
     };
 
     private void initData() {
-        mBtnBack.setVisibility(View.VISIBLE);
-        mBtnBack.setImageResource(R.drawable.ic_left_arrow);
-        mTvToolbar.setText(getString(R.string.title_edit_information));
 
         data = presenter.getLoginData();
     }
@@ -120,9 +116,6 @@ public class EditInformationActivity extends BaseActivity<EditInformationActivit
         mTvPassword = findViewById(R.id.btn_change_password);
         mBtnEdit = findViewById(R.id.btn_save);
 
-        mBtnToolbarRight = mToolbar.findViewById(R.id.btn_right);
-        mBtnBack = mToolbar.findViewById(R.id.btn_left);
-        mTvToolbar = mToolbar.findViewById(R.id.tv_title);
 
         ButterKnife.bind(this);
     }

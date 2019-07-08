@@ -75,14 +75,14 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
             mTvType.setText("16 " + itemView.getContext().getString(R.string.title_seat));
         }
 
-        mTvTime.setText(booking.getTimeleave());
+        mTvTime.setText(booking.getTimeLeave());
         mTvPrice.setText(Utilities.convertToVnd(booking.getPriceVn()));
 
         String title1 = " đã đặt một chuyến xe từ ";
         String title2 = " đến ";
         String title3 = ". Ghi chú: ";
 
-        String email = booking.getEmailguest();
+        String email = booking.getEmailGuest();
         String pickup = booking.getNameLeave();
         String destination = booking.getNameArrive();
         String note = booking.getNote();

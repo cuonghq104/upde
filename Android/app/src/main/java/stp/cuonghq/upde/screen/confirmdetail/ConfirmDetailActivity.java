@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import stp.cuonghq.upde.R;
+import stp.cuonghq.upde.commons.AppToolbar;
 import stp.cuonghq.upde.commons.Constants;
 import stp.cuonghq.upde.commons.DisplayTextView;
 import stp.cuonghq.upde.commons.Utilities;
@@ -58,14 +59,20 @@ public class ConfirmDetailActivity extends AppCompatActivity implements Contract
     DisplayTextView mTvEmail;
     @BindView(R.id.tv_phone)
     DisplayTextView mTvPhone;
+    @BindView(R.id.tv_complete_time)
+    DisplayTextView mTvTimeComplete;
+    @BindView(R.id.tv_time_booking)
+    DisplayTextView mTvTimeBooking;
+    @BindView(R.id.tv_note)
+    DisplayTextView mTvNote;
+
     @BindView(R.id.btn_complete)
     AppCompatButton mBtnComplete;
     @BindView(R.id.tv_complete)
     AppCompatTextView mTvComplete;
 
-
-    @BindView(R.id.btn_back)
-    AppCompatImageButton mBtnBack;
+    @BindView(R.id.toolbar)
+    AppToolbar mToolbar;
 
     BookingResp booking;
     int operation;
@@ -77,8 +84,17 @@ public class ConfirmDetailActivity extends AppCompatActivity implements Contract
         setContentView(R.layout.activity_confirm_detail);
         initView();
         initData();
+        addListener();
     }
 
+    private void addListener() {
+        mToolbar.setLeftBtnListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ConfirmDetailActivity.this.finish();
+            }
+        });
+    }
     private void initData() {
         mPresenter = new Presenter();
         mPresenter.setView(ConfirmDetailActivity.this);
@@ -102,19 +118,32 @@ public class ConfirmDetailActivity extends AppCompatActivity implements Contract
         mTvPickupAddress.setContent(booking.getNameArrive());
         mTvDestination.setContent(booking.getNameLeave());
         mTvType.setContent(StringUtils.capitalize(booking.getVehicleType()));
-        mTvPickupTime.setContent(booking.getTimeleave());
+        mTvPickupTime.setContent(booking.getTimeLeave());
         mTvPrice.setContent(Utilities.convertToVnd(booking.getPriceVn()));
-        mTvEmail.setContent(booking.getEmailguest());
-        mTvPhone.setVisibility((booking.getPhonenumber() == null || booking.getPhonenumber().equals("")) ? View.GONE : View.VISIBLE);
-        mTvPhone.setContent(booking.getPhonenumber());
+        mTvEmail.setContent(booking.getEmailGuest());
+        mTvPhone.setVisibility((booking.getPhoneNumber() == null || booking.getPhoneNumber().equals("")) ? View.GONE : View.VISIBLE);
+        mTvPhone.setContent(booking.getPhoneNumber());
+        mTvNote.setContent(booking.getNote());
+        mTvTimeBooking.setContent(booking.getTimeBook());
+        mTvTimeComplete.setContent(booking.getTimeCompleted());
 
         if (operation == Constants.Extras.COMPLETE) {
             mBtnComplete.setVisibility(View.GONE);
             mTvComplete.setVisibility(View.VISIBLE);
             mBtnComplete.setOnClickListener(null);
+            mTvTimeComplete.setVisibility(View.VISIBLE);
+            mTvTimeBooking.setVisibility(View.GONE);
+
+            mToolbar.setTitle(getResources().getString(R.string.title_complete_detail));
+
         } else if (operation == Constants.Extras.CONFIRM) {
             mBtnComplete.setVisibility(View.VISIBLE);
             mTvComplete.setVisibility(View.GONE);
+            mTvTimeComplete.setVisibility(View.GONE);
+            mTvTimeBooking.setVisibility(View.VISIBLE);
+
+            mToolbar.setTitle(getResources().getString(R.string.title_confirm_detail));
+
         }
     }
 
@@ -127,11 +156,6 @@ public class ConfirmDetailActivity extends AppCompatActivity implements Contract
         if (mPresenter != null) {
             mPresenter.completeBooking(booking.getIdTrip());
         }
-    }
-
-    @OnClick(R.id.btn_back)
-    public void back() {
-        ConfirmDetailActivity.this.finish();
     }
 
     @Override

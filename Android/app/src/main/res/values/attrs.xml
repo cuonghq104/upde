@@ -8,6 +8,10 @@
         </attr>
         <attr name="left_src" format="reference"/>
         <attr name="right_src" format="reference"/>
+        <attr name="toolbar_theme" format="enum">
+            <enum name="accent" value="1111"/>
+            <enum name="primary" value="2222"/>
+        </attr>
     </declare-styleable>
     <declare-styleable name="DisplayTextView">
         <attr name="displayTitle" format="string" />

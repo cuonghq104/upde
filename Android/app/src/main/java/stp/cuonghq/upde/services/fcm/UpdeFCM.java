@@ -215,7 +215,7 @@ public class UpdeFCM extends FirebaseMessagingService {
             this.flightNo = flightNo;
         }
 
-        public String getTimecomplete() {
+        public String getTimeComplete() {
             return timecomplete;
         }
 
