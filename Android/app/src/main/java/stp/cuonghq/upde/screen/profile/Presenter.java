@@ -67,6 +67,7 @@ public class Presenter extends BasePresenter<ProfileFragment> implements Contrac
 
     @Override
     public void changeProfileImage(String fileType, String filePath) {
+        getView().loading();
         AccountRepository.getInstance().changeAvatar(fileType, filePath, new ApiCallback<AvatarResponse>() {
             @Override
             public void success(AvatarResponse data, String msg) {

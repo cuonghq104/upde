@@ -37,6 +37,14 @@ public class DisplayTextView extends LinearLayout {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DisplayTextView, 0, 0);
         String title = typedArray.getString(R.styleable.DisplayTextView_displayTitle);
         String content = typedArray.getString(R.styleable.DisplayTextView_displayContent);
+        boolean isEnd = typedArray.getBoolean(R.styleable.DisplayTextView_is_end, false);
+
+        if (isEnd) {
+            this.setBackgroundColor(context.getResources().getColor(R.color.colorWhite));
+        } else {
+            this.setBackground(context.getDrawable(R.drawable.background_border_bottom_dark));
+        }
+
         mTvTitle.setText(title);
         mTvContent.setText(content);
         typedArray.recycle();

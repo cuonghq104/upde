@@ -9,6 +9,7 @@ public class Contract {
 
     interface View {
         void logOutSuccess(String msg);
+        void loading();
         void changeProfileImageSuccess(AvatarResponse response);
         void changeProfileImageFailed(String msg);
     }

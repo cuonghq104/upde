@@ -16,5 +16,6 @@
     <declare-styleable name="DisplayTextView">
         <attr name="displayTitle" format="string" />
         <attr name="displayContent" format="string" />
+        <attr name="is_end" format="boolean" />
     </declare-styleable>
 </resources>

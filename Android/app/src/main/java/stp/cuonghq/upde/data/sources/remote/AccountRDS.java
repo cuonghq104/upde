@@ -1,6 +1,7 @@
 package stp.cuonghq.upde.data.sources.remote;
 
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.apache.commons.lang3.StringUtils;
@@ -75,6 +76,7 @@ public class AccountRDS implements AccountDatasource.RDS {
 
     @Override
     public void changeProfileImage(String fileType, String image, ApiCallback callback) {
+        fileType = (fileType == null) ? "image/jpeg" : fileType;
         changeAvatarObservable(fileType, image).subscribeWith(ApiService.disposableObserver(callback));
     }
 

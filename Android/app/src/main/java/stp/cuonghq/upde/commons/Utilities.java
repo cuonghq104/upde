@@ -270,4 +270,5 @@ public class Utilities {
     public static String getPath(final Context context, final Uri uri) {
         return UriUtilities.getPath(context, uri);
     }
+
 }

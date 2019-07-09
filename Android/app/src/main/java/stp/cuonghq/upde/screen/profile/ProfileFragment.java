@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringUtils;
@@ -80,8 +81,14 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
     @BindView(R.id.btn_profile)
     CircleImageView btnProfile;
 
+    @BindView(R.id.rl_loading)
+    RelativeLayout mImgLoading;
+
     @BindView(R.id.toolbar)
     AppToolbar mToolbar;
+
+    @BindView(R.id.layout_loading)
+    View mLoading;
 
     private LoginData data;
     private String role;
@@ -128,9 +135,23 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
         mTvName.setText(data.getName());
 
         if (!StringUtils.equals(data.getAvatar(), "")) {
+            mImgLoading.setVisibility(View.VISIBLE);
+            mRlClip.setVisibility(View.GONE);
             Picasso.with(getActivity())
                     .load(Constants.imageUrl(data.getAvatar()))
-                    .into(btnProfile);
+                    .into(btnProfile, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            mImgLoading.setVisibility(View.GONE);
+                            mRlClip.setVisibility(View.VISIBLE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            mImgLoading.setVisibility(View.GONE);
+                            mRlClip.setVisibility(View.VISIBLE);
+                        }
+                    });
         }
     }
 
@@ -185,15 +206,22 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
     }
 
     @Override
+    public void loading() {
+        mLoading.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void changeProfileImageSuccess(AvatarResponse response) {
         data.setAvatar(response.getAvatar());
         AppSharePreferences.saveToSP(Constants.SharePreferenceConstants.DATA, data);
         updateUserInfo();
+        mLoading.setVisibility(View.GONE);
     }
 
     @Override
     public void changeProfileImageFailed(String msg) {
         Utilities.showToast(getActivity(), msg);
+        mLoading.setVisibility(View.GONE);
     }
 
     public void checkPermission() {
@@ -299,13 +327,13 @@ public class ProfileFragment extends BaseFragment<ProfileFragment, Presenter> im
                     File f = new File(mImagePath);
                     selectedImageUri = Uri.fromFile(f);
                 }
-                presenter.changeProfileImage(getActivity().getContentResolver().getType(selectedImageUri), Utilities.getPath(getContext(), selectedImageUri));
+                presenter.changeProfileImage("image/jpeg", Utilities.getPath(getContext(), selectedImageUri));
 
             } else if (requestCode == CAPTURE_IMAGE_REQUEST_CODE) {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 selectedImageUri = Utilities.getImageUri(getContext(), bitmap);
                 mImagePath = Utilities.getPathFromURI(getActivity(), selectedImageUri);
-                presenter.changeProfileImage(getActivity().getContentResolver().getType(selectedImageUri), Utilities.getPath(getContext(), selectedImageUri));
+                presenter.changeProfileImage("image/jpeg", Utilities.getPath(getContext(), selectedImageUri));
 
             } else if (requestCode == EDIT_INFORMATION_REQUEST_CODE) {
                 boolean updated = data.getBooleanExtra(Constants.Extras.RESULT, false);

@@ -65,6 +65,20 @@
                         android:tint="@color/colorWhite" />
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:id="@+id/rl_loading"
+                    android:layout_width="@dimen/size_store_image"
+                    android:layout_height="@dimen/size_store_image"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/background_circle_clip">
+
+                    <com.wang.avi.AVLoadingIndicatorView
+                        app:indicatorColor="@color/colorPrimary"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
             </RelativeLayout>
 
             <TextView
@@ -195,5 +209,12 @@
             android:layout_marginBottom="@dimen/margin_component"
             android:text="Version 1.0.2" />
     </LinearLayout>
+
+    <include
+        android:visibility="gone"
+        android:id="@+id/layout_loading"
+        layout="@layout/layout_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </FrameLayout>
