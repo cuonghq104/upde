@@ -44,14 +44,9 @@ public class AccountRDS implements AccountDatasource.RDS {
     public void login(String role, String email, String password, String token, ApiCallback<LoginData> callback) {
         LoginRequest request = new LoginRequest(email, password, token);
         Log.d("AccountRDS", token);
+
         loginResponseObservable(role, request).subscribeWith(ApiService.disposableObserver(callback));
     }
-
-//    @Override
-//    public void loginAsHost(String email, String password, String token, ApiCallback<LoginData> callback) {
-//        LoginRequest request = new LoginRequest(email, password, token);
-//        loginAsHostResponseObservable(request).subscribeWith(ApiService.disposableObserver(callback));
-//    }
 
     @Override
     public void logOut(String token, ApiCallback callback) {

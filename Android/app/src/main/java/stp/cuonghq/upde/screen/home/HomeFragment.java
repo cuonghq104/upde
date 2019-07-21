@@ -61,6 +61,13 @@ public class HomeFragment extends Fragment {
                     mAdapter.addToConfirmList(booking);
                 }
             });
+            ((SupplierContainerActivity) getActivity()).setCompleteReceive(new NotificationReceiver() {
+                @Override
+                public void receiveBooking(BookingResp booking) {
+                    mAdapter.removeFromConfirmList(booking);
+                    mAdapter.addToCompleteList(booking);
+                }
+            });
         }
     }
 

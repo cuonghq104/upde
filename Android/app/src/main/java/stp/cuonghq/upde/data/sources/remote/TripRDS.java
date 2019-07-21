@@ -52,8 +52,8 @@ public class TripRDS implements TripDatasource.RDS {
     }
 
     @Override
-    public void confirmBooking(String idHost, String idTrip, ApiCallback<ChangeStatusResponse> callback) {
-        BookingChangeStatus body = new BookingChangeStatus(idHost, idTrip);
+    public void confirmBooking(String idHost, String idTrip, String note, ApiCallback<ChangeStatusResponse> callback) {
+        BookingChangeStatus body = new BookingChangeStatus(idHost, idTrip, note);
         confirmBookingObservable(body).subscribeWith(ApiService.disposableObserver(callback));
     }
 
@@ -70,7 +70,7 @@ public class TripRDS implements TripDatasource.RDS {
     }
 
     @Override
-    public void getAllTripCompleteByTimeObservale(String time_begin, String time_end, long page, ApiCallback<BookingList> callback) {
+    public void getAllTripCompleteByTimeObservable(String time_begin, String time_end, long page, ApiCallback<BookingList> callback) {
         StatisticTripCompleteRequest body = new StatisticTripCompleteRequest(time_begin, time_end , page);
         getAllTripCompleteByTimeObservale(body).subscribeWith(ApiService.disposableObserver(callback));
     }

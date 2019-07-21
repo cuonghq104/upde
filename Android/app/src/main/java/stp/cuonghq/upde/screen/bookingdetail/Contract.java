@@ -12,7 +12,7 @@ public class Contract {
     }
 
     interface Presenter {
-        void confirm(String idTrip);
+        void confirm(String idTrip, String note);
         void removeFromUnreadList(String idTrip);
     }
 }

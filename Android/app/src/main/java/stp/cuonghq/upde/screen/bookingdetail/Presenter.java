@@ -23,7 +23,7 @@ public class Presenter extends BasePresenter<BookingDetailActivity> implements C
     }
 
     @Override
-    public void confirm(String idTrip) {
+    public void confirm(String idTrip, String note) {
         mView.doLoading();
 
         if (NetworkClient.getHeaderInstance() == null) {
@@ -33,7 +33,7 @@ public class Presenter extends BasePresenter<BookingDetailActivity> implements C
         LoginData data = AppSharePreferences.getFromSP(Constants.SharePreferenceConstants.DATA, LoginData.class);
         String idHost = (data != null) ? data.getId() : "";
 
-        mRepository.confirmBooking(idHost, idTrip, new ApiCallback<ChangeStatusResponse>() {
+        mRepository.confirmBooking(idHost, idTrip, note, new ApiCallback<ChangeStatusResponse>() {
             @Override
             public void success(ChangeStatusResponse data, String msg) {
                 mView.confirmSuccess(data.getResp(), msg);

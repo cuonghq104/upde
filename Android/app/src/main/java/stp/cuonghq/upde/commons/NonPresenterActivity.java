@@ -27,4 +27,9 @@ public class NonPresenterActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(ev);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        DisposableContainer.dispose();
+    }
 }

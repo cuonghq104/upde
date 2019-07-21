@@ -20,11 +20,12 @@ import stp.cuonghq.upde.R;
 import stp.cuonghq.upde.commons.AppToolbar;
 import stp.cuonghq.upde.commons.Constants;
 import stp.cuonghq.upde.commons.DisplayTextView;
+import stp.cuonghq.upde.commons.NonPresenterActivity;
 import stp.cuonghq.upde.commons.Utilities;
 import stp.cuonghq.upde.data.models.BookingResp;
 import stp.cuonghq.upde.data.models.ChangeStatusData;
 
-public class ConfirmDetailActivity extends AppCompatActivity implements Contract.View {
+public class ConfirmDetailActivity extends NonPresenterActivity implements Contract.View {
 
     public static Intent getInstance(Context context, BookingResp booking, int operation) {
         Intent intent = new Intent(context, ConfirmDetailActivity.class);
@@ -65,6 +66,8 @@ public class ConfirmDetailActivity extends AppCompatActivity implements Contract
     DisplayTextView mTvTimeBooking;
     @BindView(R.id.tv_note)
     DisplayTextView mTvNote;
+    @BindView(R.id.tv_note_for_driver)
+    DisplayTextView mTvNoteForDriver;
 
     @BindView(R.id.btn_complete)
     AppCompatButton mBtnComplete;
@@ -121,11 +124,17 @@ public class ConfirmDetailActivity extends AppCompatActivity implements Contract
         mTvPickupTime.setContent(booking.getTimeLeave());
         mTvPrice.setContent(Utilities.convertToVnd(booking.getPriceVn()));
         mTvEmail.setContent(booking.getEmailGuest());
+
         mTvPhone.setVisibility((booking.getPhoneNumber() == null || booking.getPhoneNumber().equals("")) ? View.GONE : View.VISIBLE);
         mTvPhone.setContent(booking.getPhoneNumber());
+
         mTvNote.setContent(booking.getNote());
         mTvTimeBooking.setContent(booking.getTimeBook());
         mTvTimeComplete.setContent(booking.getTimeCompleted());
+
+        mTvNoteForDriver.setVisibility(booking.getNoteForHost() == null ||
+                booking.getNoteForHost().equalsIgnoreCase("") ? View.GONE : View.VISIBLE);
+        mTvNoteForDriver.setContent(booking.getNoteForHost());
 
         if (operation == Constants.Extras.COMPLETE) {
             mBtnComplete.setVisibility(View.GONE);

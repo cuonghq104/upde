@@ -60,4 +60,20 @@ public class ConfirmAdapter extends RecyclerView.Adapter<BookingViewHolder> {
         return (mList == null) ? 0 : mList.size();
     }
 
+    public void remove(int pos) {
+        if (mList != null && mList.size() > pos) {
+            mList.remove(pos);
+            notifyItemRemoved(pos);
+            notifyItemRangeChanged(pos, getItemCount());
+        }
+    }
+
+    public void remove(BookingResp resp) {
+        for (BookingResp bookingResp : mList) {
+            if (resp.getIdTrip().equals(bookingResp.getIdTrip())) {
+                remove(mList.indexOf(bookingResp));
+                return;
+            }
+        }
+    }
 }

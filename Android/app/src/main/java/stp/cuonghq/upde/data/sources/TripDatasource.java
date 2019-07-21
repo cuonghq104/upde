@@ -23,13 +23,13 @@ public class TripDatasource {
 
         void getCompleteList(ApiCallback<BookingList> callback);
 
-        void confirmBooking(String idHost, String idTrip, ApiCallback<ChangeStatusResponse> callback);
+        void confirmBooking(String idHost, String idTrip, String note, ApiCallback<ChangeStatusResponse> callback);
 
         void completeBooking(String idHost, String idTrip, ApiCallback<ChangeStatusResponse> callback);
 
         void getAllPrice(String type , int page, ApiCallback<StatisticGetAllPriceResponce> callback);
 
-        void getAllTripCompleteByTimeObservale(String time_begin ,String time_end, long page, ApiCallback<BookingList> callback);
+        void getAllTripCompleteByTimeObservable(String time_begin , String time_end, long page, ApiCallback<BookingList> callback);
 
         void getHotelLinks(ApiCallback<ListItemHome> callback);
 

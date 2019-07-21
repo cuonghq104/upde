@@ -76,41 +76,6 @@ public class BookingFragment extends Fragment implements SwipeRefreshLayout.OnRe
         mPresenter.getBookingList();
     }
 
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-
-            if (requestCode == Constants.BOOKING_REQUEST_CODE) {
-
-                BookingResp booking = (BookingResp) data.getSerializableExtra(Constants.Extras.BOOKING);
-                if (booking != null) {
-                    int pos = -1;
-                    for (int i = 0; i < mList.size(); i++) {
-                        if (mList.get(i).getIdTrip().equalsIgnoreCase(booking.getIdTrip())) {
-                            pos = i;
-                        }
-                    }
-                    if (pos != -1) {
-                        BookingResp resp = mList.get(pos);
-                        mAdapter.remove(pos);
-
-                    }
-                }
-            }
-        }
-    }
-
-    private void moveToConfirmList(BookingResp booking) {
-
-        Fragment parentFragment = getParentFragment();
-        if (parentFragment instanceof HomeFragment) {
-
-            ((HomeFragment) parentFragment).moveToConfirmList(booking);
-        }
-    }
-
     @Override
     public void onRefresh() {
         mRefresh.setRefreshing(false);

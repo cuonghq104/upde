@@ -64,6 +64,9 @@ public class BookingResp implements Serializable {
     @Expose
     @SerializedName("TimeComplete")
     private String timeCompleted;
+    @Expose
+    @SerializedName("note_for_host")
+    private String noteForHost;
 
     private boolean read = true;
 
@@ -269,5 +272,13 @@ public class BookingResp implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getNoteForHost() {
+        return noteForHost;
+    }
+
+    public void setNoteForHost(String noteForHost) {
+        this.noteForHost = noteForHost;
     }
 }

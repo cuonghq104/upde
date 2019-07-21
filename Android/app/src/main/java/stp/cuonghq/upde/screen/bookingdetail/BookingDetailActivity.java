@@ -9,6 +9,7 @@ import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -21,12 +22,13 @@ import stp.cuonghq.upde.commons.AppToolbar;
 import stp.cuonghq.upde.commons.BaseActivity;
 import stp.cuonghq.upde.commons.Constants;
 import stp.cuonghq.upde.commons.DisplayTextView;
+import stp.cuonghq.upde.commons.DriverNoteDialog;
 import stp.cuonghq.upde.commons.Utilities;
 import stp.cuonghq.upde.data.models.BookingResp;
 import stp.cuonghq.upde.data.models.ChangeStatusData;
 import stp.cuonghq.upde.services.fcm.UpdeFCM;
 
-public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, Presenter> implements Contract.View {
+public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, Presenter> implements Contract.View, DriverNoteDialog.DriverNoteListener {
 
     public static Intent getInstance(Context context, BookingResp booking) {
         Intent intent = new Intent(context, BookingDetailActivity.class);
@@ -145,15 +147,19 @@ public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, P
         });
     }
 
+    DriverNoteDialog dialog;
+
     @OnClick(R.id.btn_accept)
     void acceptBooking() {
         if (AppContext.getInstance() == null) {
             AppContext.getInstance(getApplicationContext());
         }
-        if (mPresenter != null) {
-            mPresenter.confirm(booking.getIdTrip());
-        }
 
+        dialog = new DriverNoteDialog(this, this);
+
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
     }
 
     @Override
@@ -178,5 +184,19 @@ public class BookingDetailActivity extends BaseActivity<BookingDetailActivity, P
         returnIntent.putExtra(Constants.Extras.BOOKING, booking);
         setResult(Activity.RESULT_OK, returnIntent);
         finish();
+    }
+
+    @Override
+    public void onAccept(String note) {
+        if (mPresenter != null) {
+            mPresenter.confirm(booking.getIdTrip(), note);
+        }
+    }
+
+    @Override
+    public void onCancel() {
+        if (dialog != null) {
+            dialog.cancel();
+        }
     }
 }

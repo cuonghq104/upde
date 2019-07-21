@@ -63,4 +63,11 @@
     <string name="error_password_do_not_match">Xác nhận mật khẩu không đúng</string>
     <string name="error_can_not_be_empty">Không được bỏ trống</string>
     <string name="title_complete_time">Thời gian hoàn thành</string>
+    <string name="title_confirm_dialog">Xác nhận</string>
+    <string name="content_confirm_dialog">Truy cập %s</string>
+    <string name="title_access">Mở</string>
+    <string name="title_cancel">Không</string>
+    <string name="title_note_for_driver">Ghi chú cho nhà xe</string>
+    <string name="title_character">ký tự</string>
+    <string name="title_limit_reached">Không thể nhập thêm</string>
 </resources>

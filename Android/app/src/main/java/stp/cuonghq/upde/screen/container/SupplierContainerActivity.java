@@ -53,6 +53,11 @@ public class SupplierContainerActivity extends NonPresenterActivity implements B
     private BroadcastReceiver mReceiver;
     private NotificationReceiver mBookingReceive;
     private NotificationReceiver mConfirmReceive;
+    private NotificationReceiver mCompleteReceive;
+
+    public void setCompleteReceive(NotificationReceiver mCompleteReceive) {
+        this.mCompleteReceive = mCompleteReceive;
+    }
 
     public void setBookingReceive(NotificationReceiver mBookingReceive) {
         this.mBookingReceive = mBookingReceive;
@@ -115,10 +120,12 @@ public class SupplierContainerActivity extends NonPresenterActivity implements B
                         resp.setTimeBook(booking.getTimeBook());
                         resp.setTimeCompleted(booking.getTimeComplete());
 
-                        if (TextUtils.equals(booking.getType(), "notify_accept")) {
-                            mConfirmReceive.receiveBooking(resp);
-                        } else {
+                        if (TextUtils.equals(booking.getType(), "notify_complete")) {
+                            mCompleteReceive.receiveBooking(resp);
+                        } else if (TextUtils.equals(booking.getType(), "notify_booking")){
                             mBookingReceive.receiveBooking(resp);
+                        } else {
+                            mConfirmReceive.receiveBooking(resp);
                         }
                     }
                 }

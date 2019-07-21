@@ -39,6 +39,12 @@ public abstract class BaseActivity<V extends BaseContract.View, P extends BaseCo
         return lifecycleRegistry;
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        DisposableContainer.dispose();
+    }
+
     @CallSuper
     @Override
     protected void onDestroy() {

@@ -64,13 +64,7 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
         }
     }
 
-    public void addToConfirmList(BookingResp booking) {
-        confirmFragment.addToConfirmList(booking);
-    }
 
-    public void addToCompleteList(BookingResp booking) {
-        completeFragment.addToCompleteList(booking);
-    }
 
     public void addToBookingList(BookingResp booking) {
         Log.d(TAG, "addToBookingList-adapter");
@@ -79,5 +73,17 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
 
     public void removeFromBookingList(BookingResp booking) {
         bookingFragment.removeFromBookingList(booking);
+    }
+
+    public void addToConfirmList(BookingResp booking) {
+        confirmFragment.addToConfirmList(booking);
+    }
+
+    public void removeFromConfirmList(BookingResp booking) {
+        confirmFragment.removeFromConfirmList(booking);
+    }
+
+    public void addToCompleteList(BookingResp booking) {
+        completeFragment.addToCompleteList(booking);
     }
 }

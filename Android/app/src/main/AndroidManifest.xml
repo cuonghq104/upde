@@ -17,8 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".screen.test.DumpActivity">
+        <activity android:name=".screen.rongvang.DumpActivity">
         </activity>
+        <activity android:name=".screen.test.DumpActivity"></activity>
         <activity android:name=".screen.changepassword.ChangePasswordActivity" />
         <activity android:name=".screen.editinfo.EditInformationActivity" />
         <activity android:name=".screen.start.StartActivity" />

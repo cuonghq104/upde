@@ -7,7 +7,7 @@ import stp.cuonghq.upde.data.models.Response;
 public class ApiService {
 
     public static <T> DisposableObserver<Response<T>> disposableObserver(final ApiCallback<T> callback) {
-        return new DisposableObserver<Response<T>>() {
+        DisposableObserver<Response<T>> disposableObserver =  new DisposableObserver<Response<T>>() {
             @Override
             public void onNext(Response<T> t) {
                 if (t.isSuccess()) {
@@ -27,6 +27,8 @@ public class ApiService {
 
             }
         };
+        DisposableContainer.add(disposableObserver);
+        return disposableObserver;
     }
 
     public static <T> DisposableObserver<ListResponse<T>> listResponseDisposableObserver(final ApiListCallback <T> callback) {

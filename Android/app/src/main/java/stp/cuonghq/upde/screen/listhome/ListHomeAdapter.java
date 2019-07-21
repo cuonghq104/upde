@@ -1,7 +1,12 @@
 package stp.cuonghq.upde.screen.listhome;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import stp.cuonghq.upde.R;
 import stp.cuonghq.upde.data.models.ItemHome;
@@ -21,13 +27,17 @@ import stp.cuonghq.upde.data.models.ItemHome;
 
 public class ListHomeAdapter extends RecyclerView.Adapter<ListHomeAdapter.ItemHomeViewHolder> {
 
-    private ArrayList<ItemHome> mListHome;
+    private List<ItemHome> mListHome;
     private Context mContext;
     private OnItemHomeClickListener listener;
 
-    ListHomeAdapter(ArrayList<ItemHome> list, Context context){
-        this.mListHome = list;
+    ListHomeAdapter(Context context){
         this.mContext = context;
+    }
+
+    public void setList(List<ItemHome> list){
+        this.mListHome = list;
+        notifyDataSetChanged();
     }
 
     public void setListener(OnItemHomeClickListener listener) {
@@ -44,9 +54,38 @@ public class ListHomeAdapter extends RecyclerView.Adapter<ListHomeAdapter.ItemHo
 
     @Override
     public void onBindViewHolder(@NonNull final ItemHomeViewHolder holder, final int position) {
-        ItemHome item = mListHome.get(position);
+        final ItemHome item = mListHome.get(position);
         holder.tvAddress.setText(item.getAddress());
         holder.tvLink.setText(item.getLink());
+        holder.tvLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new AlertDialog.Builder(mContext)
+                        .setIcon(R.drawable.ic_warning_black_24dp)
+                        .setTitle(mContext.getString(R.string.title_confirm_dialog))
+                        .setMessage(String.format(mContext.getResources().getString(R.string.content_confirm_dialog), item.getLink()))
+                        .setPositiveButton(mContext.getResources().getString(R.string.title_access), new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String url = item.getLink();
+                                if (!url.startsWith("http://") && !url.startsWith("https://"))
+                                    url = "http://" + url;
+
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                if (mContext instanceof AppCompatActivity) {
+                                    ((AppCompatActivity) mContext).startActivity(intent);
+                                }
+                            }
+
+                        })
+                        .setNegativeButton(mContext.getResources().getString(R.string.title_cancel), null)
+                        .show();
+
+
+            }
+        });
         holder.btnCopy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,12 +93,11 @@ public class ListHomeAdapter extends RecyclerView.Adapter<ListHomeAdapter.ItemHo
             }
         });
 
-
     }
 
     @Override
     public int getItemCount() {
-        return mListHome.size();
+        return (mListHome == null ? 0 : mListHome.size());
     }
 
 

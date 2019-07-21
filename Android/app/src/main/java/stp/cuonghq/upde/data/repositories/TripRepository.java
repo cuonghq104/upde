@@ -1,6 +1,5 @@
 package stp.cuonghq.upde.data.repositories;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import stp.cuonghq.upde.commons.ApiCallback;
@@ -13,7 +12,6 @@ import stp.cuonghq.upde.data.models.dbentities.MonthStatisticEntity;
 import stp.cuonghq.upde.data.models.dbentities.WeekStatisticEntity;
 import stp.cuonghq.upde.data.models.dbentities.TripEntity;
 import stp.cuonghq.upde.data.models.dbentities.YearStatisticEntity;
-import stp.cuonghq.upde.data.sources.local.AppDatabase;
 import stp.cuonghq.upde.data.sources.local.TripLDS;
 import stp.cuonghq.upde.data.sources.remote.TripRDS;
 
@@ -54,9 +52,9 @@ public class TripRepository {
         }
     }
 
-    public void confirmBooking(String idHost, String idTrip, ApiCallback<ChangeStatusResponse> callback) {
+    public void confirmBooking(String idHost, String idTrip, String note, ApiCallback<ChangeStatusResponse> callback) {
         if (rds != null) {
-            rds.confirmBooking(idHost, idTrip, callback);
+            rds.confirmBooking(idHost, idTrip, note, callback);
         }
     }
 
@@ -74,7 +72,7 @@ public class TripRepository {
 
     public void getAllTripCompleteByTimeObservale(String time_begin,String time_end, long page, ApiCallback<BookingList> callback) {
         if (rds != null) {
-            rds.getAllTripCompleteByTimeObservale(time_begin, time_end,page, callback);
+            rds.getAllTripCompleteByTimeObservable(time_begin, time_end,page, callback);
         }
     }
 

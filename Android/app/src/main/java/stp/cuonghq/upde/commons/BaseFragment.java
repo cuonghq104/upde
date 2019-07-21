@@ -48,10 +48,16 @@ public abstract class BaseFragment<V extends BaseContract.View, P extends BaseCo
         presenter.detachView();
     }
 
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        DisposableContainer.dispose();
+    }
 
     protected abstract P initPresenter();
 }

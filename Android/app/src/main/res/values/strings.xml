@@ -65,5 +65,12 @@
     <string name="error_password_do_not_match">Confirm password do not match</string>
     <string name="error_can_not_be_empty">Can\'t not be empty</string>
     <string name="title_complete_time">Complete time</string>
+    <string name="title_confirm_dialog">Confirm</string>
+    <string name="content_confirm_dialog">Open %s in browser ?</string>
+    <string name="title_access">Open</string>
+    <string name="title_cancel">No</string>
+    <string name="title_note_for_driver">Note for driver</string>
+    <string name="title_character">character(s)</string>
+    <string name="title_limit_reached">Input limitation reached</string>
 </resources>
 

@@ -83,41 +83,47 @@ public class ConfirmFragment extends Fragment implements SwipeRefreshLayout.OnRe
         mLayoutManager.scrollToPositionWithOffset(0, 0);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-
-            if (requestCode == Constants.CONFIRM_REQUEST_CODE) {
-
-                BookingResp statusData = (BookingResp) data.getSerializableExtra(Constants.Extras.BOOKING);
-                if (statusData != null) {
-                    int pos = -1;
-                    for (int i = 0; i < mList.size(); i++) {
-                        if (mList.get(i).getIdTrip().equalsIgnoreCase(statusData.getIdTrip())) {
-                            pos = i;
-                        }
-                    }
-                    if (pos != -1) {
-                        BookingResp booking = mList.get(pos);
-                        mList.remove(pos);
-                        mAdapter.notifyItemRemoved(pos);
-                        moveToCompleteList(booking);
-                    }
-                }
-
-            }
+    public void removeFromConfirmList(BookingResp booking) {
+        if (mList != null) {
+            mAdapter.remove(booking);
         }
     }
-
-    private void moveToCompleteList(BookingResp booking) {
-        Fragment parentFragment = getParentFragment();
-        if (parentFragment instanceof HomeFragment) {
-
-            ((HomeFragment) parentFragment).moveToCompleteList(booking);
-        }
-
-    }
+//
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == Activity.RESULT_OK) {
+//
+//            if (requestCode == Constants.CONFIRM_REQUEST_CODE) {
+//
+//                BookingResp statusData = (BookingResp) data.getSerializableExtra(Constants.Extras.BOOKING);
+//                if (statusData != null) {
+//                    int pos = -1;
+//                    for (int i = 0; i < mList.size(); i++) {
+//                        if (mList.get(i).getIdTrip().equalsIgnoreCase(statusData.getIdTrip())) {
+//                            pos = i;
+//                        }
+//                    }
+//                    if (pos != -1) {
+//                        BookingResp booking = mList.get(pos);
+//                        mList.remove(pos);
+//                        mAdapter.notifyItemRemoved(pos);
+//                        moveToCompleteList(booking);
+//                    }
+//                }
+//
+//            }
+//        }
+//    }
+//
+//    private void moveToCompleteList(BookingResp booking) {
+//        Fragment parentFragment = getParentFragment();
+//        if (parentFragment instanceof HomeFragment) {
+//
+//            ((HomeFragment) parentFragment).moveToCompleteList(booking);
+//        }
+//
+//    }
 
 
     @Override
