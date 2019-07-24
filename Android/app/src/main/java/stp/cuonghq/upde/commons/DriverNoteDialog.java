@@ -3,8 +3,6 @@ package stp.cuonghq.upde.commons;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
@@ -16,6 +14,8 @@ import android.view.Window;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import stp.cuonghq.upde.R;
+import stp.cuonghq.upde.components.AppCompatAutoResizeButton;
+import stp.cuonghq.upde.components.AppCompatAutoResizeTextView;
 
 public class DriverNoteDialog extends Dialog {
 
@@ -36,10 +36,10 @@ public class DriverNoteDialog extends Dialog {
     }
 
     @BindView(R.id.btn_cancel)
-    AppCompatButton mBtnCancel;
+    AppCompatAutoResizeButton mBtnCancel;
 
     @BindView(R.id.btn_accept)
-    AppCompatButton mBtnAccept;
+    AppCompatAutoResizeButton mBtnAccept;
 
     @BindView(R.id.tv_char_limit)
     AppCompatTextView mTvCharLimit;

@@ -16,11 +16,12 @@ import android.widget.RelativeLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import stp.cuonghq.upde.R;
+import stp.cuonghq.upde.components.AppCompatAutoResizeTextView;
 
 public class AppToolbar extends RelativeLayout {
     View mLayout;
     @BindView(R.id.tv_title)
-    AppCompatTextView mTvTitle;
+    AppCompatAutoResizeTextView mTvTitle;
 
     @BindView(R.id.btn_left)
     AppCompatImageButton mBtnLeft;
