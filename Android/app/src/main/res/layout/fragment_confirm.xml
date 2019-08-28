@@ -5,21 +5,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="stp.cuonghq.upde.screen.home.confirm.ConfirmFragment">
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:paddingStart="@dimen/margin_component"
         android:paddingEnd="@dimen/margin_component"
         android:id="@+id/srf_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_confirm"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/margin_component"
             android:layoutAnimation="@anim/layout_animation_fall_down">
-        </android.support.v7.widget.RecyclerView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <include
         android:id="@+id/layout_loading"

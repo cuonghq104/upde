@@ -33,14 +33,14 @@
             android:orientation="vertical"
             android:paddingTop="25dp">
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/title_name"
                 android:textColor="@color/colorHint"
                 android:textSize="@dimen/ts_form_hint" />
 
-            <android.support.v7.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:maxLength="32"
                 android:id="@+id/edt_name"
                 android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             android:background="@drawable/background_border_bottom_dark"
             android:orientation="vertical">
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="25dp"
@@ -65,7 +65,7 @@
                 android:textColor="@color/colorHint"
                 android:textSize="@dimen/ts_form_hint" />
 
-            <android.support.v7.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:maxLength="20"
                 android:id="@+id/edt_phone"
                 android:inputType="phone"
@@ -83,7 +83,7 @@
             android:background="@drawable/background_border_bottom_dark"
             android:orientation="vertical">
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="25dp"
@@ -91,7 +91,7 @@
                 android:textColor="@color/colorHint"
                 android:textSize="@dimen/ts_form_hint" />
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btn_change_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
 
         </LinearLayout>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

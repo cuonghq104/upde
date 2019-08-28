@@ -1,15 +1,13 @@
 package stp.cuonghq.upde.data.sources.local;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.Query;
+import androidx.room.Update;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import stp.cuonghq.upde.data.models.dbentities.MonthStatisticEntity;
-import stp.cuonghq.upde.data.models.dbentities.WeekStatisticEntity;
 
 /**
  * Created by cuong.hq1 on 6/17/2019.

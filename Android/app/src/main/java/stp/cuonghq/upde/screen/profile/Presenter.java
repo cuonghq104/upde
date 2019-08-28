@@ -1,21 +1,13 @@
 package stp.cuonghq.upde.screen.profile;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-
-import com.google.gson.Gson;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 
 import stp.cuonghq.upde.commons.ApiCallback;
-import stp.cuonghq.upde.commons.AppContext;
 import stp.cuonghq.upde.commons.AppSharePreferences;
 import stp.cuonghq.upde.commons.AvatarResponse;
 import stp.cuonghq.upde.commons.BasePresenter;
 import stp.cuonghq.upde.commons.Constants;
-import stp.cuonghq.upde.commons.Utilities;
 import stp.cuonghq.upde.data.models.LoginData;
 import stp.cuonghq.upde.data.repositories.AccountRepository;
 

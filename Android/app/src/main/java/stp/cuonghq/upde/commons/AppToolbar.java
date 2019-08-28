@@ -1,12 +1,10 @@
 package stp.cuonghq.upde.commons;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
-import android.support.constraint.ConstraintLayout;
-import android.support.constraint.ConstraintSet;
-import android.support.v7.widget.AppCompatImageButton;
-import android.support.v7.widget.AppCompatTextView;
+
+import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;

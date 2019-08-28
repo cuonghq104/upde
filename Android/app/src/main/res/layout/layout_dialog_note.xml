@@ -9,7 +9,7 @@
     android:padding="@dimen/margin_component_large">
 
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_title"
         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
         android:orientation="vertical"
         android:padding="@dimen/margin_component">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_char_limit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             android:textColor="@color/colorSecondaryText"
             android:textSize="12sp" />
 
-        <android.support.v7.widget.AppCompatEditText
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edt_note"
             android:layout_width="match_parent"
             android:layout_height="200dp"

@@ -1,23 +1,18 @@
 package stp.cuonghq.upde.screen.start.signin;
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.OnLifecycleEvent;
-import android.content.Context;
-import android.content.SharedPreferences;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.OnLifecycleEvent;
+
 import android.os.Bundle;
 import android.util.Log;
-
-import com.google.gson.Gson;
 
 import org.apache.commons.lang3.StringUtils;
 
 import stp.cuonghq.upde.commons.ApiCallback;
 import stp.cuonghq.upde.commons.AppSharePreferences;
-import stp.cuonghq.upde.commons.BaseContract;
 import stp.cuonghq.upde.commons.BasePresenter;
 import stp.cuonghq.upde.commons.Constants;
 import stp.cuonghq.upde.commons.NetworkClient;
-import stp.cuonghq.upde.commons.Utilities;
 import stp.cuonghq.upde.data.models.LoginData;
 import stp.cuonghq.upde.data.repositories.AccountRepository;
 

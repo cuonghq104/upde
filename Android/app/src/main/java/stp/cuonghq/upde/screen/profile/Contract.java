@@ -1,6 +1,6 @@
 package stp.cuonghq.upde.screen.profile;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import stp.cuonghq.upde.commons.AvatarResponse;
 import stp.cuonghq.upde.data.models.LoginData;

@@ -1,6 +1,6 @@
 package stp.cuonghq.upde.commons;
 
-import android.arch.lifecycle.Lifecycle;
+import androidx.lifecycle.Lifecycle;
 
 public class BaseContract {
 

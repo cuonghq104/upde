@@ -1,8 +1,8 @@
 package stp.cuonghq.upde.screen.home.booking;
 
 import android.os.Build;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import org.apache.commons.lang3.StringUtils;

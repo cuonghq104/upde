@@ -1,8 +1,8 @@
 package stp.cuonghq.upde.data.models.dbentities;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 /**
  * Created by cuong.hq1 on 6/17/2019.

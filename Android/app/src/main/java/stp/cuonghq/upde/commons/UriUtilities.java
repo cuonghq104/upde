@@ -9,10 +9,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.provider.OpenableColumns;
-import android.support.v4.content.CursorLoader;
 
-import com.github.mikephil.charting.utils.FileUtils;
+import androidx.loader.content.CursorLoader;
 
 public class UriUtilities {
 

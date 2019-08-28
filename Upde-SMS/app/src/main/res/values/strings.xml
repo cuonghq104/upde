@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Upde-SMS</string>
+    <string name="default_notification_channel_id">1010</string>
+</resources>

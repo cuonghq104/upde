@@ -104,7 +104,6 @@ public class AccountRDS implements AccountDatasource.RDS {
             avatar = MultipartBody.Part.createFormData(rolePath, file.getName(), RequestBody.create(MediaType.parse(fileType), file));
         }
 
-        Log.d("ab", "abc");
         return NetworkClient.getHeaderInstance()
                 .create(AccountServices.class)
                 .updateAvatar(rolePath, avatar)

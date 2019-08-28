@@ -1,7 +1,7 @@
 package stp.cuonghq.upde.components;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatButton;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
